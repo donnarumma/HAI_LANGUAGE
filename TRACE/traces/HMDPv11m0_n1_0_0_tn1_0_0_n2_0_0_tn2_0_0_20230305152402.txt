@@ -1,0 +1,171 @@
+Level 3, Time 0:
+Sentence(1):BETTER CIRCLE RUBBER GARDEN
+Sentence(2):PURPLE RUBBER FINGER GARDEN
+Sentence(3):LITTLE PURPLE CIRCLE GARDEN
+Sentence(4):BETTER LITTLE RUBBER CIRCLE
+Sentence(5):BUTTON LITTLE RUBBER CIRCLE
+Sentence(6):BETTER LITTLE RUBBER CIRCUS
+Sentence(7):LITTLE PURPLE RUBBER FINGER
+Sentence(8):PURPLE RUBBER LITTLE FINGER
+Sentence(9):LATTER PURPLE CIRCLE GARDEN
+Sentence(10):LITTLE PURPLE RUBBER GARDEN
+Sentence(11):BUTTER LITTLE RUBBER CIRCLE
+Sentence(12):BETTER CIRCLE RUBBER GLOBAL
+Sentence(13):LITTLE PURPLE RUBBER GLOBAL
+Sentence(14):BETTER LATTER RUBBER CIRCLE
+Sentence(15):BUTTON LITTLE RUBBER CASTLE
+Sentence(16):BETTER LITTLE RUBBER CASTLE
+WordLocation(1):WoL1
+WordLocation(2):WoL2
+WordLocation(3):WoL3
+WordLocation(4):WoL4
+
+Level 2, Time 0:
+Word(1):BET TER
+Word(2):BUT TER
+Word(3):BUT TON
+Word(4):CIR CLE
+Word(5):CIR CUS
+Word(6):CAS TLE
+Word(7):FIN GER
+Word(8):GAR DEN
+Word(9):GLO BAL
+Word(10):LAT TER
+Word(11):LIT TLE
+Word(12):PUR PLE
+Word(13):RUB BER
+Word(14):PRO PER
+SyllableLocation(1):SyL1
+SyllableLocation(2):SyL2
+
+
+
+MDP VB_MDP entering Level 3
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=2,LetterLocation=1) - (BET,LeL1)
+o=(Letter=2,LetterLocation=1) - (B,LeL1)
+p(Syllable)=(2.5e-16,0.67,2.5e-16,0.33,1.3e-24,1.3e-24,1.3e-24,1.3e-24,1.3e-24,1.3e-24,1.3e-24,1.3e-24,1.3e-24,3.9e-17,9.2e-17,1.3e-24,1.3e-24,1.3e-24,6e-17,1.3e-24,1.3e-24,1.3e-24,1.3e-24)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=2,LetterLocation=2) - (BET,LeL2)
+o=(Letter=5,LetterLocation=2) - (E,LeL2)
+p(Syllable)=(1.6e-24,1,6.8e-16,8.4e-21,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1.6e-16,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 1
+BEFORE EXIT
+Level 2, Time 1:
+s=(Word=1,SyllableLocation=1) - (BET TER,SyL1)
+o=(Syllable=2,SyllableLocation=1) - (BET,SyL1)
+p(Word)=(1,5e-17,7.7e-17,1.6e-24,1.6e-24,1.6e-24,1.6e-24,1.6e-24,1.6e-24,5e-17,1.2e-16,7.7e-17,1.6e-24,1.6e-24)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP exiting Level 2
+Loop in t
+Level 3, Time 1:
+s=(Sentence=4,WordLocation=1) - (BETTER LITTLE RUBBER CIRCLE,WoL1)
+o=(Word=1,WordLocation=1) - (BET TER,WoL1)
+p(Sentence)=(0.17,7.1e-17,8.2e-17,0.17,7.1e-17,0.17,8.2e-17,7.1e-17,6.4e-17,8.2e-17,6.4e-17,0.17,8.2e-17,0.17,7.1e-17,0.17)
+p(WordLocation)=(1,1e-24,1e-24,1e-24)
+
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=6,LetterLocation=1) - (CIR,LeL1)
+o=(Letter=3,LetterLocation=1) - (C,LeL1)
+p(Syllable)=(1.5e-24,6.3e-17,1.5e-24,2e-24,0.19,0.81,3.1e-16,3.1e-16,1.5e-24,2.9e-24,1.5e-24,5.5e-17,5.5e-17,4e-17,7.7e-17,1.5e-24,1.5e-24,1.5e-24,3.4e-24,6.3e-17,1.5e-24,1.5e-24,1.5e-24)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=6,LetterLocation=2) - (CIR,LeL2)
+o=(Letter=8,LetterLocation=2) - (I,LeL2)
+p(Syllable)=(1e-24,1e-24,1e-24,1e-24,7e-21,1,1.6e-24,1.6e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 1:
+s=(Word=4,SyllableLocation=1) - (CIR CLE,SyL1)
+o=(Syllable=6,SyllableLocation=1) - (CIR,SyL1)
+p(Word)=(7.2e-17,1.9e-24,2.1e-24,0.76,0.24,6.3e-17,5.3e-24,6.3e-17,6.3e-17,4.5e-17,1.7e-16,3.8e-24,7.2e-17,1.7e-24)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=7,LetterLocation=1) - (CLE,LeL1)
+o=(Letter=3,LetterLocation=1) - (C,LeL1)
+p(Syllable)=(1.6e-24,1.4e-24,1.6e-24,1.5e-24,2.6e-16,0.37,0.48,0.15,1.6e-24,1.3e-24,1.4e-24,1.4e-24,1.4e-24,1.3e-24,1.5e-24,1.4e-24,1.4e-24,1.3e-24,1.3e-24,1.4e-24,2.2e-24,2.2e-24,1.4e-24)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=7,LetterLocation=2) - (CLE,LeL2)
+o=(Letter=9,LetterLocation=2) - (L,LeL2)
+p(Syllable)=(1e-24,1e-24,1e-24,1e-24,1.7e-24,9.3e-21,1,7.5e-21,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 2
+BEFORE EXIT
+Level 2, Time 2:
+s=(Word=4,SyllableLocation=2) - (CIR CLE,SyL2)
+o=(Syllable=7,SyllableLocation=2) - (CLE,SyL2)
+p(Word)=(1e-24,1e-24,1e-24,1,7.5e-21,1.6e-24,1e-24,1e-24,1e-24,1e-24,1.6e-24,1.6e-24,1e-24,1e-24)
+p(SyllableLocation)=(1e-24,1)
+
+MDP VB_MDP exiting Level 2
+Loop in t
+Level 3, Time 2:
+s=(Sentence=4,WordLocation=4) - (BETTER LITTLE RUBBER CIRCLE,WoL4)
+o=(Word=4,WordLocation=4) - (CIR CLE,WoL4)
+p(Sentence)=(8.4e-21,1e-24,1e-24,0.5,1.6e-16,8.4e-21,1e-24,1e-24,1e-24,1e-24,1.6e-16,8.4e-21,1e-24,0.5,1e-24,8.4e-21)
+p(WordLocation)=(1e-24,1e-24,1e-24,1)
+
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=15,LetterLocation=1) - (LIT,LeL1)
+o=(Letter=9,LetterLocation=1) - (L,LeL1)
+p(Syllable)=(1.6e-24,1e-16,1.6e-24,2.6e-24,2e-24,1e-16,1.6e-24,1.6e-24,1.6e-24,2.2e-24,1.6e-24,2.6e-24,2e-24,0.5,0.5,1.6e-24,1.6e-24,1.6e-24,3.5e-24,1e-16,1.6e-24,1.6e-24,1.6e-24)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=15,LetterLocation=2) - (LIT,LeL2)
+o=(Letter=8,LetterLocation=2) - (I,LeL2)
+p(Syllable)=(1e-24,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1e-20,1,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 1
+BEFORE EXIT
+Level 2, Time 1:
+s=(Word=11,SyllableLocation=1) - (LIT TLE,SyL1)
+o=(Syllable=15,SyllableLocation=1) - (LIT,SyL1)
+p(Word)=(1.6e-16,2.9e-24,3.2e-24,3.4e-16,4.2e-24,2.9e-24,5.1e-24,3.6e-24,2.9e-24,1.6e-16,1,4.9e-24,1.6e-16,2.2e-24)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP exiting Level 2
+NO MORE IN DOUBT! Level 3 Exiting at 3
+BEFORE EXIT
+Level 3, Time 3:
+s=(Sentence=4,WordLocation=2) - (BETTER LITTLE RUBBER CIRCLE,WoL2)
+o=(Word=11,WordLocation=2) - (LIT TLE,WoL2)
+p(Sentence)=(2.1e-24,1.6e-24,1e-24,1,4.2e-16,1.6e-16,1e-24,1.6e-24,1e-24,1e-24,4.2e-16,2.1e-24,1e-24,7.5e-22,1.6e-16,1.6e-16)
+p(WordLocation)=(1e-24,1,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 3

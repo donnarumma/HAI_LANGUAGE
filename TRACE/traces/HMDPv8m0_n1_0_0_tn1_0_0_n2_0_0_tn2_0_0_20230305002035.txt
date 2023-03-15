@@ -1,0 +1,210 @@
+Level 2, Time 0:
+Sentence(1):THIS PAPER IS ALSO CITED BY
+Sentence(2):THIS PAPER IS ALSO CITED IN
+Sentence(3):THIS PAPER IS ALSO KNOWN AS
+Sentence(4):THIS PAPER IS ALSO MENTIONED IN
+Sentence(5):THIS PAPER IS ALSO PUBLISHED IN
+Sentence(6):THIS PAPER IS ALSO PUBLISHED ON
+Sentence(7):THIS PAPER IS ALSO QUOTED IN
+Sentence(8):THIS PAPER IS ALSO REFERENCED IN
+Sentence(9):THIS PAPER IS ALSO REFERRED TO
+Sentence(10):THIS PAPER IS ALSO USED IN
+Sentence(11):THIS PAPER IS ALSO USED TO
+Sentence(12):THIS PAPER IS CITED BY JAMES
+Sentence(13):THIS PAPER IS CITED BY RICHARD
+Sentence(14):THIS PAPER IS CITED IN A
+Sentence(15):THIS PAPER IS DESCRIBED BY JOHN
+Sentence(16):THIS PAPER IS DESCRIBED IN THE
+Sentence(17):THIS PAPER IS EDITED BY ROBERT
+Sentence(18):THIS PAPER IS NAMED AFTER THE
+Sentence(19):THIS PAPER IS NAMED FOR THE
+Sentence(20):THIS PAPER IS NOW CONSIDERED AS
+Sentence(21):THIS PAPER IS NOW ON THE
+Sentence(22):THIS PAPER IS NOW OWNED BY
+Sentence(23):THIS PAPER IS NOW PUBLISHED AT
+Sentence(24):THIS PAPER IS NOW PUBLISHED BY
+Sentence(25):THIS PAPER IS PUBLISHED BY PROFESSOR
+Sentence(26):THIS PAPER IS PUBLISHED IN THE
+Sentence(27):THIS PAPER IS TRANSLATED FROM RUSSIAN
+Sentence(28):THIS PAPER IS TRANSLATED INTO THE
+Sentence(29):THIS PAPER WAS A BAD SIGN
+Sentence(30):THIS PAPER WAS A FREE ELECTRONIC
+Sentence(31):THIS PAPER WAS A REAL STORY
+Sentence(32):THIS PAPER WAS ALSO CITED AS
+Sentence(33):THIS PAPER WAS ALSO CITED BY
+Sentence(34):THIS PAPER WAS ALSO DEFENDED BY
+Sentence(35):THIS PAPER WAS ALSO EDITED BY
+Sentence(36):THIS PAPER WAS ALSO PUBLISHED BY
+Sentence(37):THIS PAPER WAS ALSO REPRINTED IN
+Sentence(38):THIS PAPER WAS IN A DIFFERENT
+Sentence(39):THIS PAPER WAS IN SPANISH BY
+Sentence(40):THIS PAPER WAS LATER EDITED BY
+Sentence(41):THIS PAPER WAS LATER PUBLISHED BY
+Sentence(42):THIS PAPER WAS LATER PUBLISHED IN
+Sentence(43):THIS PAPER WAS NOT CONSIDERED OF
+Sentence(44):THIS PAPER WAS NOT THAT SIMPLE
+Sentence(45):THIS PAPER WAS NOT THE SECOND
+Sentence(46):THIS PAPER WAS NOT YET FINISHED
+Sentence(47):THIS PAPER WAS ORIGINALLY PUBLISHED BY
+Sentence(48):THIS PAPER WAS ORIGINALLY WRITTEN BY
+Sentence(49):THIS PAPER WAS PUBLISHED BY JOHN
+Sentence(50):THIS PAPER WAS PUBLISHED BY THE
+Sentence(51):THIS PAPER WAS PUBLISHED IN AN
+Sentence(52):THIS PAPER WAS PUBLISHED IN THE
+Sentence(53):THIS PAPER WAS THE FIRST PUBLISHED
+Sentence(54):THIS PAPER WAS THE SECOND EDITION
+Sentence(55):THIS PAPER WAS THE SECOND PUBLISHED
+Sentence(56):THIS PAPER WAS WRITTEN BY ROBERT
+WordLocation(1):WoL1
+WordLocation(2):WoL2
+WordLocation(3):WoL3
+WordLocation(4):WoL4
+WordLocation(5):WoL5
+WordLocation(6):WoL6
+
+Level 1, Time 0:
+Word(1):A
+Word(2):AFTER
+Word(3):ALSO
+Word(4):AN
+Word(5):AS
+Word(6):AT
+Word(7):BAD
+Word(8):BY
+Word(9):CITED
+Word(10):CONSIDERED
+Word(11):DEFENDED
+Word(12):DESCRIBED
+Word(13):DIFFERENT
+Word(14):EDITED
+Word(15):EDITION
+Word(16):ELECTRONIC
+Word(17):FINISHED
+Word(18):FIRST
+Word(19):FOR
+Word(20):FREE
+Word(21):FROM
+Word(22):IN
+Word(23):INTO
+Word(24):IS
+Word(25):JAMES
+Word(26):JOHN
+Word(27):KNOWN
+Word(28):LATER
+Word(29):MENTIONED
+Word(30):NAMED
+Word(31):NOT
+Word(32):NOW
+Word(33):OF
+Word(34):ON
+Word(35):ORIGINALLY
+Word(36):OWNED
+Word(37):PAPER
+Word(38):PROFESSOR
+Word(39):PUBLISHED
+Word(40):QUOTED
+Word(41):REAL
+Word(42):REFERENCED
+Word(43):REFERRED
+Word(44):REPRINTED
+Word(45):RICHARD
+Word(46):ROBERT
+Word(47):RUSSIAN
+Word(48):SECOND
+Word(49):SIGN
+Word(50):SIMPLE
+Word(51):SPANISH
+Word(52):STORY
+Word(53):THAT
+Word(54):THE
+Word(55):THIS
+Word(56):TO
+Word(57):TRANSLATED
+Word(58):USED
+Word(59):WAS
+Word(60):WRITTEN
+Word(61):YET
+LetterLocation(1):LeL1
+LetterLocation(2):LeL2
+LetterLocation(3):LeL3
+LetterLocation(4):LeL4
+LetterLocation(5):LeL5
+LetterLocation(6):LeL6
+LetterLocation(7):LeL7
+LetterLocation(8):LeL8
+LetterLocation(9):LeL9
+LetterLocation(10):LeL10
+
+
+
+{Unrecognized function or variable 'spm_MDP_VB_X_tutorial_debug_v11'.
+
+Error in HAI_RUN (line 39)
+MDP      = params.spm_MDP_VB_H(mdp,params);
+} 
+
+get.m                                      getcurve.m                                 getline.m                                  getSlimFromDDG.m                           
+get_mpt_data_object_registry.m             getdatasources.m                           getlinio.m                                 getSlimGotoDDG.m                           
+get_param.m                                getdatatypespecs.m                         getlinplant.m                              getSlimModelReferenceDDG.m                 
+get_tmf_for_target.m                       getDAWorkspace.m                           getlmis.m                                  getSlimParamAccessorDDG.m                  
+getappdata.m                               getDGM.m                                   getLogicAnalyzerDisplayColorSet.m          getSlimStateAccessorDDG.m                  
+getargth.m                                 getdiscdata.m                              getLogicAnalyzerDisplayFormatSet.m         getSlRootInportMap.m                       
+getARMCortexAInfo.m                        getDistcompConfigurationNames.m            getLogicAnalyzerDisplayRadixSet.m          getSPCUDTBuiltinModes.m                    
+getarxms.m                                 getDividerValueFromString.m                getLookUpTableData.m                       getSPCUDTDataTypeModes.m                   
+getAttachedFilesFolder.m                   getDPM.m                                   getm.m                                     getSPCUDTFixptScalingModes.m               
+getAutoCompleteFunctionsList.m             getDspBiosInstallation.m                   getmagunitstrs.m                           getSPCUDTFltPtTrumpsDisclaimerStr.m        
+getBeaconMPDU.m                            getelements.m                              getmcruserdata.m                           getSPCUDTHasDesMinAndMax.m                 
+getbestsize.m                              getembl.m                                  getmfth.m                                  getSPCUDTInheritModes.m                    
+getBlasRtwLibPath.m                        getenv.m                                   getMonitorSize.m                           getSPCUDTInheritModesShort.m               
+getblast.m                                 getfdasessionhandle.m                      getncap.m                                  getSPCUDTParamPrefixStr.m                  
+getBlockBlackListForSlimDialog.m           getfdatooltip.m                            getNetInterfaces.m                         getSPCUDTParamPromptStr.m                  
+getBlockHelpMapNameAndPath.m               getff.m                                    getNumericOrStringFieldValue.m             getSPCUDTSignednessStrs.m                  
+getBlockInfo_CPUTimer.m                    getfield.m                                 getNumWelchOverlapSamples.m                getSPCUDTSignednessVals.m                  
+getBlockInfo_CPUTimer_C2000.m              getFigRxStreams.m                          getobj.m                                   getSQPOptions.m                            
+getBlockInfo_HwInterrupt.m                 getfigurefordesktopclient.m                getOffsetsForLPV.m                         getsro.m                                   
+getBlockInfo_HwInterrupt_Targets_C6000.m   getFigureToolManager.m                     getonoff.m                                 getSSC2HDLSynthesisResults.m               
+getBlockInfo_IdleTask.m                    getFIRFilterDesignMultibandOrder.m         getorcreateobj.m                           getstatus.m                                
+getBlockInfo_MemoryAlloc.m                 getFIRFilterDesignMultibandWhi.m           getpdb.m                                   gett.m                                     
+getBlockInfo_RTDX.m                        getFIRRateConversionFixptInfoFromSysObj.m  getPhaseNoiseFilterNumDen.m                gettargdatamap.m                           
+getBlockInfo_TgtPref_Targets_C2000.m       getfis.m                                   getPhaseNoiseFilterNumerator.m             getTBsizeRMC.m                             
+getBlockOutportURL.m                       getFISCodeGenerationData.m                 getpixelposition.m                         getTgtPref.m                               
+getBoardProcNum.m                          getfisold.m                                getplotbrowserproptable.m                  getTgtPrefBlock.m                          
+getbounds.m                                getfittypes.m                              getplottool.m                              getTgtPrefCustomization.m                  
+getBuildDirForSolverChange.m               getFloatingPointCompuMethodFormat.m        getpoints.m                                getTgtPrefInfo.m                           
+getBuildInfoRootFolders.m                  getframe.m                                 getpref.m                                  getTgtPrefPeripherals.m                    
+getBuildMethod.m                           getfreqlbl.m                               getprinttemplate.m                         getTgtPrefVersion.m                        
+getC2000RTDXLibFile.m                      getfrequnitstrs.m                          getprobeintensity.m                        getTICCSAutomationHandle.m                 
+getcallinfo.m                              getfromancestor.m                          getptr.m                                   getTIfile.m                                
+getccsproxyname.m                          getfullname.m                              getpts.m                                   getTimeStamp.m                             
+getccsstubname.m                           getgenbank.m                               getrangefromclass.m                        gettimesteps.m                             
+getChipInfo.m                              getgenpept.m                               getrect.m                                  getTrackPositions.m                        
+getcicdecimwlnfl.m                         getgeodata.m                               getRemoteFromSPMD.m                        getTrackVelocities.m                       
+getcicinterpwlnfl.m                        getGotoTagsList.m                          getRootInportMap.m                         getTranslatedString.m                      
+getCoderExecutionProfile.m                 gethgstackorder.m                          getrtwDefaultTargetInfo.m                  getTranslatedStringcell.m                  
+getcolorfromindex.m                        gethmmalignment.m                          getrtwoption.m                             getTurboIOIndices.m                        
+getcolumn.m                                gethmmprof.m                               getsamples.m                               getuimode.m                                
+getCommDigBBModDTInfo.m                    gethmmtree.m                               getscaledmap.m                             getunitdata.m                              
+getCompiledFixedPointInfo.m                getIdentGUIFigure.m                        getscribecontextmenu.m                     getUserDataToSPMD.m                        
+getcompilerchoice.m                        getIIRFilterDesignOutput.m                 getscribeobjectdata.m                      getvalidproject.m                          
+getcompresspar.m                           getimage.m                                 getseeds.m                                 getWavMSG.m                                
+getCompuMethodFormat.m                     getimagemodel.m                            getSelectionHandles.m                      getwb.m                                    
+getCompuMethodName.m                       getimgfiletype.m                           getselectobjects.m                         getwinobject.m                             
+getConnectorURLLUTDesigner.m               getInputString.m                           getSetOptimFcns.m                          getworldfilename.m                         
+getconstructorfromstructure.m              getinterpfrequencies.m                     getSfObjectFromFullPath.m                  getx.m                                     
+getCoverageInfo.m                          getIpOptions.m                             getSigMaskHelperCaller.m                   getxo.m                                    
+getcrosssection.m                          getIRInfo_Targets.m                        getSignalCompiledSampleTime.m              getYuleWalkerIIRFilterDesignOutput.m       
+getCurrentCluster.m                        getIRInfo_Targets_C2000.m                  getsignals.m                               getzp.m                                    
+getCurrentFileStore.m                      getIRInfo_TITargets.m                      getsiminit.m                               GetMaskEntries.m                           
+getCurrentJob.m                            getirinfoprivate.m                         getsimrangesdata.m                         
+getCurrentTask.m                           getiv.m                                    getSimulinkBlockHandle.m                   
+getCurrentValueStore.m                     getLDPCEncoderParameters.m                 getsizes.m                                 
+getCurrentWorker.m                         getLegacyDigitalFilterParameter.m          getSlimCoSimServiceBlockDDG.m              
+
+HAI_getA.m              HAI_getB.m              HAI_getDescription.m    HAI_getU.m              
+HAI_getAContext.m       HAI_getDefaultParams.m  HAI_getParams.m         
+
+VB_compute.m  VB_iterate.m  VB_MDP.m      
+
+VB_compute.m  VB_iterate.m  VB_MDP.m      
+edit VB_MDP
+MDP                             = HAI_RUN(langparams,dic_name);

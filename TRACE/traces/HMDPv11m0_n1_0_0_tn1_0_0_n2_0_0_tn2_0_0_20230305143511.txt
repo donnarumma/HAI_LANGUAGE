@@ -1,0 +1,136 @@
+Level 2, Time 0:
+Sentence(1):BETTER CIRCLE RUBBER GARDEN
+Sentence(2):BETTER PURPLE FINGER GARDEN
+Sentence(3):BETTER LATTER RUBBER GARDEN
+Sentence(4):BETTER LATTER FINGER GARDEN
+Sentence(5):BETTER LATTER FINGER CIRCLE
+Sentence(6):BETTER RUBBER LITTLE GARDEN
+Sentence(7):PURPLE RUBBER FINGER GARDEN
+Sentence(8):LITTLE PURPLE CIRCLE GARDEN
+Sentence(9):BETTER LITTLE RUBBER CIRCLE
+Sentence(10):BUTTON LITTLE RUBBER CIRCLE
+Sentence(11):BETTER LITTLE RUBBER CIRCUS
+Sentence(12):LITTLE PURPLE RUBBER FINGER
+Sentence(13):PURPLE RUBBER LITTLE FINGER
+Sentence(14):LATTER PURPLE CIRCLE GARDEN
+Sentence(15):LITTLE PURPLE RUBBER GARDEN
+Sentence(16):BUTTER LITTLE RUBBER CIRCLE
+Sentence(17):BETTER CIRCLE RUBBER GLOBAL
+Sentence(18):LITTLE PURPLE RUBBER GLOBAL
+Sentence(19):BETTER LATTER RUBBER CIRCLE
+Sentence(20):BUTTON LITTLE RUBBER CASTLE
+Sentence(21):BETTER LITTLE RUBBER CASTLE
+WordLocation(1):WoL1
+WordLocation(2):WoL2
+WordLocation(3):WoL3
+WordLocation(4):WoL4
+
+Level 1, Time 0:
+Word(1):BETTER
+Word(2):CIRCLE
+Word(3):CIRCUS
+Word(4):FINGER
+Word(5):GARDEN
+Word(6):LATTER
+Word(7):LITTLE
+Word(8):PURPLE
+Word(9):RUBBER
+Word(10):BUTTER
+Word(11):PROPER
+Word(12):GLOBAL
+Word(13):BUTTON
+Word(14):CASTLE
+LetterLocation(1):LeL1
+LetterLocation(2):LeL2
+LetterLocation(3):LeL3
+LetterLocation(4):LeL4
+LetterLocation(5):LeL5
+LetterLocation(6):LeL6
+
+
+
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Word=1,LetterLocation=1) - (BETTER,LeL1)
+o=(Letter=2,LetterLocation=1) - (B,LeL1)
+p(Word)=(0.79,1.2e-24,1.2e-24,1.2e-24,1.2e-24,3.1e-17,7e-17,4.6e-17,1.2e-24,0.071,1.2e-24,1.2e-24,0.14,1.2e-24)
+p(LetterLocation)=(1,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Word=1,LetterLocation=2) - (BETTER,LeL2)
+o=(Letter=5,LetterLocation=2) - (E,LeL2)
+p(Word)=(1,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,5.5e-21,1e-24,1e-24,6.5e-21,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 1:
+s=(Sentence=4,WordLocation=1) - (BETTER LATTER FINGER GARDEN,WoL1)
+o=(Word=1,WordLocation=1) - (BETTER,WoL1)
+p(Sentence)=(0.091,0.091,0.091,0.091,0.091,0.091,3.5e-17,3.5e-17,0.091,3.5e-17,0.091,3.5e-17,3.5e-17,3.5e-17,3.5e-17,3.5e-17,0.091,3.5e-17,0.091,3.5e-17,0.091)
+p(WordLocation)=(1,1e-24,1e-24,1e-24)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Word=6,LetterLocation=1) - (LATTER,LeL1)
+o=(Letter=9,LetterLocation=1) - (L,LeL1)
+p(Word)=(7.7e-17,1.2e-16,4.1e-17,5.9e-17,1.1e-16,0.53,0.47,4.4e-17,1.2e-16,2.1e-24,2e-24,4.1e-17,2.3e-24,4.1e-17)
+p(LetterLocation)=(1,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Word=6,LetterLocation=6) - (LATTER,LeL6)
+o=(Letter=13,LetterLocation=6) - (R,LeL6)
+p(Word)=(1.6e-16,1e-24,1e-24,1.6e-16,1e-24,1,9.7e-21,1e-24,1.6e-16,1.6e-16,1.6e-16,1e-24,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1e-24,1e-24,1e-24,1e-24,1)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 2:
+s=(Sentence=4,WordLocation=2) - (BETTER LATTER FINGER GARDEN,WoL2)
+o=(Word=6,WordLocation=2) - (LATTER,WoL2)
+p(Sentence)=(7.1e-21,7.1e-21,0.25,0.25,0.25,1.1e-20,1.6e-24,1e-24,7.1e-21,1e-24,7.1e-21,1e-24,1.6e-24,1e-24,1e-24,1e-24,7.1e-21,1e-24,0.25,1e-24,7.1e-21)
+p(WordLocation)=(1e-24,1,1e-24,1e-24)
+
+MDP VB_MDP entering Level 1
+NO MORE IN DOUBT! Level 1 Exiting at 1
+BEFORE EXIT
+Level 1, Time 1:
+s=(Word=4,LetterLocation=1) - (FINGER,LeL1)
+o=(Letter=6,LetterLocation=1) - (F,LeL1)
+p(Word)=(1.6e-16,1.6e-16,3e-24,1,1.6e-16,1.6e-16,5.4e-24,4.4e-24,1.6e-16,2.8e-24,2.4e-24,3.5e-24,3e-24,3.5e-24)
+p(LetterLocation)=(1,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 3:
+s=(Sentence=4,WordLocation=3) - (BETTER LATTER FINGER GARDEN,WoL3)
+o=(Word=4,WordLocation=3) - (FINGER,WoL3)
+p(Sentence)=(1.6e-24,1.6e-16,6.7e-22,0.5,0.5,1e-24,1.6e-16,1.6e-24,1.6e-24,1.6e-24,1.6e-24,1.6e-24,1e-24,1.6e-24,1.6e-24,1.6e-24,1.6e-24,1.6e-24,6.7e-22,1.6e-24,1.6e-24)
+p(WordLocation)=(1e-24,1e-24,1,1e-24)
+
+MDP VB_MDP entering Level 1
+NO MORE IN DOUBT! Level 1 Exiting at 1
+BEFORE EXIT
+Level 1, Time 1:
+s=(Word=5,LetterLocation=1) - (GARDEN,LeL1)
+o=(Letter=7,LetterLocation=1) - (G,LeL1)
+p(Word)=(1.6e-16,1.6e-16,2.9e-24,1.6e-16,1,1.6e-16,4.9e-24,4.6e-24,5.7e-24,2.6e-24,2.2e-24,1.2e-15,2.9e-24,3.4e-24)
+p(LetterLocation)=(1,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 4
+BEFORE EXIT
+Level 2, Time 4:
+s=(Sentence=4,WordLocation=4) - (BETTER LATTER FINGER GARDEN,WoL4)
+o=(Word=5,WordLocation=4) - (GARDEN,WoL4)
+p(Sentence)=(1.6e-16,4.2e-16,1.6e-16,1,1.6e-22,1.6e-16,4.2e-16,1.6e-16,1.6e-24,1.6e-24,1e-24,1.6e-24,1.6e-24,1.6e-16,1.6e-16,1.6e-24,3.7e-24,3.7e-24,1.6e-24,1e-24,1e-24)
+p(WordLocation)=(1e-24,1e-24,1e-24,1)
+
+MDP VB_MDP exiting Level 2

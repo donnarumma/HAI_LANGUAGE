@@ -1,0 +1,39 @@
+Level 2, Time 0:
+Sentence(1):BDAA BCBA BCAA BCBA
+Sentence(2):BCBA BCBA BCBA BCAA
+Sentence(3):BCBA BDAA BCBA BCAA
+Sentence(4):BDAA BCBA BCAA BDAA
+Sentence(5):BCBA BCBA BCBA BDAA
+Sentence(6):BCBA BDAA BCBA BDAA
+WordLocation(1):WoL1
+WordLocation(2):WoL2
+WordLocation(3):WoL3
+WordLocation(4):WoL4
+Context(1):Unk
+Context(2):C1
+Context(3):C2
+Context(4):C3
+
+Level 1, Time 0:
+Word(1):BDAA
+Word(2):BCAA
+Word(3):BCBA
+LetterLocation(1):LeL1
+LetterLocation(2):LeL2
+LetterLocation(3):LeL3
+LetterLocation(4):LeL4
+
+
+
+{Unrecognized function or variable 'spm_MDP_VB_X_tutorial_debug_v8'.
+
+Error in HAI_RUN (line 39)
+MDP      = params.spm_MDP_VB_H(mdp,params);
+
+Error in HAI_LANGUAGE_main_DICTIONARY_v1_sample (line 51)
+    MDPsub{iSub}                        = HAI_RUN(par_series{iSub},dictionary);
+} 
+edit HAI_getDefaultParams.m
+
+VB_compute.m  VB_iterate.m  VB_MDP.m      
+HAI_LANGUAGE_main_DICTIONARY_v1_sample;

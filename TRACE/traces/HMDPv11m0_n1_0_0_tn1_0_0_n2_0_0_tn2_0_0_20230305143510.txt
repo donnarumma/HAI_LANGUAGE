@@ -1,0 +1,85 @@
+Level 2, Time 0:
+Sentence(1):BETTER CIRCLE RUBBER GARDEN
+Sentence(2):BETTER PURPLE FINGER GARDEN
+Sentence(3):BETTER LATTER RUBBER GARDEN
+Sentence(4):BETTER LATTER FINGER GARDEN
+Sentence(5):BETTER LATTER FINGER CIRCLE
+Sentence(6):BETTER RUBBER LITTLE GARDEN
+Sentence(7):PURPLE RUBBER FINGER GARDEN
+Sentence(8):LITTLE PURPLE CIRCLE GARDEN
+Sentence(9):BETTER LITTLE RUBBER CIRCLE
+Sentence(10):BUTTON LITTLE RUBBER CIRCLE
+Sentence(11):BETTER LITTLE RUBBER CIRCUS
+Sentence(12):LITTLE PURPLE RUBBER FINGER
+Sentence(13):PURPLE RUBBER LITTLE FINGER
+Sentence(14):LATTER PURPLE CIRCLE GARDEN
+Sentence(15):LITTLE PURPLE RUBBER GARDEN
+Sentence(16):BUTTER LITTLE RUBBER CIRCLE
+Sentence(17):BETTER CIRCLE RUBBER GLOBAL
+Sentence(18):LITTLE PURPLE RUBBER GLOBAL
+Sentence(19):BETTER LATTER RUBBER CIRCLE
+Sentence(20):BUTTON LITTLE RUBBER CASTLE
+Sentence(21):BETTER LITTLE RUBBER CASTLE
+WordLocation(1):WoL1
+WordLocation(2):WoL2
+WordLocation(3):WoL3
+WordLocation(4):WoL4
+
+Level 1, Time 0:
+Word(1):BETTER
+Word(2):CIRCLE
+Word(3):CIRCUS
+Word(4):FINGER
+Word(5):GARDEN
+Word(6):LATTER
+Word(7):LITTLE
+Word(8):PURPLE
+Word(9):RUBBER
+Word(10):BUTTER
+Word(11):PROPER
+Word(12):GLOBAL
+Word(13):BUTTON
+Word(14):CASTLE
+LetterLocation(1):LeL1
+LetterLocation(2):LeL2
+LetterLocation(3):LeL3
+LetterLocation(4):LeL4
+LetterLocation(5):LeL5
+LetterLocation(6):LeL6
+
+
+
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Word=10,LetterLocation=1) - (BUTTER,LeL1)
+o=(Letter=2,LetterLocation=1) - (B,LeL1)
+p(Word)=(0.79,1.2e-24,1.2e-24,1.2e-24,1.2e-24,3.1e-17,7e-17,4.6e-17,1.2e-24,0.071,1.2e-24,1.2e-24,0.14,1.2e-24)
+p(LetterLocation)=(1,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+Loop in t
+Level 1, Time 2:
+s=(Word=10,LetterLocation=2) - (BUTTER,LeL2)
+o=(Letter=16,LetterLocation=2) - (U,LeL2)
+p(Word)=(1.4e-20,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1.6e-16,1.6e-16,0.33,1e-24,1e-24,0.67,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24,1e-24,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 3
+BEFORE EXIT
+Level 1, Time 3:
+s=(Word=10,LetterLocation=6) - (BUTTER,LeL6)
+o=(Letter=13,LetterLocation=6) - (R,LeL6)
+p(Word)=(1.6e-16,1e-24,1e-24,1.6e-16,1e-24,1.6e-16,1e-24,1.4e-24,4.2e-16,1,1.6e-16,1e-24,5.2e-22,1e-24)
+p(LetterLocation)=(1e-24,1e-24,1e-24,1e-24,1e-24,1)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 1
+BEFORE EXIT
+Level 2, Time 1:
+s=(Sentence=16,WordLocation=1) - (BUTTER LITTLE RUBBER CIRCLE,WoL1)
+o=(Word=10,WordLocation=1) - (BUTTER,WoL1)
+p(Sentence)=(3.4e-16,3.4e-16,3.4e-16,3.4e-16,3.4e-16,3.4e-16,1.6e-16,1.6e-16,3.4e-16,1.6e-16,3.4e-16,1.6e-16,1.6e-16,3.4e-16,1.6e-16,1,3.4e-16,1.6e-16,3.4e-16,1.6e-16,3.4e-16)
+p(WordLocation)=(1,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 2

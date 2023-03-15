@@ -1,0 +1,235 @@
+Level 2, Time 0:
+Sentence(1):BDAA BCBA BCAA BCBA
+Sentence(2):BCBA BCBA BCBA BCAA
+Sentence(3):BCBA BDAA BCBA BCAA
+Sentence(4):BDAA BCBA BCAA BDAA
+Sentence(5):BCBA BCBA BCBA BDAA
+Sentence(6):BCBA BDAA BCBA BDAA
+WordLocation(1):WoL1
+WordLocation(2):WoL2
+WordLocation(3):WoL3
+WordLocation(4):WoL4
+Context(1):Unk
+Context(2):C1
+Context(3):C2
+Context(4):C3
+
+Level 1, Time 0:
+Word(1):BDAA
+Word(2):BCAA
+Word(3):BCBA
+LetterLocation(1):LeL1
+LetterLocation(2):LeL2
+LetterLocation(3):LeL3
+LetterLocation(4):LeL4
+
+
+
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Word=1,LetterLocation=1) - (BDAA,LeL1)
+o=(Letter=2,LetterLocation=3) - (B,LeL3)
+p(Word)=(0.33,1.6e-16,0.67)
+p(LetterLocation)=(1,6e-17,4.1e-16,6e-17)
+
+Loop in t
+Level 1, Time 2:
+s=(Word=1,LetterLocation=2) - (BDAA,LeL2)
+o=(Letter=4,LetterLocation=1) - (D,LeL1)
+p(Word)=(0.74,2.4e-16,0.26)
+p(LetterLocation)=(0.2,0.71,0.044,0.044)
+
+Loop in t
+Level 1, Time 3:
+s=(Word=1,LetterLocation=2) - (BDAA,LeL2)
+o=(Letter=3,LetterLocation=4) - (C,LeL4)
+p(Word)=(0.25,2.9e-15,0.75)
+p(LetterLocation)=(0.044,0.71,0.044,0.2)
+
+Loop in t
+Level 1, Time 4:
+s=(Word=1,LetterLocation=2) - (BDAA,LeL2)
+o=(Letter=4,LetterLocation=2) - (D,LeL2)
+p(Word)=(0.99,4.5e-15,0.012)
+p(LetterLocation)=(0.011,0.97,0.011,0.011)
+
+NO MORE IN DOUBT! Level 1 Exiting at 5
+BEFORE EXIT
+Level 1, Time 5:
+s=(Word=1,LetterLocation=2) - (BDAA,LeL2)
+o=(Letter=4,LetterLocation=2) - (D,LeL2)
+p(Word)=(1,2.4e-16,2.2e-06)
+p(LetterLocation)=(0.011,0.97,0.011,0.011)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 1:
+s=(Sentence=1,WordLocation=1,Context=1) - (BDAA BCBA BCAA BCBA,WoL1,Unk)
+o=(Word=1,WordLocation=1,Feedback=1) - (BDAA,WoL1,null)
+p(Sentence)=(0.5,1.1e-06,1.1e-06,0.5,1.1e-06,1.1e-06)
+p(WordLocation)=(1,1e-24,1e-24,1e-24)
+p(Context)=(1,1e-24,1e-24,1e-24)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Word=3,LetterLocation=1) - (BCBA,LeL1)
+o=(Letter=3,LetterLocation=1) - (C,LeL1)
+p(Word)=(0.36,3.4e-16,0.64)
+p(LetterLocation)=(1,1.3e-16,6e-17,6e-17)
+
+Loop in t
+Level 1, Time 2:
+s=(Word=3,LetterLocation=4) - (BCBA,LeL4)
+o=(Letter=1,LetterLocation=2) - (A,LeL2)
+p(Word)=(0.39,7.1e-16,0.61)
+p(LetterLocation)=(0.036,0.72,0.085,0.16)
+
+Loop in t
+Level 1, Time 3:
+s=(Word=3,LetterLocation=2) - (BCBA,LeL2)
+o=(Letter=3,LetterLocation=4) - (C,LeL4)
+p(Word)=(0.059,1.1e-14,0.94)
+p(LetterLocation)=(0.039,0.75,0.039,0.17)
+
+Loop in t
+Level 1, Time 4:
+s=(Word=3,LetterLocation=2) - (BCBA,LeL2)
+o=(Letter=4,LetterLocation=2) - (D,LeL2)
+p(Word)=(0.91,1e-13,0.086)
+p(LetterLocation)=(0.011,0.97,0.011,0.011)
+
+Loop in t
+Level 1, Time 5:
+s=(Word=3,LetterLocation=2) - (BCBA,LeL2)
+o=(Letter=3,LetterLocation=1) - (C,LeL1)
+p(Word)=(0.99,2.2e-12,0.011)
+p(LetterLocation)=(0.4,0.42,0.089,0.089)
+
+NO MORE IN DOUBT! Level 1 Exiting at 6
+BEFORE EXIT
+Level 1, Time 6:
+s=(Word=3,LetterLocation=3) - (BCBA,LeL3)
+o=(Letter=4,LetterLocation=3) - (D,LeL3)
+p(Word)=(1,3.2e-11,0.0017)
+p(LetterLocation)=(0.037,0.76,0.17,0.037)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 2:
+s=(Sentence=1,WordLocation=2,Context=1) - (BDAA BCBA BCAA BCBA,WoL2,Unk)
+o=(Word=3,WordLocation=2,Feedback=1) - (BCBA,WoL2,null)
+p(Sentence)=(0.5,3.2e-12,9.9e-07,0.5,3.2e-12,9.9e-07)
+p(WordLocation)=(2.4e-23,1,2.4e-23,2.4e-23)
+p(Context)=(1,2.4e-23,2.4e-23,2.4e-23)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Word=2,LetterLocation=1) - (BCAA,LeL1)
+o=(Letter=2,LetterLocation=1) - (B,LeL1)
+p(Word)=(7.6e-07,0.64,0.36)
+p(LetterLocation)=(1,2.5e-17,3.9e-17,2.5e-17)
+
+Loop in t
+Level 1, Time 2:
+s=(Word=2,LetterLocation=3) - (BCAA,LeL3)
+o=(Letter=4,LetterLocation=3) - (D,LeL3)
+p(Word)=(9.3e-07,0.64,0.36)
+p(LetterLocation)=(0.043,0.043,0.87,0.043)
+
+Loop in t
+Level 1, Time 3:
+s=(Word=2,LetterLocation=3) - (BCAA,LeL3)
+o=(Letter=1,LetterLocation=3) - (A,LeL3)
+p(Word)=(4.7e-06,0.99,0.011)
+p(LetterLocation)=(0.01,0.01,0.93,0.046)
+
+NO MORE IN DOUBT! Level 1 Exiting at 4
+BEFORE EXIT
+Level 1, Time 4:
+s=(Word=2,LetterLocation=2) - (BCAA,LeL2)
+o=(Letter=3,LetterLocation=2) - (C,LeL2)
+p(Word)=(2.2e-07,1,0.00078)
+p(LetterLocation)=(0.011,0.97,0.011,0.011)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 3:
+s=(Sentence=1,WordLocation=3,Context=1) - (BDAA BCBA BCAA BCBA,WoL3,Unk)
+o=(Word=2,WordLocation=3,Feedback=1) - (BCAA,WoL3,null)
+p(Sentence)=(0.5,1.8e-17,8e-10,0.5,1.8e-17,8e-10)
+p(WordLocation)=(1e-24,1e-24,1,1e-24)
+p(Context)=(1,1e-24,1e-24,1e-24)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Word=3,LetterLocation=1) - (BCBA,LeL1)
+o=(Letter=2,LetterLocation=1) - (B,LeL1)
+p(Word)=(0.39,0.22,0.39)
+p(LetterLocation)=(1,2.5e-17,4.1e-17,2.5e-17)
+
+Loop in t
+Level 1, Time 2:
+s=(Word=3,LetterLocation=2) - (BCBA,LeL2)
+o=(Letter=1,LetterLocation=2) - (A,LeL2)
+p(Word)=(0.42,0.24,0.35)
+p(LetterLocation)=(0.034,0.7,0.11,0.15)
+
+Loop in t
+Level 1, Time 3:
+s=(Word=3,LetterLocation=4) - (BCBA,LeL4)
+o=(Letter=4,LetterLocation=4) - (D,LeL4)
+p(Word)=(0.92,0.043,0.037)
+p(LetterLocation)=(0.039,0.74,0.039,0.18)
+
+Loop in t
+Level 1, Time 4:
+s=(Word=3,LetterLocation=3) - (BCBA,LeL3)
+o=(Letter=2,LetterLocation=4) - (B,LeL4)
+p(Word)=(0.94,0.025,0.032)
+p(LetterLocation)=(0.31,0.31,0.077,0.31)
+
+Loop in t
+Level 1, Time 5:
+s=(Word=3,LetterLocation=1) - (BCBA,LeL1)
+o=(Letter=2,LetterLocation=1) - (B,LeL1)
+p(Word)=(0.84,0.055,0.11)
+p(LetterLocation)=(0.75,0.17,0.052,0.037)
+
+Loop in t
+Level 1, Time 6:
+s=(Word=3,LetterLocation=2) - (BCBA,LeL2)
+o=(Letter=3,LetterLocation=2) - (C,LeL2)
+p(Word)=(0.012,0.29,0.7)
+p(LetterLocation)=(0.011,0.97,0.011,0.011)
+
+Loop in t
+Level 1, Time 7:
+s=(Word=3,LetterLocation=3) - (BCBA,LeL3)
+o=(Letter=2,LetterLocation=3) - (B,LeL3)
+p(Word)=(2e-06,0.0023,1)
+p(LetterLocation)=(0.046,0.01,0.93,0.01)
+
+NO MORE IN DOUBT! Level 1 Exiting at 8
+BEFORE EXIT
+Level 1, Time 8:
+s=(Word=3,LetterLocation=4) - (BCBA,LeL4)
+o=(Letter=1,LetterLocation=4) - (A,LeL4)
+p(Word)=(6.1e-07,0.00016,1)
+p(LetterLocation)=(0.011,0.011,0.011,0.97)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 4
+BEFORE EXIT
+Level 2, Time 4:
+s=(Sentence=1,WordLocation=4,Context=1) - (BDAA BCBA BCAA BCBA,WoL4,Unk)
+o=(Word=3,WordLocation=4,Feedback=1) - (BCBA,WoL4,null)
+p(Sentence)=(1,1.3e-18,1.5e-18,8.5e-18,7.8e-20,9.1e-20)
+p(WordLocation)=(1e-24,1e-24,1e-24,1)
+p(Context)=(1,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 2

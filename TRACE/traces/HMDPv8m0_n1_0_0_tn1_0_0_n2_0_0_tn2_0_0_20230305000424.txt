@@ -1,0 +1,26 @@
+{Unrecognized function or variable 'printExperiment'.
+
+Error in HAI_RUN (line 40)
+    printExperiment(mdp);
+} 
+rmpath(paths)
+paths=pathsLoad_HAI_LANGUAGE;
+
+HAI/                    HAI_getA.m              HAI_getB.m              HAI_getDescription.m    HAI_getU.m              HAI_retrieveLevel.m     
+HAI_createLevel.m       HAI_getAContext.m       HAI_getDefaultParams.m  HAI_getParams.m         HAI_initialiseParams.m  HAI_RUN.m               
+
+HAI/                    HAI_getA.m              HAI_getB.m              HAI_getDescription.m    HAI_getU.m              HAI_retrieveLevel.m     
+HAI_createLevel.m       HAI_getAContext.m       HAI_getDefaultParams.m  HAI_getParams.m         HAI_initialiseParams.m  HAI_RUN.m               
+
+HAI_createLevel.m       HAI_getAContext.m       HAI_getDefaultParams.m  HAI_getParams.m         HAI_initialiseParams.m  HAI_RUN.m               
+HAI_getA.m              HAI_getB.m              HAI_getDescription.m    HAI_getU.m              HAI_retrieveLevel.m     
+
+HAI_RUN.m            HAI_retrieveLevel.m  
+
+HAI_RUN.m            HAI_retrieveLevel.m  
+edit HAI_RUN
+rmpath(paths)
+paths=pathsLoad_HAI_LANGUAGE;
+rmpath(paths)
+paths=pathsLoad_HAI_LANGUAGE;
+MDP                             = HAI_RUN(langparams,dic_name);

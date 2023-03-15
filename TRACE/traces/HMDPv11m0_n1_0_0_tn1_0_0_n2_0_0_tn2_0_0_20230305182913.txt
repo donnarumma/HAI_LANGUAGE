@@ -1,0 +1,240 @@
+Level 2, Time 0:
+Word(1):BET TER
+Word(2):BUT TER
+Word(3):BUT TON
+Word(4):CIR CLE
+Word(5):CIR CUS
+Word(6):CAS TLE
+Word(7):FIN GER
+Word(8):GAR DEN
+Word(9):GLO BAL
+Word(10):LAT TER
+Word(11):LIT TLE
+Word(12):LIT TEL
+Word(13):LIT TES
+Word(14):LIT SON
+Word(15):LUT TER
+Word(16):PUR PLE
+Word(17):RUB BER
+Word(18):PRO PER
+SyllableLocation(1):SyL1
+SyllableLocation(2):SyL2
+
+Level 1, Time 0:
+Syllable(1):BAL
+Syllable(2):BET
+Syllable(3):BER
+Syllable(4):BUT
+Syllable(5):CAS
+Syllable(6):CIR
+Syllable(7):CLE
+Syllable(8):CUS
+Syllable(9):DEN
+Syllable(10):FIN
+Syllable(11):GER
+Syllable(12):GAR
+Syllable(13):GLO
+Syllable(14):LAT
+Syllable(15):LET
+Syllable(16):LIT
+Syllable(17):LIS
+Syllable(18):LUT
+Syllable(19):PER
+Syllable(20):PLE
+Syllable(21):PRO
+Syllable(22):PUR
+Syllable(23):RUB
+Syllable(24):SON
+Syllable(25):TEL
+Syllable(26):TER
+Syllable(27):TEN
+Syllable(28):TES
+Syllable(29):TIN
+Syllable(30):TLE
+Syllable(31):TON
+LetterLocation(1):LeL1
+LetterLocation(2):LeL2
+LetterLocation(3):LeL3
+
+
+
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=16,LetterLocation=1) - (LIT,LeL1)
+o=(Letter=9,LetterLocation=1) - (L,LeL1)
+p(Syllable)=(1.7e-24,5e-17,1.7e-24,7.7e-17,5e-17,7.7e-17,1.7e-24,1.7e-24,1.7e-24,5e-17,1.7e-24,5e-17,5e-17,0.17,3.8e-16,0.67,3.8e-16,0.17,1.7e-24,1.7e-24,5e-17,5e-17,5e-17,1.7e-24,1.7e-24,1.7e-24,1.7e-24,1.7e-24,1.7e-24,1.7e-24,1.7e-24)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=16,LetterLocation=2) - (LIT,LeL2)
+o=(Letter=8,LetterLocation=2) - (I,LeL2)
+p(Syllable)=(1e-24,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,7.1e-21,1.8e-24,1,9.5e-16,7.1e-21,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 1:
+s=(Word=14,SyllableLocation=1) - (LIT SON,SyL1)
+o=(Syllable=16,SyllableLocation=1) - (LIT,SyL1)
+p(Word)=(6.4e-17,6.4e-17,6.4e-17,1.2e-16,1.2e-16,6.4e-17,1.2e-16,6.4e-17,6.4e-17,6.4e-17,0.25,0.25,0.25,0.25,6.4e-17,6.4e-17,6.4e-17,6.4e-17)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=26,LetterLocation=1) - (TER,LeL1)
+o=(Letter=15,LetterLocation=1) - (T,LeL1)
+p(Syllable)=(2.2e-24,1.6e-24,2.2e-24,1.8e-24,1.6e-24,1.9e-24,2.4e-24,2.4e-24,2.2e-24,1.6e-24,2.4e-24,1.6e-24,1.6e-24,1.6e-24,1.3e-24,7.7e-17,1.3e-24,1.6e-24,2.2e-24,2.2e-24,1.6e-24,1.6e-24,1.6e-24,7.7e-17,0.33,1.5e-15,2.4e-16,0.33,2.4e-16,0.33,5.6e-16)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=26,LetterLocation=3) - (TER,LeL3)
+o=(Letter=13,LetterLocation=3) - (R,LeL3)
+p(Syllable)=(1.3e-24,1.3e-24,2.3e-16,1.3e-24,1.3e-24,2.3e-16,1.3e-24,1.3e-24,1.3e-24,1.3e-24,2.3e-16,2.3e-16,1.3e-24,1.3e-24,1.3e-24,1.3e-24,1.3e-24,1.3e-24,2.3e-16,1.3e-24,1.3e-24,2.3e-16,1.3e-24,1.3e-24,5.4e-17,1,5.9e-21,5.4e-17,5.9e-21,5.4e-17,7.6e-21)
+p(LetterLocation)=(1e-24,1e-24,1)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 2:
+s=(Word=1,SyllableLocation=2) - (BET TER,SyL2)
+o=(Syllable=26,SyllableLocation=2) - (TER,SyL2)
+p(Word)=(0.2,0.2,4.4e-17,4.4e-17,4.4e-17,5.7e-17,9.1e-17,4.4e-17,4.4e-17,0.2,0.056,0.056,0.056,0.024,0.2,4.4e-17,9.1e-17,9.1e-17)
+p(SyllableLocation)=(1.1e-24,1)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=16,LetterLocation=1) - (LIT,LeL1)
+o=(Letter=9,LetterLocation=1) - (L,LeL1)
+p(Syllable)=(2e-24,7.8e-17,2.1e-24,7.8e-17,2.5e-24,3.1e-24,2e-24,2e-24,2e-24,2.6e-24,2.1e-24,2.4e-24,2.4e-24,0.34,3.1e-16,0.32,3.1e-16,0.34,2.1e-24,2e-24,2.6e-24,2.4e-24,2.6e-24,1.4e-17,2.2e-17,1.1e-16,1.5e-24,2.2e-17,1.5e-24,2.2e-17,2e-24)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=16,LetterLocation=2) - (LIT,LeL2)
+o=(Letter=8,LetterLocation=2) - (I,LeL2)
+p(Syllable)=(1e-24,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1e-20,1.9e-24,1,1.4e-15,1e-20,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 3:
+s=(Word=8,SyllableLocation=1) - (GAR DEN,SyL1)
+o=(Syllable=12,SyllableLocation=1) - (GAR,SyL1)
+p(Word)=(3.5e-16,3.5e-16,3.2e-24,5.2e-24,5.2e-24,3.3e-24,5.6e-24,3.2e-24,3.2e-24,3.5e-16,0.31,0.31,0.31,0.066,3.5e-16,3.2e-24,3.5e-24,3.5e-24)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=26,LetterLocation=1) - (TER,LeL1)
+o=(Letter=15,LetterLocation=1) - (T,LeL1)
+p(Syllable)=(1.8e-24,1.9e-24,1.8e-24,2e-24,1.4e-24,1.5e-24,1.8e-24,1.8e-24,1.8e-24,1.4e-24,1.8e-24,1.4e-24,1.4e-24,1.9e-24,1.2e-24,7.2e-17,1.2e-24,1.9e-24,1.8e-24,1.8e-24,1.4e-24,1.4e-24,1.4e-24,3.1e-17,0.33,3.3e-15,2e-16,0.33,2e-16,0.33,3.9e-16)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=26,LetterLocation=3) - (TER,LeL3)
+o=(Letter=13,LetterLocation=3) - (R,LeL3)
+p(Syllable)=(1.2e-24,1.2e-24,2e-16,1.2e-24,1.2e-24,2e-16,1.2e-24,1.2e-24,1.2e-24,1.2e-24,2e-16,2e-16,1.2e-24,1.2e-24,1.2e-24,1.2e-24,1.2e-24,1.2e-24,2e-16,1.2e-24,1.2e-24,2e-16,1.2e-24,1.2e-24,4.2e-17,1,4.6e-21,4.2e-17,4.6e-21,4.2e-17,5.6e-21)
+p(LetterLocation)=(1e-24,1e-24,1)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 4:
+s=(Word=12,SyllableLocation=2) - (LIT TEL,SyL2)
+o=(Syllable=25,SyllableLocation=2) - (TEL,SyL2)
+p(Word)=(0.22,0.22,3.3e-17,3.3e-17,3.3e-17,4e-17,6.3e-17,3.3e-17,3.3e-17,0.22,0.036,0.036,0.036,0.0031,0.22,3.3e-17,6.3e-17,6.3e-17)
+p(SyllableLocation)=(1.1e-24,1)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=16,LetterLocation=1) - (LIT,LeL1)
+o=(Letter=9,LetterLocation=1) - (L,LeL1)
+p(Syllable)=(1.9e-24,8.7e-17,1.9e-24,8.7e-17,2.5e-24,3.1e-24,1.9e-24,1.9e-24,1.9e-24,2.6e-24,1.9e-24,2.5e-24,2.5e-24,0.4,3.2e-16,0.19,3.2e-16,0.4,1.9e-24,1.9e-24,2.6e-24,2.5e-24,2.6e-24,4.4e-18,1.5e-17,1e-16,1.6e-24,1.5e-17,1.6e-24,1.5e-17,1.9e-24)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=16,LetterLocation=2) - (LIT,LeL2)
+o=(Letter=8,LetterLocation=2) - (I,LeL2)
+p(Syllable)=(1e-24,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1.2e-20,2.1e-24,1,2.1e-15,1.2e-20,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 5:
+s=(Word=7,SyllableLocation=1) - (FIN GER,SyL1)
+o=(Syllable=10,SyllableLocation=1) - (FIN,SyL1)
+p(Word)=(2.8e-14,2.8e-14,2.3e-23,3.7e-23,3.7e-23,2.3e-23,3.7e-23,2.3e-23,2.3e-23,2.8e-14,0.33,0.33,0.33,0.018,2.8e-14,2.3e-23,2.3e-23,2.3e-23)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=26,LetterLocation=1) - (TER,LeL1)
+o=(Letter=15,LetterLocation=1) - (T,LeL1)
+p(Syllable)=(1.7e-24,1.4e-23,1.7e-24,1.4e-23,1.4e-24,1.5e-24,1.7e-24,1.7e-24,1.7e-24,1.4e-24,1.7e-24,1.4e-24,1.4e-24,1.4e-23,1.2e-24,7.4e-17,1.2e-24,1.4e-23,1.7e-24,1.7e-24,1.4e-24,1.4e-24,1.4e-24,1.5e-17,0.33,2.6e-13,2e-16,0.33,2e-16,0.33,3.8e-16)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=26,LetterLocation=3) - (TER,LeL3)
+o=(Letter=13,LetterLocation=3) - (R,LeL3)
+p(Syllable)=(1e-24,1e-24,1.7e-16,1e-24,1e-24,1.7e-16,1e-24,1e-24,1e-24,1e-24,1.7e-16,1.7e-16,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1.7e-16,1e-24,1e-24,1.7e-16,1e-24,1e-24,1.2e-17,1,1.5e-21,1.2e-17,1.5e-21,1.2e-17,1.8e-21)
+p(LetterLocation)=(1e-24,1e-24,1)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 6:
+s=(Word=1,SyllableLocation=2) - (BET TER,SyL2)
+o=(Syllable=26,SyllableLocation=2) - (TER,SyL2)
+p(Word)=(0.24,0.24,1.6e-17,1.6e-17,1.6e-17,1.7e-17,2.8e-17,1.6e-17,1.6e-17,0.24,0.0067,0.0067,0.0067,0.00044,0.24,1.6e-17,2.8e-17,2.8e-17)
+p(SyllableLocation)=(1e-24,1)
+
+MDP VB_MDP entering Level 1
+NO MORE IN DOUBT! Level 1 Exiting at 1
+BEFORE EXIT
+Level 1, Time 1:
+s=(Syllable=26,LetterLocation=1) - (TER,LeL1)
+o=(Letter=15,LetterLocation=1) - (T,LeL1)
+p(Syllable)=(2.6e-24,1.6e-16,2.6e-24,1.6e-16,3.4e-24,4.3e-24,2.6e-24,2.6e-24,2.6e-24,3.5e-24,2.6e-24,3.4e-24,3.4e-24,1.6e-16,2.2e-24,2.7e-17,2.2e-24,1.6e-16,2.6e-24,2.6e-24,3.5e-24,3.4e-24,3.5e-24,2e-18,0.005,0.99,5.7e-16,0.005,5.7e-16,0.005,7.5e-16)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 7:
+s=(Word=5,SyllableLocation=2) - (CIR CUS,SyL2)
+o=(Syllable=8,SyllableLocation=2) - (CUS,SyL2)
+p(Word)=(0.25,0.25,3.1e-24,1.4e-24,1.4e-24,7.4e-18,1.4e-24,1.4e-24,1.4e-24,0.25,7.4e-18,7.4e-18,7.4e-18,1.4e-24,0.25,1.4e-24,1.4e-24,1.4e-24)
+p(SyllableLocation)=(0.5,0.5)
+
+MDP VB_MDP entering Level 1
+NO MORE IN DOUBT! Level 1 Exiting at 1
+BEFORE EXIT
+Level 1, Time 1:
+s=(Syllable=26,LetterLocation=1) - (TER,LeL1)
+o=(Letter=15,LetterLocation=1) - (T,LeL1)
+p(Syllable)=(2.6e-24,1.6e-16,2.6e-24,1.6e-16,3.4e-24,4.2e-24,2.6e-24,2.6e-24,2.6e-24,3.4e-24,2.6e-24,3.4e-24,3.4e-24,1.6e-16,2.2e-24,5.6e-24,2.2e-24,1.6e-16,2.6e-24,2.6e-24,3.4e-24,3.4e-24,3.4e-24,2.6e-24,7.6e-16,1,5.9e-16,7.6e-16,5.9e-16,9.3e-16,7.5e-16)
+p(LetterLocation)=(1,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+BEFORE EXIT
+Level 2, Time 8:
+s=(Word=11,SyllableLocation=2) - (LIT TLE,SyL2)
+o=(Syllable=30,SyllableLocation=2) - (TLE,SyL2)
+p(Word)=(0.25,0.25,3.1e-24,1.4e-24,1.4e-24,3.4e-24,1.4e-24,1.4e-24,1.4e-24,0.25,3.4e-24,3.1e-24,3.1e-24,1.4e-24,0.25,1.4e-24,1.4e-24,1.4e-24)
+p(SyllableLocation)=(0.5,0.5)
+
+MDP VB_MDP exiting Level 2

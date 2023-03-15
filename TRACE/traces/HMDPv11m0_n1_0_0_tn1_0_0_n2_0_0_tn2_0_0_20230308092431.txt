@@ -1,0 +1,252 @@
+Level 3, Time 0:
+Sentence(1):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A A A
+Sentence(2):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A A M
+Sentence(3):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A B A
+Sentence(4):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A B B
+Sentence(5):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A C A
+Sentence(6):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A C H
+Sentence(7):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A D A
+Sentence(8):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A D M
+Sentence(9):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A H E
+Sentence(10):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A H H
+Sentence(11):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A J A
+Sentence(12):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A J B
+Sentence(13):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A L A
+Sentence(14):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A L C
+Sentence(15):THIS PAPER IS ALSO CITED BY CHARLES A D A M A A M A
+Sentence(16):THIS PAPER IS ALSO CITED BY CHARLES A D A M A AND BY CHARLES
+Sentence(17):THIS PAPER IS ALSO CITED BY CHARLES A D A M A AND BY JAMES
+Sentence(18):THIS PAPER IS ALSO CITED BY CHARLES A D A M A AND BY THOMAS
+Sentence(19):THIS PAPER IS ALSO CITED BY CHARLES A D A M A AND BY WILLIAM
+Sentence(20):THIS PAPER IS ALSO CITED BY CHARLES A D A M A AND CHARLES A
+Sentence(21):THIS PAPER IS ALSO CITED BY CHARLES A D A M A AND JAMES A
+Sentence(22):THIS PAPER IS ALSO CITED BY CHARLES A D A M A AND JOHN R
+Sentence(23):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B A A
+Sentence(24):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B A AND
+Sentence(25):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B A B
+Sentence(26):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B A D
+Sentence(27):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B A H
+Sentence(28):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B A M
+Sentence(29):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B AND JOHN
+Sentence(30):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B AND THOMAS
+Sentence(31):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B B A
+Sentence(32):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B B B
+Sentence(33):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B C E
+Sentence(34):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B D B
+Sentence(35):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B D C
+Sentence(36):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B H M
+Sentence(37):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B L H
+Sentence(38):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B M M
+Sentence(39):THIS PAPER IS ALSO CITED BY CHARLES A D A M A B M S
+Sentence(40):THIS PAPER IS ALSO CITED BY CHARLES A D A M A C A H
+Sentence(41):THIS PAPER IS ALSO CITED BY CHARLES A D A M A C AND DAVID
+Sentence(42):THIS PAPER IS ALSO CITED BY CHARLES A D A M A C AND JAMES
+Sentence(43):THIS PAPER IS ALSO CITED BY CHARLES A D A M A C L A
+Sentence(44):THIS PAPER IS ALSO CITED BY CHARLES A D A M A C M D
+Sentence(45):THIS PAPER IS ALSO CITED BY CHARLES A D A M A C M E
+Sentence(46):THIS PAPER IS ALSO CITED BY CHARLES A D A M A C M J
+Sentence(47):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D AND CHARLES
+Sentence(48):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D AND DAVID
+Sentence(49):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D AND EDWARD
+Sentence(50):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D AND JOHN
+Sentence(51):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D AND THOMAS
+Sentence(52):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D AND WILLIAM
+Sentence(53):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D B H
+Sentence(54):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D D D
+Sentence(55):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D H B
+Sentence(56):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D H H
+Sentence(57):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D M A
+Sentence(58):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D M B
+Sentence(59):THIS PAPER IS ALSO CITED BY CHARLES A D A M A D M S
+Sentence(60):THIS PAPER IS ALSO CITED BY CHARLES A D A M A H A B
+Sentence(61):THIS PAPER IS ALSO CITED BY CHARLES A D A M A H A C
+Sentence(62):THIS PAPER IS ALSO CITED BY CHARLES A D A M A H A H
+Sentence(63):THIS PAPER IS ALSO CITED BY CHARLES A D A M A H A J
+Sentence(64):THIS PAPER IS ALSO CITED BY CHARLES A D A M A H A L
+Sentence(65):THIS PAPER IS ALSO CITED BY CHARLES A D A M A H B H
+Sentence(66):THIS PAPER IS ALSO CITED BY CHARLES A D A M A H H S
+Sentence(67):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L AND CHARLES
+Sentence(68):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L B H
+Sentence(69):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L B M
+Sentence(70):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L H J
+Sentence(71):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L H S
+Sentence(72):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L J J
+Sentence(73):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L L A
+Sentence(74):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L L D
+Sentence(75):THIS PAPER IS ALSO CITED BY CHARLES A D A M A L M A
+Sentence(76):THIS PAPER IS ALSO CITED BY CHARLES A D A M A M A A
+Sentence(77):THIS PAPER IS ALSO CITED BY CHARLES A D A M A M A AND
+Sentence(78):THIS PAPER IS ALSO CITED BY CHARLES A D A M A M A M
+Sentence(79):THIS PAPER IS ALSO CITED BY CHARLES A D A M A M M A
+Sentence(80):THIS PAPER IS ALSO CITED BY CHARLES A D A M A S A C
+Sentence(81):THIS PAPER IS ALSO CITED BY CHARLES A D A M A S A D
+Sentence(82):THIS PAPER IS ALSO CITED BY CHARLES A D A M A S H A
+WordLocation(1):WoL1
+WordLocation(2):WoL2
+WordLocation(3):WoL3
+WordLocation(4):WoL4
+WordLocation(5):WoL5
+WordLocation(6):WoL6
+WordLocation(7):WoL7
+WordLocation(8):WoL8
+WordLocation(9):WoL9
+WordLocation(10):WoL10
+WordLocation(11):WoL11
+WordLocation(12):WoL12
+WordLocation(13):WoL13
+WordLocation(14):WoL14
+WordLocation(15):WoL15
+
+Level 2, Time 0:
+Word(1):A
+Word(2):ALSO
+Word(3):AND
+Word(4):B
+Word(5):BY
+Word(6):C
+Word(7):CHARLES
+Word(8):CIT ED
+Word(9):D
+Word(10):DAVID
+Word(11):E
+Word(12):ED WARD
+Word(13):H
+Word(14):IS
+Word(15):J
+Word(16):JAMES
+Word(17):JOHN
+Word(18):L
+Word(19):M
+Word(20):PA PER
+Word(21):R
+Word(22):S
+Word(23):THIS
+Word(24):THOMAS
+Word(25):WILL IAM
+SyllableLocation(1):SyL1
+SyllableLocation(2):SyL2
+
+
+
+MDP VB_MDP entering Level 3
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=2,LetterLocation=1) - (A,LeL1)
+o=(Letter=2,LetterLocation=1) - (A,LeL1)
+p(Syllable)=(6.4e-17,0.25,0.25,0.25,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,6.4e-17,0.25,6.4e-17,6.4e-17,6.4e-17)
+p(LetterLocation)=(1,1.2e-24,1.2e-24,1.2e-24,1.2e-24,1.2e-24,1.2e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=2,LetterLocation=2) - (A,LeL2)
+o=(Letter=1,LetterLocation=2) - (,LeL2)
+p(Syllable)=(1.6e-16,1,1e-20,1e-20,1.6e-16,1e-24,1.6e-16,1e-24,1e-24,1.6e-16,1e-24,1.6e-16,1e-24,1.6e-16,1e-24,1e-24,1.6e-16,1e-24,1e-24,1.6e-16,1.6e-16,1e-24,1e-24,1.6e-16,1.6e-16,1.4e-24,1e-24,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+Loop in t
+Level 2, Time 1:
+s=(Word=1,SyllableLocation=1) - (A,SyL1)
+o=(Syllable=2,SyllableLocation=1) - (A,SyL1)
+p(Word)=(0.5,1e-16,1e-16,2e-16,1e-16,2e-16,1e-16,1e-16,2e-16,1e-16,2e-16,1e-16,2e-16,1e-16,2e-16,1e-16,1e-16,2e-16,2e-16,1e-16,2e-16,2e-16,0.5,1e-16,1e-16)
+p(SyllableLocation)=(1,1.4e-24)
+
+MDP VB_MDP entering Level 1
+NO MORE IN DOUBT! Level 1 Exiting at 1
+BEFORE EXIT
+Level 1, Time 1:
+s=(Syllable=2,LetterLocation=1) - (A,LeL1)
+o=(Letter=2,LetterLocation=1) - (A,LeL1)
+p(Syllable)=(1.6e-16,1,9.4e-16,9.4e-16,3.2e-24,2.9e-24,3.2e-24,2.9e-24,2.9e-24,3.2e-24,2.9e-24,3.2e-24,3.3e-24,3.2e-24,2.4e-24,2.9e-24,3.2e-24,2.9e-24,2.9e-24,3.2e-24,3.2e-24,2.9e-24,2.4e-24,3.2e-24,3.2e-24,1.6e-16,2.9e-24,2.4e-24,2.9e-24)
+p(LetterLocation)=(1,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 2
+BEFORE EXIT
+Level 2, Time 2:
+s=(Word=1,SyllableLocation=1) - (A,SyL1)
+o=(Syllable=2,SyllableLocation=1) - (A,SyL1)
+p(Word)=(1,3.2e-24,3.2e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,2.3e-24,1e-24,1e-24)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP exiting Level 2
+Loop in t
+Level 3, Time 1:
+s=(Sentence=1,WordLocation=13) - (THIS PAPER IS ALSO CITED BY CHARLES A D A M A A A A,WoL13)
+o=(Word=1,WordLocation=13) - (A,WoL13)
+p(Sentence)=(0.067,0.067,0.067,0.067,0.067,0.067,0.067,0.067,0.067,0.067,0.067,0.067,0.067,0.067,0.067,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17,4.4e-17)
+p(WordLocation)=(0.5,1e-16,1e-16,1e-16,1e-16,1e-16,1e-16,1e-16,1e-16,1e-16,1e-16,1e-16,0.5,1e-16,1e-16)
+
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=2,LetterLocation=1) - (A,LeL1)
+o=(Letter=2,LetterLocation=1) - (A,LeL1)
+p(Syllable)=(1.8e-24,0.88,0.12,3.1e-15,5.6e-17,4.2e-17,5e-17,4.2e-17,4.2e-17,6.4e-17,2.3e-24,2.1e-17,2.1e-24,5.6e-17,1.8e-24,4.2e-17,4.3e-17,2.7e-24,2.7e-24,4.3e-17,6.6e-17,4.2e-17,1.8e-24,2.1e-24,2.9e-24,4.2e-17,2.6e-24,1.8e-24,2.3e-24)
+p(LetterLocation)=(1,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=2,LetterLocation=4) - (A,LeL4)
+o=(Letter=1,LetterLocation=4) - (,LeL4)
+p(Syllable)=(1.6e-16,1,6.1e-21,5e-15,1.6e-16,1.6e-16,1.6e-16,1e-24,1.6e-16,1.6e-16,1e-24,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1e-24,1e-24,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1e-24,1e-24,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1e-24,1e-24,1,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 1
+BEFORE EXIT
+Level 2, Time 1:
+s=(Word=1,SyllableLocation=1) - (A,SyL1)
+o=(Syllable=2,SyllableLocation=1) - (A,SyL1)
+p(Word)=(1,4.5e-17,4.2e-23,1.1e-16,8.1e-17,9.9e-17,4.5e-17,8.1e-17,1.3e-16,2.5e-24,3.9e-17,3.6e-24,1.1e-16,8.1e-17,8.4e-17,2.9e-24,2.9e-24,8.4e-17,1.4e-16,8.1e-17,3.6e-24,5.1e-24,4.5e-17,2.8e-24,2.5e-24)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP exiting Level 2
+Loop in t
+Level 3, Time 2:
+s=(Sentence=1,WordLocation=14) - (THIS PAPER IS ALSO CITED BY CHARLES A D A M A A A A,WoL14)
+o=(Word=1,WordLocation=14) - (A,WoL14)
+p(Sentence)=(0.5,0.5,1.2e-20,1.2e-20,1.2e-20,1.2e-20,1.3e-20,1.3e-20,1.2e-20,1.2e-20,1.1e-20,1.1e-20,1.1e-20,1.1e-20,1.3e-20,1.3e-24,1.3e-24,1.3e-24,1.3e-24,1.2e-24,1e-24,1e-24,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1e-24,1e-24,1.5e-24,1.5e-24,1.4e-24,1.5e-24,1.5e-24,1.5e-24,1.4e-24,1.5e-24,1.5e-24,1.6e-16,1e-24,1e-24,1.4e-24,1.5e-24,1.5e-24,1.5e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1.5e-24,1.5e-24,1.5e-24,1.5e-24,1.5e-24,1.5e-24,1.5e-24,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1.6e-16,1.5e-24,1.5e-24,1e-24,1.5e-24,1.5e-24,1.5e-24,1.5e-24,1.4e-24,1.4e-24,1.4e-24,1.5e-24,1.6e-16,1.6e-16,1.6e-16,1.5e-24,1.6e-16,1.6e-16,1.5e-24)
+p(WordLocation)=(1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1,1e-24)
+
+MDP VB_MDP entering Level 2
+MDP VB_MDP entering Level 1
+Loop in t
+Level 1, Time 1:
+s=(Syllable=2,LetterLocation=1) - (A,LeL1)
+o=(Letter=2,LetterLocation=1) - (A,LeL1)
+p(Syllable)=(1.5e-24,0.86,0.14,9.3e-16,3.8e-24,4.6e-17,2.8e-24,4.6e-17,4.6e-17,4.6e-17,1.8e-24,1.9e-24,1.7e-24,3.7e-24,1.5e-24,4.6e-17,2.3e-24,1.9e-24,1.9e-24,2.6e-24,7e-17,4.6e-17,1.5e-24,1.7e-24,2.3e-24,4.6e-17,1.9e-24,1.5e-24,1.8e-24)
+p(LetterLocation)=(1,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+NO MORE IN DOUBT! Level 1 Exiting at 2
+BEFORE EXIT
+Level 1, Time 2:
+s=(Syllable=2,LetterLocation=2) - (A,LeL2)
+o=(Letter=1,LetterLocation=2) - (,LeL2)
+p(Syllable)=(1.6e-16,1,6.4e-21,2e-24,1.6e-16,1e-24,1.6e-16,1e-24,1e-24,1.6e-16,1e-24,1.6e-16,1e-24,1.6e-16,1e-24,1e-24,1.6e-16,1e-24,1e-24,1.6e-16,1.6e-16,1e-24,1e-24,1.6e-16,1.6e-16,1e-24,1e-24,1e-24,1e-24)
+p(LetterLocation)=(1e-24,1,1e-24,1e-24,1e-24,1e-24,1e-24)
+
+MDP VB_MDP exiting Level 1
+NO MORE IN DOUBT! Level 2 Exiting at 1
+BEFORE EXIT
+Level 2, Time 1:
+s=(Word=1,SyllableLocation=1) - (A,SyL1)
+o=(Syllable=2,SyllableLocation=1) - (A,SyL1)
+p(Word)=(1,5e-17,3.1e-24,6.6e-24,5e-17,4.9e-24,5e-17,5e-17,9.1e-17,1.9e-24,3.3e-24,1.8e-24,6.4e-24,5e-17,4e-24,2e-24,2e-24,4.5e-24,1.5e-16,5e-17,2.9e-24,4e-24,5e-17,2.1e-24,1.9e-24)
+p(SyllableLocation)=(1,1e-24)
+
+MDP VB_MDP exiting Level 2
+NO MORE IN DOUBT! Level 3 Exiting at 3
+BEFORE EXIT
+Level 3, Time 3:
+s=(Sentence=1,WordLocation=15) - (THIS PAPER IS ALSO CITED BY CHARLES A D A M A A A A,WoL15)
+o=(Word=1,WordLocation=15) - (A,WoL15)
+p(Sentence)=(1,7.3e-22,1.6e-16,1e-24,1.6e-16,1e-24,1.6e-16,1.6e-24,1e-24,1e-24,1.6e-16,1e-24,1.6e-16,1e-24,1.6e-16,1.2e-24,1e-24,1e-24,1e-24,1.6e-16,1.6e-16,1e-24,4.2e-16,1.4e-24,1.4e-24,2e-24,1.4e-24,2.2e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1e-24,1e-24,1.6e-24,1e-24,1.6e-24,1e-24,1.4e-24,1e-24,1e-24,1.6e-16,1.4e-24,1e-24,1e-24,1.2e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1.4e-24,1e-24,1e-24,1.6e-16,1e-24,1e-24,1.4e-24,1.4e-24,1.4e-24,1.4e-24,1.4e-24,1e-24,1e-24,1.2e-24,1e-24,1.6e-24,1e-24,1e-24,1e-24,1.6e-16,1.4e-24,1.6e-16,4.2e-16,1.4e-24,2.2e-24,1.6e-16,1.4e-24,2e-24,1.6e-16)
+p(WordLocation)=(1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1e-24,1)
+
+MDP VB_MDP exiting Level 3
