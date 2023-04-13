@@ -83,11 +83,11 @@
 %
 
 clear MDPsub;
-rtmode                             = 0;  % 1 reaction time, 0 recognition steps
-irng                               = 10; %'default';
+rtmode                             = 0;     % 1 reaction time, 0 recognition steps
+irng                               = 2005;  % 'default';
 
-paramsmodes                        = 20;
-idsentences(paramsmodes)           = [4];
+paramsmodes                        = [20,22,23]; 
+idsentences(paramsmodes)           = [ 4, 4, 4];
 NSubs                              = length(paramsmodes);
 par_series                         = cell(NSubs,1);
 noisedescr                         = cell(NSubs,1);

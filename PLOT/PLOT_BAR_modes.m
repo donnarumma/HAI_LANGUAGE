@@ -34,18 +34,20 @@ for iSub=1:NSubs
     fprintf('Saving %s ...\n',[sub_save_dir nf]);
     exportgraphics(hfig,[sub_save_dir nf]);
     close(hfig);
-    %% saccades all
-    hfig    = PLOT_Saccades(MDPsub{iSub},[],GT);
-    nf  = sprintf('%s_SACCADES_ID%s.%s',dictionary,expID,ext);
-    fprintf('Saving %s ...\n',[sub_save_dir nf]);
-    exportgraphics(hfig,[sub_save_dir nf]);
-    close(hfig);
-    %% saccades steps
-    hfig    = PLOT_SaccadesLines(MDPsub{iSub},[],GT);
-    nf  = sprintf('%s_SUBSACCADES_ID%s.%s',dictionary,expID,ext);
-    fprintf('Saving %s ...\n',[sub_save_dir nf]);
-    exportgraphics(hfig,[sub_save_dir nf]);
-    close(hfig);
+    %% saccades all 
+    if MDPsub{iSub}.level>2 % temporary disabled for levels > 2
+        hfig    = PLOT_Saccades(MDPsub{iSub},[],GT);
+        nf  = sprintf('%s_SACCADES_ID%s.%s',dictionary,expID,ext);
+        fprintf('Saving %s ...\n',[sub_save_dir nf]);
+        exportgraphics(hfig,[sub_save_dir nf]);
+        close(hfig);
+        %% saccades steps
+        hfig    = PLOT_SaccadesLines(MDPsub{iSub},[],GT);
+        nf  = sprintf('%s_SUBSACCADES_ID%s.%s',dictionary,expID,ext);
+        fprintf('Saving %s ...\n',[sub_save_dir nf]);
+        exportgraphics(hfig,[sub_save_dir nf]);
+        close(hfig);
+    end
     %% latex compile
     [~,outnf]=latexCompile_ImageDirecory(sub_save_dir,save_dir,texparams);
     %% rename file

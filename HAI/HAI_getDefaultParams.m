@@ -39,6 +39,9 @@ for iLev=1:NLevels
     params.level(iLev).factor           = []; % exit factor on upper level 2: I am sure of the sentence;
 
     params.level(iLev).level            = iLev;
+    params.level(iLev).location_priors  = 0;
+    params.level(iLev).LocPrLambda      = 6;
+    params.level(iLev).alpha            = 512;
 end
 
 % simulation function

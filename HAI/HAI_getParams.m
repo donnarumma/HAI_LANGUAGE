@@ -8,10 +8,10 @@ function    [params, noisedescription]=HAI_getParams(index,dictionary)
 switch index
     case  0
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
-        params.level(2).jump                = 0;  % no jump in location
-        params.level(2).umode               = 0;  % Friston matrix no jump
-        params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
+        params.level(2).statesnoise      = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).jump            = 0;  % no jump in location
+        params.level(2).umode           = 0;  % Friston matrix no jump
+        params.level(2).CLASSES         = DICTIONARY.CLASSES{2};
 
         params.level(2).chi                 = []; % no sentence exit when no more in doubt
         noisedescription                   = 'default';
@@ -19,9 +19,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.0];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise      = [0.0,0.0];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise      = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -34,9 +34,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.0];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.0,0.0];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).jump               = 1;
@@ -48,9 +48,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.4,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.0];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.0,0.0];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -64,9 +64,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.4,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -79,9 +79,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.4];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -95,9 +95,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.4,0.4];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -110,9 +110,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.4,0.4];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.4,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -125,9 +125,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.4,0.4];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.0,0.4];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.4,0.7,0.5];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.7,0.5];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.7,0.5];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -140,9 +140,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.2,0.0];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.2,0.0];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -155,9 +155,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.1,0.0];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.1,0.0];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.01,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.01,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;        
         params.level(2).CLASSES            = DICTIONARY.CLASSES{2};
@@ -170,9 +170,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.3,0.0];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.3,0.0];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).jump               = 1;
@@ -185,9 +185,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.0,0.0];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.0,0.0];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.25,0.0,0.0]; % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.25,0.0,0.0]; % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).jump               = 1;
@@ -199,9 +199,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];      % noise on [letter  ,location]          recognition 
-        params.level(1).statenoise   = [0.1,0.0];      % noise on [word    ,location]           transition 
+        params.level(1).statesnoise   = [0.1,0.0];      % noise on [word    ,location]           transition 
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statenoise   = [0.01,0.0,0.0]; % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise   = [0.01,0.0,0.0]; % noise on [sentence,Location, context]  transition
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1; % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).jump               = 1;
@@ -213,9 +213,9 @@ switch index
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
-        params.level(1).statenoise   = [0.15,0.0];     % noise on [word    ,location]      transition 
+        params.level(1).statesnoise   = [0.15,0.0];     % noise on [word    ,location]      transition 
         params.level(2).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
-        params.level(2).statenoise   = [0.0,0.0];     % noise on [sentence,Location]      transition
+        params.level(2).statesnoise   = [0.0,0.0];     % noise on [sentence,Location]      transition
 
 %         params.level(2).create              = str2func('createLevel2_v7');
         params.level(2).chi                = 1/64;
@@ -228,9 +228,9 @@ noisedescription                   = 'word transition noise, jump mode, (no cont
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
-        params.level(1).statenoise   = [0.2,0.0];     % noise on [word    ,location]      transition 
+        params.level(1).statesnoise   = [0.2,0.0];     % noise on [word    ,location]      transition 
         params.level(2).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
-        params.level(2).statenoise   = [0.012,0.0];     % noise on [sentence,Location]      transition
+        params.level(2).statesnoise   = [0.012,0.0];     % noise on [sentence,Location]      transition
 
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
@@ -243,9 +243,9 @@ noisedescription                   = 'word transition noise, jump mode, (no cont
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
-        params.level(1).statenoise   = [0.0,0.0];     % noise on [word    ,location]      transition 
+        params.level(1).statesnoise   = [0.0,0.0];     % noise on [word    ,location]      transition 
         params.level(2).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
-        params.level(2).statenoise   = [0.0,0.0];     % noise on [sentence,Location]      transition
+        params.level(2).statesnoise   = [0.0,0.0];     % noise on [sentence,Location]      transition
         params.level(2).CLASSES            = [];
         params.level(2).chi                = 1/64;
         params.level(2).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
@@ -257,11 +257,11 @@ noisedescription                   = 'word transition noise, jump mode, (no cont
 % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
 %         params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
-%         params.level(1).statenoise   = [0,0.0];     % noise on [word    ,location]      transition 
+%         params.level(1).statesnoise   = [0,0.0];     % noise on [word    ,location]      transition 
         params.level(1).chi                = 1/8;
         
 %         params.level(2).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
-%         params.level(2).statenoise   = [0.0,0.0];    % noise on [sentence,Location]      transition
+%         params.level(2).statesnoise   = [0.0,0.0];    % noise on [sentence,Location]      transition
 %         params.level(2).CLASSES            = [];
         params.level(2).chi                = 1/8;
         params.level(2).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
@@ -272,12 +272,12 @@ noisedescription                   = 'word transition noise, jump mode, (no cont
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
-        params.level(1).statenoise      = [0,0.0];     % noise on [word    ,location]      transition 
+        params.level(1).statesnoise      = [0,0.0];     % noise on [word    ,location]      transition 
         params.level(1).chi                = 1/8;
         
         params.level(2).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
-%         params.level(2).statenoise   = [0.1,0.0];    % noise on [sentence,Location]      transition
-        params.level(2).statenoise      = [0.0,0.0];    % noise on [sentence,Location]      transition
+%         params.level(2).statesnoise   = [0.1,0.0];    % noise on [sentence,Location]      transition
+        params.level(2).statesnoise      = [0.0,0.0];    % noise on [sentence,Location]      transition
         params.level(2).CLASSES            = [];
 %         params.level(2).chi                = 1/64;
 %         params.level(2).chi                = 1/64;
@@ -290,12 +290,12 @@ noisedescription                   = 'word transition noise, jump mode, (no cont
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
-        params.level(1).statenoise   = [0.1,0.0];     % noise on [word    ,location]      transition 
+        params.level(1).statesnoise   = [0.1,0.0];     % noise on [word    ,location]      transition 
         params.level(1).chi                = 1/8;
         
         params.level(2).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
-%         params.level(2).statenoise   = [0.1,0.0];    % noise on [sentence,Location]      transition
-        params.level(2).statenoise   = [0.0,0.0];    % noise on [sentence,Location]      transition
+%         params.level(2).statesnoise   = [0.1,0.0];    % noise on [sentence,Location]      transition
+        params.level(2).statesnoise   = [0.0,0.0];    % noise on [sentence,Location]      transition
         params.level(2).CLASSES            = [];
 %         params.level(2).chi                = 1/64;
 %         params.level(2).chi                = 1/64;
@@ -308,17 +308,17 @@ noisedescription                   = 'word transition noise, jump mode, (no cont
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
-        params.level(1).statenoise   = [0.0,0.0];     % noise on [syllable,location]      transition 
+        params.level(1).statesnoise   = [0.0,0.0];     % noise on [syllable,location]      transition 
         params.level(1).chi                = 1/8;
         params.level(1).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
         
         params.level(2).obsnoise        = [0.0,0.0];     % noise on [syllable,Location]      recognition 
-        params.level(2).statenoise   = [0.0,0.0];     % noise on [word    ,Location]      transition
+        params.level(2).statesnoise   = [0.0,0.0];     % noise on [word    ,Location]      transition
         params.level(2).chi                = 1/8;
         params.level(2).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
         
         params.level(3).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
-        params.level(3).statenoise   = [0.0,0.0];     % noise on [sentence,Location]      transition
+        params.level(3).statesnoise   = [0.0,0.0];     % noise on [sentence,Location]      transition
         params.level(3).chi                = 1/8;
         params.level(3).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
        
@@ -327,20 +327,55 @@ noisedescription                   = 'word transition noise, jump mode, (no cont
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
         params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
-        params.level(1).statenoise   = [0.0,0.0];     % noise on [syllable,location]      transition 
+        params.level(1).statesnoise   = [0.0,0.0];     % noise on [syllable,location]      transition 
         params.level(1).chi                = 1/8;
         params.level(1).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
         
         params.level(2).obsnoise        = [0.0,0.0];     % noise on [syllable,Location]      recognition 
-        params.level(2).statenoise   = [0.0,0.0];     % noise on [word    ,Location]      transition
+        params.level(2).statesnoise   = [0.0,0.0];     % noise on [word    ,Location]      transition
         params.level(2).chi                = 1/8;
         params.level(2).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
         params.level(2).maxT               = 8;
 %         params.level(3).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
-%         params.level(3).statenoise   = [0.0,0.0];     % noise on [sentence,Location]      transition
+%         params.level(3).statesnoise   = [0.0,0.0];     % noise on [sentence,Location]      transition
 %         params.level(3).chi                = 1/8;
 %         params.level(3).factor             = 1;             % exit factor on upper level 2: I am sure of the sentence;
 %        
         noisedescription                   = '2 levels, jump mode, (no context)';
-
+    case 22
+        params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
+        params.level(1).statesnoise     = [0.0,0.0];     % noise on [syllable,location]      transition 
+        params.level(1).chi             = 1/8;
+        params.level(1).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        
+        params.level(2).obsnoise        = [0.0,0.0];     % noise on [syllable,Location]      recognition 
+        params.level(2).statesnoise     = [0.0,0.0];     % noise on [word    ,Location]      transition
+        params.level(2).chi             = 1/8;
+        params.level(2).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        
+        params.level(3).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
+        params.level(3).statesnoise     = [0.0,0.0];     % noise on [sentence,Location]      transition
+        params.level(3).chi             = 1/8;
+        params.level(3).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        params.level(3).location_priors = 0;
+        params.level(3).alpha           = 4;
+        noisedescription                = '3 levels, jump mode, no context, flat policy priors, low precision';
+    case 23
+        params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
+        params.level(1).statesnoise     = [0.0,0.0];     % noise on [syllable,location]      transition 
+        params.level(1).chi             = 1/8;
+        params.level(1).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        
+        params.level(2).obsnoise        = [0.0,0.0];     % noise on [syllable,Location]      recognition 
+        params.level(2).statesnoise     = [0.0,0.0];     % noise on [word    ,Location]      transition
+        params.level(2).chi             = 1/8;
+        params.level(2).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        
+        params.level(3).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
+        params.level(3).statesnoise     = [0.0,0.0];     % noise on [sentence,Location]      transition
+        params.level(3).chi             = 1/8;
+        params.level(3).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        params.level(3).location_priors = 1;
+        params.level(3).alpha           = 4;
+        noisedescription                = '3 levels, jump mode, no context, Poisson policy priors, low precision';
 end

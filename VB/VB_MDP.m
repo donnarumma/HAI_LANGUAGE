@@ -149,7 +149,8 @@ try, tau      = MDP.tau;      catch, tau   = 4;         end % update time consta
 try, chi      = MDP.chi;      catch, chi   = 1/64;      end % Occam window updates
 try, erp      = MDP.erp;      catch, erp   = 4;         end % update reset
 try, MDP.VBNi = OPTIONS.VBNi; catch, MDP.VBNi  = 16;    end % number of VB iterations
-
+try, alpha    = OPTIONS.level(MDP.level).alpha; catch, alpha = 512;       end % action precision
+OPTIONS.level(MDP.level)
 % preclude precision updates for moving policies
 %--------------------------------------------------------------------------
 if isfield(MDP,'U'), OPTIONS.gamma = 1;         end
@@ -214,7 +215,12 @@ end
 
 % priors over policies - concentration parameters
 %----------------------------------------------------------------------
-E    = spm_norm(ones(Npolicies,1));
+
+if isfield(MDP,'E')
+    E    = spm_norm(MDP.E);
+else
+    E    = spm_norm(ones(Npolicies,1));
+end
 qE   = spm_log(E);
 
 % prior preferences (log probabilities) : C
@@ -504,8 +510,33 @@ for t = 1:T
     end
     % posterior and prior beliefs about policies
     %------------------------------------------------------
-    policyposterior = spm_softmax(qE(pols) + w(t)*ExpectedFreeEnergy(pols) + FreeEnergyPols(pols));
-    policyprior     = spm_softmax(qE(pols) + w(t)*ExpectedFreeEnergy(pols));
+    %% DONNARUMMA POLICY PRIORS
+    try
+        loc_t   = MDP.s(2,t);
+        if t==1
+            loc_tm1=0;
+        else
+            loc_tm1 = MDP.s(2,t-1);
+        end
+
+        EPpr  = HAI_getLocationPriors(loc_tm1,Npolicies,OPTIONS.level(MDP.level)); 
+        EPpr  = spm_norm(EPpr);
+        qEpr  = spm_log(EPpr);
+        if MDP.level==3
+            if  OPTIONS.level(MDP.level).location_priors
+                fprintf('lello\n')
+            end
+        end
+
+        EPps  = HAI_getLocationPriors(  loc_t,Npolicies,OPTIONS.level(MDP.level)); 
+        EPps  = spm_norm(EPps);
+        qEps  = spm_log(EPps);
+    catch
+        qEpr=qE;
+        qEps=qE;
+    end
+    policyposterior = spm_softmax(qEps(pols) + w(t)*ExpectedFreeEnergy(pols) + FreeEnergyPols(pols));
+    policyprior     = spm_softmax(qEpr(pols) + w(t)*ExpectedFreeEnergy(pols));
     
     % precision (w) with free energy gradients (v = -dF/dw)
     %------------------------------------------------------
@@ -676,22 +707,22 @@ end
 
 % assemble results and place in NDP structure
 %----------------------------------------------------------------------
-MDP.T  = T;                      % number of belief updates
-MDP.O  = ObsProb;                      % outcomes
-MDP.P  = P;                      % probability of action at time 1,...,T - 1
-MDP.R  = policyposteriorTime; % conditional expectations over policies
-MDP.Q  = pstatesTimePols;   % conditional expectations over N states
-MDP.X  = pSTime;       % Bayesian model averages over T outcomes
-MDP.C  = C;                 % utility
+MDP.T  = T;                     % number of belief updates
+MDP.O  = ObsProb;               % outcomes
+MDP.P  = P;                     % probability of action at time 1,...,T - 1
+MDP.R  = policyposteriorTime;   % conditional expectations over policies
+MDP.Q  = pstatesTimePols;       % conditional expectations over N states
+MDP.X  = pSTime;                % Bayesian model averages over T outcomes
+MDP.C  = C;                     % utility
 
-MDP.w  = w;                   % posterior expectations of precision (policy)
-MDP.vn = Vn;                % simulated neuronal prediction error
-MDP.xn = Xn;                % simulated neuronal encoding of hidden states
-MDP.un = neuralstates;        % simulated neuronal encoding of policies
-MDP.wn = neuralprecision;     % simulated neuronal encoding of precision
-MDP.dn = dn;                  % simulated dopamine responses (deconvolved)
+MDP.w  = w;                     % posterior expectations of precision (policy)
+MDP.vn = Vn;                    % simulated neuronal prediction error
+MDP.xn = Xn;                    % simulated neuronal encoding of hidden states
+MDP.un = neuralstates;          % simulated neuronal encoding of policies
+MDP.wn = neuralprecision;       % simulated neuronal encoding of precision
+MDP.dn = dn;                    % simulated dopamine responses (deconvolved)
 MDP.nP = neuralpolicies;
-MDP.rt = rt;                  % simulated reaction time (seconds)
+MDP.rt = rt;                    % simulated reaction time (seconds)
 
 
 % plot
