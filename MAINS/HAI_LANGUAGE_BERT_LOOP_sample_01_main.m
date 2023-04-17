@@ -3,7 +3,7 @@ irng                            =  6;
 deleteoldsentences              =  1;
 langparamsmode                  = 23; % 3 levels Poisson priors % 20 % 3 levels;
 rtmode                          =  0;
-SEP                             = '//';
+SEP                             = filesep;%'//';
 dohyphen                        = 1;
 starting_dic                    = 'BERT_v1';
 dic_dir                         = ['.' SEP 'DICTIONARY' SEP starting_dic SEP];
@@ -23,10 +23,9 @@ root_dir                        = [SEP 'tmp' SEP 'HAI_LANGUAGE_TESTS' SEP];
 bertparams                      = BERT_getDefaultParams;
 input_str                       = 'THIS PAPER';
 Nsteps                          = 1;
-SENTENCE_LENGTH                 = 20;  % number of words of the sentence to read
+SENTENCE_LENGTH                 = 20;         % number of words of the sentence to read
 dic_name                        = starting_dic;
-idsentences                     = [13,16,52,4,3,1,1,1,1];
-% idsentences                     = [1, 1, 1, 1]; % THIS PAPER IS ALSO MENTIONED IN THE SCIENTIFIC JOURNAL OF MATHEMATICS AND COMPUTER SCIENCE AND
+idsentences                     = [13,16,52]; % 'THIS PAPER IS ALSO MENTIONED IN THE FAMOUS ENGLISH HISTORICAL NOVEL BY SIR ROBERT DE LA HAY'
 
 rng(irng);                      % initialise seed;
 step                            = 0;
@@ -49,7 +48,7 @@ while (~allread)
     bertparams.forwardMasks     = SENTENCE_LENGTH-wstart;
     if bertparams.forwardMasks<6
         bertparams.HORIZON      = bertparams.forwardMasks;
-        allread                 = true;             % read last words
+        allread                 = true;              % read last words
     else
         bertparams.HORIZON      = 2+randi(3);        % uniform distribution in {3,4,5}: how many words to read
     end
@@ -60,27 +59,25 @@ while (~allread)
     GuessedSentences                = BERT_forwardSteps(input_str,bertparams);
     fprintf('Time Elapsed %g s\n',toc(t));  
     GuessedSentences                = BERT_cleanSentences(GuessedSentences); % get well formed sentences
-    if length(GuessedSentences) < 1
+    if length(GuessedSentences) < 2
         fprintf('Error: BERT failed to predict new sentences!');
         return
     end
     newwords                        = DICTIONARY_getWords(GuessedSentences);
     
-    %% update dictionary
+    %% update dictionary with last words (curwords) plus new words in GuessedSentences (newwords)
     dic_name                        = sprintf('%s_%s',starting_dic,fromNumToOrderedString(step));
     DICTIONARY_save(dic_name,dic_dir,[curwords;newwords],GuessedSentences,deleteoldsentences,dohyphen);
-    % curwords                        = [curwords;newwords];
     % DICTIONARY_print(eval(dic_name));
     pause(1);                       % wait the correct updating of the dictionary
     %% langparams for Hiearchical Active Inference (HAI)
     [langparams,noisedesc]          = HAI_getParams(langparamsmode,dic_name);
-    langparams.spm_MDP_VB_H         = str2func('VB_MDP');
     langparams                      = HAI_initialiseParams(langparams);
     maxT2                           = langparams.level(end).maxT;
     % update initial conditions (s) of the upper level
     sen                             = idsentences(step);
-    langparams.level(end).s(1,:)    = sen*ones(1,maxT2);          % initial sentence state
-    langparams.level(end).s(2,1)    = wstart;                     % initial new word location
+    langparams.level(end).s(1,:)    = sen*ones(1,maxT2);          % initial fixed sentence identity for all the AI step
+    langparams.level(end).s(2,1)    = wstart;                     % initial new word (next after last read) location on the current sentence
     
     %% HIERARCHICAL ACTIVE INFERENCE  
     % run the inference
@@ -88,7 +85,7 @@ while (~allread)
     % save only saccades:
     MDP                             = HAI_smartMDP(MDP);
     fprintf('Saving %s\n',[dic_dir SEP 'MDP_STEP' fromNumToOrderedString(step)]);
-    save([dic_dir SEP 'MDP_STEP' fromNumToOrderedString(step)],'MDP');
+    save([dic_dir SEP 'MDP_STEP' fromNumToOrderedString(step)],'MDP','langparams','GuessedSentences');
     MDP_STEPS{step}                 = MDP; % save MDP step
     %% save graphic results
     save_dir                        = [root_dir SEP dic_name SEP];

@@ -19,7 +19,8 @@ Syllables       = [];
 lenHy           = zeros(length(words),1);
 for iw=1:length(words)
     word        = words{iw};
-    wordsplitted= hyphenate(word);
+    % wordsplitted= hyphenate(word);
+    wordsplitted= DICTIONARY_hyphenate(word);
     lenHy(iw)   = length(wordsplitted);
     Syllables   = [Syllables(:); wordsplitted(:)];
 end
@@ -80,7 +81,8 @@ end
 s=sprintf('%sWORDS=cell(0,0); D='''';\n',s);
 for iw=1:length(words)
     WORD                    = upper(words{iw});
-    WORDSPLITTED            = hyphenate(WORD);
+    % WORDSPLITTED            = hyphenate(WORD);
+    WORDSPLITTED            = DICTIONARY_hyphenate(WORD);
     LenHy                   = length(WORDSPLITTED);
     wtxt                    ='WORDS{end+1,1}  ={';
     for il=1:maxHy

@@ -44,7 +44,7 @@ langparams.level(2).chi            = 1/8; % confidence level on exit level 2
 MDP                                = HAI_RUN(langparams,dictionary);
 
 %% create BAR NOISE PLOT
-SEP = '//';
+SEP = filesep;%'//';
 root_dir =[SEP 'tmp' SEP 'HAI_LANGUAGE_TESTS' SEP]; % saving in results /tmp/HAI_LANGUAGE_TESTS/
 save_dir =[root_dir SEP dictionary SEP];
 desc     = 'default parameters';

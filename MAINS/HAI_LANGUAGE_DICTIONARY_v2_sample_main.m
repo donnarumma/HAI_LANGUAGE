@@ -124,7 +124,7 @@ for iSub=1:NSubs
     fprintf('Ended computation for SubjectID%g\n',paramsmodes(iSub));
 %     pause;
 end
-SEP = '//';
+SEP = filesep;%'//';
 root_dir =[SEP 'tmp' SEP 'HAI_LANGUAGE_TESTS' SEP];
 save_dir =[root_dir  SEP          dictionary  SEP];
 

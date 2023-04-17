@@ -112,7 +112,7 @@ for iSub=1:NSubs
 %     pause;
 end
 
-SEP ='//';
+SEP = filsep;
 root_dir =[SEP 'tmp' SEP 'HAI_LANGUAGE' SEP];
 save_dir =[root_dir  SEP    dictionary  SEP];
 

@@ -55,7 +55,7 @@ for iSub=1:NSubs
 end
 
 %% create BAR NOISE PLOT
-SEP = '//';
+SEP = filsep;%'//';
 root_dir =[SEP 'tmp' SEP 'HAI_LANGUAGE_TESTS' SEP]; % saving in results /tmp/HAI_LANGUAGE_TESTS/
 save_dir =[root_dir SEP dictionary SEP];
 
