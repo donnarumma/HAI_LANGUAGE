@@ -1,5 +1,5 @@
-function s=printHiddenStates(MDP,t,hiddenstatename)
-% function s=printStateStatus(MDP,t,statename)
+function s=TRACE_printHiddenStates(MDP,t,hiddenstatename)
+% function s=TRACE_printHiddenStates(MDP,t,hiddenstatename)
 % s       = sprintf('%s, Time %g\n',MDP.Hname,t);
 s       = '';
 State   = MDP.(hiddenstatename);

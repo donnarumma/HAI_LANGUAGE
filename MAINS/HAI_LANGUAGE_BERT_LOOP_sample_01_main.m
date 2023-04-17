@@ -1,10 +1,11 @@
 % function HAI_LANGUAGE_BERT_LOOP_sample_01_main
 irng                            =  6;
 deleteoldsentences              =  1;
-langparamsmode                  = 21;
+langparamsmode                  = 23; % 3 levels Poisson priors % 20 % 3 levels;
 rtmode                          =  0;
 SEP                             = '//';
-starting_dic                    = 'BERT_sequence';
+dohyphen                        = 1;
+starting_dic                    = 'BERT_v1';
 dic_dir                         = ['.' SEP 'DICTIONARY' SEP starting_dic SEP];
 resetall                        =  1;
 if ~isfolder(dic_dir)
@@ -24,20 +25,22 @@ input_str                       = 'THIS PAPER';
 Nsteps                          = 1;
 SENTENCE_LENGTH                 = 20;  % number of words of the sentence to read
 dic_name                        = starting_dic;
-% idsentences                     = [72,79,6,4,3,1,1,1,1];
-idsentences                     = [13, 93, 1 , 1]; % THIS PAPER IS ALSO MENTIONED IN THE SCIENTIFIC JOURNAL OF MATHEMATICS AND COMPUTER SCIENCE AND
+idsentences                     = [13,16,52,4,3,1,1,1,1];
+% idsentences                     = [1, 1, 1, 1]; % THIS PAPER IS ALSO MENTIONED IN THE SCIENTIFIC JOURNAL OF MATHEMATICS AND COMPUTER SCIENCE AND
 
 rng(irng);                      % initialise seed;
 step                            = 0;
-allread                         = false;    
-% for step=1:Nstps
+allread                         = false;  
+
 while (~allread)
     step                        = step+1;
+    
+    dictionaryfunction              = str2func(dic_name);       
+    DICTIONARY                      = dictionaryfunction();
+    curwords                        = DICTIONARY_words(DICTIONARY);
+
     if step>1 
-        dictionaryfunction      = str2func(dic_name);       
-        DICTIONARY              = dictionaryfunction();
-%         input_str               = retrieveLevel(DICTIONARY.Sentence{sen});
-        input_str               = HAI_retrieveLevel(DICTIONARY.Sentence{MDP.s(1,end)}); % last read phrase
+        input_str               = HAI_retrieveLevel(DICTIONARY.Sentence{MDP.s(1,end)}); % last read sentence
     end
     % next LOCATION
     wstart                      = length(strsplit(input_str,' '))+1;
@@ -65,13 +68,13 @@ while (~allread)
     
     %% update dictionary
     dic_name                        = sprintf('%s_%s',starting_dic,fromNumToOrderedString(step));
-    DICTIONARY_save(dic_name,dic_dir,newwords,GuessedSentences,deleteoldsentences);
+    DICTIONARY_save(dic_name,dic_dir,[curwords;newwords],GuessedSentences,deleteoldsentences,dohyphen);
+    % curwords                        = [curwords;newwords];
     % DICTIONARY_print(eval(dic_name));
     pause(1);                       % wait the correct updating of the dictionary
     %% langparams for Hiearchical Active Inference (HAI)
     [langparams,noisedesc]          = HAI_getParams(langparamsmode,dic_name);
     langparams.spm_MDP_VB_H         = str2func('VB_MDP');
-%     langparams.spm_MDP_VB_H         = str2func('spm_MDP_VB_X_tutorial_debug_v11');
     langparams                      = HAI_initialiseParams(langparams);
     maxT2                           = langparams.level(end).maxT;
     % update initial conditions (s) of the upper level
@@ -82,11 +85,17 @@ while (~allread)
     %% HIERARCHICAL ACTIVE INFERENCE  
     % run the inference
     MDP                             = HAI_RUN(langparams,dic_name);
+    % save only saccades:
+    MDP                             = HAI_smartMDP(MDP);
+    fprintf('Saving %s\n',[dic_dir SEP 'MDP_STEP' fromNumToOrderedString(step)]);
+    save([dic_dir SEP 'MDP_STEP' fromNumToOrderedString(step)],'MDP');
     MDP_STEPS{step}                 = MDP; % save MDP step
     %% save graphic results
     save_dir                        = [root_dir SEP dic_name SEP];
-    PLOT_BAR_modes({MDP},{noisedesc},dic_name,langparamsmode,rtmode,input_str,save_dir);
+    if 0 % failes on the third level
+        PLOT_BAR_modes({MDP},{noisedesc},dic_name,langparamsmode,rtmode,input_str,save_dir);
+    end
 end
 
-save([dic_dir SEP 'MDP_STEPS'],'MDP_STEPS');
+% save([dic_dir SEP 'MDP_STEPS'],'MDP_STEPS');
 rmpath(dic_dir);

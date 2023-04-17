@@ -150,7 +150,7 @@ try, chi      = MDP.chi;      catch, chi   = 1/64;      end % Occam window updat
 try, erp      = MDP.erp;      catch, erp   = 4;         end % update reset
 try, MDP.VBNi = OPTIONS.VBNi; catch, MDP.VBNi  = 16;    end % number of VB iterations
 try, alpha    = OPTIONS.level(MDP.level).alpha; catch, alpha = 512;       end % action precision
-OPTIONS.level(MDP.level)
+
 % preclude precision updates for moving policies
 %--------------------------------------------------------------------------
 if isfield(MDP,'U'), OPTIONS.gamma = 1;         end
@@ -522,11 +522,11 @@ for t = 1:T
         EPpr  = HAI_getLocationPriors(loc_tm1,Npolicies,OPTIONS.level(MDP.level)); 
         EPpr  = spm_norm(EPpr);
         qEpr  = spm_log(EPpr);
-        if MDP.level==3
-            if  OPTIONS.level(MDP.level).location_priors
-                fprintf('lello\n')
-            end
-        end
+        % if MDP.level==3
+        %     if  OPTIONS.level(MDP.level).location_priors
+        %         fprintf('lello\n')
+        %     end
+        % end
 
         EPps  = HAI_getLocationPriors(  loc_t,Npolicies,OPTIONS.level(MDP.level)); 
         EPps  = spm_norm(EPps);

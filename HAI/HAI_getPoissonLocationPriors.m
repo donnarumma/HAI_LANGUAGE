@@ -13,7 +13,11 @@ indM        = find(Y==FY(iM),1);
 % inds        = Y>th;
 %% select maximum on next first (word) location
 X           = X-X(indM);
-
+MR          = -(X(1)-1);    
+if Nlocations>MR % extend if there are no sufficient points
+    Y=[zeros(Nlocations-MR,1),Y];
+    X=[-(Nlocations-1):-MR, X];
+end
 inds        = X>(-Nlocations) & X<2*Nlocations;
 Y           = Y(inds);
 X           = X(inds);        
