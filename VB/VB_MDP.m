@@ -150,7 +150,7 @@ try, chi      = MDP.chi;      catch, chi   = 1/64;      end % Occam window updat
 try, erp      = MDP.erp;      catch, erp   = 4;         end % update reset
 try, MDP.VBNi = OPTIONS.VBNi; catch, MDP.VBNi  = 16;    end % number of VB iterations
 try, alpha    = OPTIONS.level(MDP.level).alpha; catch, alpha = 512;       end % action precision
-
+try  MDP.t;                   catch MDP.t={0};          end
 % preclude precision updates for moving policies
 %--------------------------------------------------------------------------
 if isfield(MDP,'U'), OPTIONS.gamma = 1;         end
@@ -309,7 +309,7 @@ current_pStates3=cell(1,NstateFactors);
 % belief updating over successive time points
 %==========================================================================
 for t = 1:T
-    
+    MDP.t{1}=t;
     % generate hidden states and outcomes for each agent or model
     %======================================================================
     % sample state, if not specified
@@ -372,7 +372,9 @@ for t = 1:T
             mdp = MDP.MDP(1);
             if OPTIONS.sX(2)
                 try
-                    mdp.s=squeeze(mdp.s(:,:,t));
+                    % mdp.s=squeeze(mdp.s(:,:,t));
+                    mdp.t=[{0} , MDP.t(:)'];
+                    mdp.s=squeeze(mdp.s(:,:,MDP.t{:}));
                 catch
                   
                 end
@@ -455,10 +457,11 @@ for t = 1:T
     % processing time and reset
     %--------------------------------------------------------------
     tstart = tic;
-    for istatef = 1:NstateFactors
-        pstatesTimePols{istatef}    = spm_softmax(spm_log(pstatesTimePols{istatef})/erp);
+    if 0
+        for istatef = 1:NstateFactors
+            pstatesTimePols{istatef}    = spm_softmax(spm_log(pstatesTimePols{istatef})/erp);
+        end
     end
-    
     % Variational updates (hidden states) under sequential policies
     %==============================================================
     
