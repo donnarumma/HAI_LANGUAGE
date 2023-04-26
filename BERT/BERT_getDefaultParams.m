@@ -1,5 +1,5 @@
-function   bertparams = getDefaultBertParams(bertmodel)
-% function bertparams = getDefaultBertParams(bertmodel)
+function   bertparams = BERT_getDefaultParams(bertmodel)
+% function bertparams = BERT_getDefaultParams(bertmodel)
 if nargin > 0
     bertparams.bert = bertmodel;
     
