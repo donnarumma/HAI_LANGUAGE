@@ -6,7 +6,7 @@ rtmode                          =  0;
 SEP                             = filesep;%'//';
 dohyphen                        = 1;
 starting_dic                    = 'BERT_v1';
-dic_dir                         = ['.' SEP 'DICTIONARY' SEP starting_dic SEP];
+dic_dir                         = ['.' SEP 'DICTIONARY' SEP 'BERT_DIC' SEP starting_dic '_S01' SEP];
 resetall                        =  1;
 if ~isfolder(dic_dir)
     mkdir(dic_dir)
@@ -33,11 +33,13 @@ allread                         = false;
 
 while (~allread)
     step                        = step+1;
-    
-    dictionaryfunction              = str2func(dic_name);       
-    DICTIONARY                      = dictionaryfunction();
-    curwords                        = DICTIONARY_words(DICTIONARY);
-
+    try
+        dictionaryfunction              = str2func(dic_name);       
+        DICTIONARY                      = dictionaryfunction();
+        curwords                        = DICTIONARY_words(DICTIONARY);
+    catch
+        curwords=cell(0,0);
+    end
     if step>1 
         input_str               = HAI_retrieveLevel(DICTIONARY.Sentence{MDP.s(1,end)}); % last read sentence
     end

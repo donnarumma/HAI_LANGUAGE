@@ -6,7 +6,7 @@ rtmode                          =  0;
 SEP                             = '//';
 dohyphen                        = 1;
 starting_dic                    = 'BERT_hyph_sequence';
-dic_dir                         = ['.' SEP 'DICTIONARY' SEP starting_dic SEP];
+dic_dir                         = ['.' SEP 'DICTIONARY' SEP 'BERT_DIC' SEP starting_dic SEP];
 resetall                        =  1;
 if ~isfolder(dic_dir)
     mkdir(dic_dir)

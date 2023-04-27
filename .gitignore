@@ -35,5 +35,8 @@ octave-workspace
 # all video
 *.avi
 *.gif
+
+# project specific
 TRACE/traces/
-frosolone/
+workinprogress/
+chatGPT/API-key.txt

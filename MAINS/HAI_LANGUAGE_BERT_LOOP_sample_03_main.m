@@ -1,100 +1,132 @@
-% function HAI_LANGUAGE_BERT_LOOP_sample_01_main
-irng                            =  6;
-deleteoldsentences              =  1;
-langparamsmode                  = 23; % 3 levels Poisson priors % 20 % 3 levels;
-rtmode                          =  0;
-SEP                             = filesep;%'//';
-dohyphen                        = 1;
-starting_dic                    = 'BERT_v1';
-dic_dir                         = ['.' SEP 'DICTIONARY' SEP starting_dic SEP];
-resetall                        =  1;
-if ~isfolder(dic_dir)
-    mkdir(dic_dir)
-else
-    if resetall
-        delete([dic_dir SEP '*']);
-    end
-end
+%% MAIN WITH BERT WITH A SENTENCE THAT HAS A NEW WORD (BUTTER) IN IT
+clear all;
+SEP                 =filesep;
+% DICTIONARY          =BERT_v1_001();
+MDP_s1              =load ('DICTIONARY/BERT_DIC/BERT_v1_S01/MDP_STEP001.mat');
+GuessedSentences    =MDP_s1.GuessedSentences;
+MDP                 =MDP_s1.MDP;
+langparams          =MDP_s1.langparams;
+% words               =DICTIONARY_words(DICTIONARY);
+% syllables           =HAI_level(MDP.MDP.MDP,'');
+words               =HAI_level(MDP.MDP,'');
+sentences           =HAI_level(MDP,' ');
+
+dohyphen            =1;
+deleteoldsentences  =1;
+dic_name            ='BERT_v1_tmp';
+
+dic_dir             = ['.' SEP 'BERT' SEP dic_name  SEP];
+mkdir(dic_dir);
 addpath(dic_dir);
-root_dir                        = [SEP 'tmp' SEP 'HAI_LANGUAGE_TESTS' SEP];
 
-   
-%% bertparams
-bertparams                      = BERT_getDefaultParams;
-input_str                       = 'THIS PAPER';
-input_str='We present a novel computational model that uses hierarchical active inference to simulate the reading process and eye movements during reading';
-input_str=upper(input_str);
-Nsteps                          = 1;
-SENTENCE_LENGTH                 = 20;         % number of words of the sentence to read
-dic_name                        = starting_dic;
-idsentences                     = [13,16,52]; % 'THIS PAPER IS ALSO MENTIONED IN THE FAMOUS ENGLISH HISTORICAL NOVEL BY SIR ROBERT DE LA HAY'
+% new sentence with a new unknown word (BUTTER) with known syllables (BUT and TER) 
+newsentence = {'THIS PAPER IS ALSO BUTTER IN THE'}; 
+% sentences   = [newsentence;sentences];
+% https://it.mathworks.com/help/textanalytics/ref/editdistance.html
+sends = cellfun(@(x)(editDistance(x,newsentence{1})),sentences);
+[~,sen] = min(sends);
+fprintf('Saving %s in %s\n',dic_name,dic_dir);
+words=['BITTER';words];
+DICTIONARY_save(dic_name,dic_dir,words,sentences,deleteoldsentences,dohyphen);
 
-rng(irng);                      % initialise seed;
-step                            = 0;
-allread                         = false;  
 
-while (~allread)
-    step                        = step+1;
-    
-    dictionaryfunction              = str2func(dic_name);       
-    DICTIONARY                      = dictionaryfunction();
-    curwords                        = DICTIONARY_words(DICTIONARY);
+% max saccades on letters    syllables     words
+nmaxT          = [   8,          8,          8  ];
+nmaxT          = [   5,          6,          7  ];
+dictionary_function = str2func(dic_name);
 
-    if step>1 
-        input_str               = HAI_retrieveLevel(DICTIONARY.Sentence{MDP.s(1,end)}); % last read sentence
-    end
-    % next LOCATION
-    wstart                      = length(strsplit(input_str,' '))+1;
-    
-    %% BERT PREDICTION
-    bertparams.forwardMasks     = SENTENCE_LENGTH-wstart;
-    if bertparams.forwardMasks<6
-        bertparams.HORIZON      = bertparams.forwardMasks;
-        allread                 = true;              % read last words
-    else
-        bertparams.HORIZON      = 2+randi(3);        % uniform distribution in {3,4,5}: how many words to read
-    end
-    fprintf('BERT PARAMS: HORIZON: %g ', bertparams.HORIZON);
-    fprintf('Number of hypotheses: %g\n',bertparams.HM);
-    fprintf('Input String: "%s"\n', input_str);
-    t=tic;
-    GuessedSentences                = BERT_forwardSteps(input_str,bertparams);
-    fprintf('Time Elapsed %g s\n',toc(t));  
-    GuessedSentences                = BERT_cleanSentences(GuessedSentences); % get well formed sentences
-    if length(GuessedSentences) < 2
-        fprintf('Error: BERT failed to predict new sentences!');
-        return
-    end
-    newwords                        = DICTIONARY_getWords(GuessedSentences);
-    
-    %% update dictionary with last words (curwords) plus new words in GuessedSentences (newwords)
-    dic_name                        = sprintf('%s_%s',starting_dic,fromNumToOrderedString(step));
-    DICTIONARY_save(dic_name,dic_dir,[curwords;newwords],GuessedSentences,deleteoldsentences,dohyphen);
-    % DICTIONARY_print(eval(dic_name));
-    pause(1);                       % wait the correct updating of the dictionary
-    %% langparams for Hiearchical Active Inference (HAI)
-    [langparams,noisedesc]          = HAI_getParams(langparamsmode,dic_name);
-    langparams                      = HAI_initialiseParams(langparams);
-    maxT2                           = langparams.level(end).maxT;
-    % update initial conditions (s) of the upper level
-    sen                             = idsentences(step);
-    langparams.level(end).s(1,:)    = sen*ones(1,maxT2);          % initial fixed sentence identity for all the AI step
-    langparams.level(end).s(2,1)    = wstart;                     % initial new word (next after last read) location on the current sentence
-    
-    %% HIERARCHICAL ACTIVE INFERENCE  
-    % run the inference
-    MDP                             = HAI_RUN(langparams,dic_name);
-    % save only saccades:
-    MDP                             = HAI_smartMDP(MDP);
-    fprintf('Saving %s\n',[dic_dir SEP 'MDP_STEP' fromNumToOrderedString(step)]);
-    save([dic_dir SEP 'MDP_STEP' fromNumToOrderedString(step)],'MDP','langparams','GuessedSentences');
-    MDP_STEPS{step}                 = MDP; % save MDP step
-    %% save graphic results
-    save_dir                        = [root_dir SEP dic_name SEP];
-    if 0 % failes on the third level
-        PLOT_BAR_modes({MDP},{noisedesc},dic_name,langparamsmode,rtmode,input_str,save_dir);
-    end
+DICTIONARY          =dictionary_function();
+
+syllables           =cellfun(@(x)(HAI_retrieveLevel(x)),DICTIONARY.Syllable,'UniformOutput',false);
+words               =cellfun(@(x)(HAI_retrieveLevel(x)),DICTIONARY.Word,    'UniformOutput',false);
+sentences           =cellfun(@(x)(HAI_retrieveLevel(x)),DICTIONARY.Sentence,'UniformOutput',false);
+
+
+%% NEW WORD
+newword             = 'BUTTER';
+newwordsplitted     = DICTIONARY_hyphenate(newword);
+hmsyllables         = length(newwordsplitted);
+names               = nan(1,hmsyllables);
+for isy=1:hmsyllables
+    names(isy)      = find(strcmp(syllables,newwordsplitted{isy}));
 end
 
-% save([dic_dir SEP 'MDP_STEPS'],'MDP_STEPS');
-rmpath(dic_dir);
+%% NEW PARAMS
+unparams            = HAI_getParams(23,dic_name);
+for il = 1:length(unparams.level); unparams.level(il).maxT=nmaxT(il); end
+unparams            = HAI_initialiseParams(unparams);
+
+syllables_location_states       = randi(length(names),1,nmaxT(2)); 
+while (syllables_location_states(1)~=1)
+    syllables_location_states=circshift(syllables_location_states,1);
+end
+% set corresponding saccades on the second level location states
+wolocs  = MDP.s(2,1):length(MDP.sname{2});
+seq     = [];
+while length(seq)<nmaxT(3)
+    seq = [seq,wolocs(randperm(length(wolocs)))];
+end
+%     1    2   3   4     5    6   7
+%  'THIS PAPER IS ALSO BUTTER IN THE'
+seq=[3     5     4     6     4     6     7     5];
+seq                         =seq(1:nmaxT(3));
+% set true states syllables first level states 
+
+% level 1
+% states x nmaxT(1), nmaxT(2), nmaxT(3)
+for iT2=1:nmaxT(2)
+    for iT3=find(seq==5)%1:nmaxT(2)
+        unparams.level(1).s(1,:,iT2,iT3)=ones(1,nmaxT(1))*names(syllables_location_states(iT2));
+    end
+end
+% level 2
+% states x nmaxT(2), nmaxT(3)
+% when word is 'BUTTER', set up locations
+for iT3=find(seq==5)
+    unparams.level(2).s(2,:,iT3)=syllables_location_states;
+end
+% level 3
+% states x nmaxT(3)
+% set up word locations
+unparams.level(3).s(2,:)    = seq;
+
+% set up sentence
+unparams.level(3).s(1,:)    = sen*ones(1,nmaxT(3));
+
+MDPEXP                      = HAI_RUN(unparams,dic_name);
+
+[val,ind]=max(MDPEXP.X{1}(:,end));
+fprintf('P(%s)=%g\n',HAI_retrieveLevel(MDPEXP.sname{1}{ind}),val);
+
+mdp=MDPEXP.mdp;
+for im=1:length(mdp)
+    loc=MDPEXP.s(2,im);
+    [val,ind]=max(mdp(im).X{1}(:,end));
+    add='';
+    if mdp(im).T==nmaxT(2)
+        add='I am not sure! Probably a new word';
+        inloc=loc;
+    end
+    fprintf('WL(%g):P(%s)=%g | %s\n',loc,HAI_retrieveLevel(MDPEXP.mdp(im).sname{1}{ind},''),val,add);
+    mdpmdp=mdp(im).mdp;
+    for imm=1:length(mdpmdp)
+        [val,ind]=max(mdpmdp(imm).X{1}(:,end));
+        sloc=mdp(im).s(2,imm);
+        recword{sloc}=MDPEXP.mdp(im).mdp(imm).sname{1}{ind};
+        fprintf('SL(%g):P(%s)=%g\n',sloc,HAI_retrieveLevel(MDPEXP.mdp(im).mdp(imm).sname{1}{ind},''),val);   
+    end
+end
+fprintf('New word: %s, in word location %g\n',HAI_retrieveLevel(recword,''),inloc)
+
+
+
+return
+
+
+    
+
+
+
+
+
+
