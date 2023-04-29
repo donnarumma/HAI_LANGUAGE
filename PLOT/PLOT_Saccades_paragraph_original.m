@@ -1,5 +1,5 @@
-function   h=PLOT_Saccades_paragraph(MDP_STEPS,params)
-% function h=PLOT_Saccades_paragraph(MDP_STEPS,params)
+function   h=PLOT_Saccades_paragraph_original(MDP_STEPS,params)
+% function h=PLOT_Saccades_paragraph_original(MDP_STEPS,params)
 % MDP is the Model organized in high and low (mdp) levels
 % NSUB the low levels to plot (default all)
 % GT Ground Truth state (default: initial state s of MDP)
@@ -142,7 +142,50 @@ if WORDNUMBER/NUMBW_LINE > n_max_line
 end
 
 % Count number or line
-[N_LINE,LINE_VEC,iw_end]=PLOT_LineCount(WORDNUMBER,NUMBW_LINE);
+if WORDNUMBER == NUMBW_LINE
+    N_LINE = 1;
+    LINE_VEC = NUMBW_LINE;
+    iw_end(1) = NUMBW_LINE;
+
+elseif WORDNUMBER == 2*NUMBW_LINE
+    N_LINE = 2;
+    LINE_VEC = [NUMBW_LINE,2*NUMBW_LINE];
+    iw_end(1) = [NUMBW_LINE,2*NUMBW_LINE];
+
+elseif WORDNUMBER == 3*NUMBW_LINE
+    N_LINE = 3;
+    LINE_VEC = [NUMBW_LINE,3*NUMBW_LINE];
+    iw_end(1) = [NUMBW_LINE,3*NUMBW_LINE];
+
+elseif WORDNUMBER == 4*NUMBW_LINE
+    N_LINE = 4; 
+    LINE_VEC = [NUMBW_LINE,4*NUMBW_LINE];
+    iw_end(1) = [NUMBW_LINE,4*NUMBW_LINE];   
+    
+elseif WORDNUMBER == 5*NUMBW_LINE
+    N_LINE = 5;
+    LINE_VEC = [NUMBW_LINE,5*NUMBW_LINE];
+    iw_end(1) = [NUMBW_LINE,5*NUMBW_LINE];
+        
+else
+    Q_LINE = floor(WORDNUMBER/NUMBW_LINE);
+    R_WORD = WORDNUMBER-(NUMBW_LINE*Q_LINE);
+    if Q_LINE == 0
+        N_LINE = 1;
+        for i = 1:N_LINE
+            LINE_VEC(i) = R_WORD;
+            iw_end(i)   = R_WORD;
+        end
+    else
+        N_LINE = Q_LINE+1;
+        for i = 1:N_LINE-1
+            LINE_VEC(i)     = NUMBW_LINE;
+            iw_end(i)       = NUMBW_LINE*i;
+        end
+        LINE_VEC(i+1)   = WORDNUMBER-NUMBW_LINE*Q_LINE;
+        iw_end(i+1)     = WORDNUMBER;
+    end
+end
 %-------------------------------------------------------------------------
 % create the plot coordinates
 rx      = [-1,1]/2;

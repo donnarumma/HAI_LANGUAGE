@@ -2,7 +2,7 @@
 SEP = filesep;
 %% directory in which MDP_STEPS are saved
 dic_dir = ['DICTIONARY' SEP 'BERT_DIC' SEP 'BERT_v1_S01' SEP]; 
-dic_dir = ['DICTIONARY' SEP 'BERT_DIC' SEP 'BERT_v1_S02' SEP]; 
+% dic_dir = ['DICTIONARY' SEP 'BERT_DIC' SEP 'BERT_v1_S02' SEP]; 
 
 Mstepfiles = dir([dic_dir 'MDP*']);
 Mstepnames  = {Mstepfiles(:).name};
