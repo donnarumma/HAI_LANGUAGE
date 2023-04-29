@@ -95,7 +95,7 @@ for i=1:size(num_lett,1)
 end
 sum_riga_lett = sum(cell2mat(num_lett)')';
 
-sum_num_syll  = sum(cell2mat(numb_syll)');
+% sum_num_syll  = sum(cell2mat(numb_syll)');
 
 for cn = 1:length(phr_sent_final)
     phr_word_cn = phr_sent_final{1,cn};
@@ -215,140 +215,11 @@ for p = 1: length(LINE_VEC)
     line_center(p+1,:) = ry;
 end
 
-X     = [];
-cmaps=linspecer(length(MDP.mdp));
-cmap_label=[];
-%% for each MDP step
-for step = 1:Nsteps
-    MDP = MDP_STEPS{step};
-    % Extract eye movements
-    NSUB=1:length(MDP.mdp);
-    for iNs = NSUB
-        MDP_lev1 = MDP.o(2,iNs);
-        if sum_num_syll(MDP_lev1) == 1
-            for it = 1:numel(MDP.mdp(iNs).mdp)
-                for is = 1:numel(MDP.mdp(iNs).mdp(it).o(2,:))
-                    if MDP.o(2,iNs) <= NUMBW_LINE
-                        n = 0;
-                        if MDP.mdp(iNs).mdp(it).o(1,is) == 1
-                            x_value = round((MDP.mdp(iNs).mdp(it).o(2,is)*length(num_lett_pos{MDP_lev1}))/length(phr_sent_final{1,1}));
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(x_value,:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(MDP.mdp(iNs).mdp(it).o(2,is),:);
-                        end
-                            cmap_label(end+1)=iNs;  
-                            X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    elseif MDP.o(2,iNs) <= NUMBW_LINE*2
-                        n = 1;
-                        if MDP.mdp(iNs).mdp(it).o(1,is) == 1
-                            x_value = round((MDP.mdp(iNs).mdp(it).o(2,is)*length(num_lett_pos{MDP_lev1}))/length(phr_sent_final{1,1}));
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(x_value,:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(MDP.mdp(iNs).mdp(it).o(2,is),:);
-                        end
-                        cmap_label(end+1)=iNs;
-                        X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    elseif MDP.o(2,iNs) <= NUMBW_LINE*3
-                        n = 2;
-                        if MDP.mdp(iNs).mdp(it).o(1,is) == 1
-                            x_value = round((MDP.mdp(iNs).mdp(it).o(2,is)*length(num_lett_pos{MDP_lev1}))/length(phr_sent_final{1,1}));
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(x_value,:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(MDP.mdp(iNs).mdp(it).o(2,is),:);
-                        end
-                        cmap_label(end+1)=iNs;
-                        X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    elseif MDP.o(2,iNs) <= NUMBW_LINE*4
-                        n = 3;
-                        if MDP.mdp(iNs).mdp(it).o(1,is) == 1
-                            x_value = round((MDP.mdp(iNs).mdp(it).o(2,is)*length(num_lett_pos{MDP_lev1}))/length(phr_sent_final{1,1}));
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(x_value,:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(MDP.mdp(iNs).mdp(it).o(2,is),:);
-                        end
-                        cmap_label(end+1)=iNs;
-                        X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    elseif MDP.o(2,iNs) <= NUMBW_LINE*5
-                        n = 4;
-                        if MDP.mdp(iNs).mdp(it).o(1,is) == 1
-                            x_value = round((MDP.mdp(iNs).mdp(it).o(2,is)*length(num_lett_pos{MDP_lev1}))/length(phr_sent_final{1,1}));
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(x_value,:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(MDP.mdp(iNs).mdp(it).o(2,is),:);
-                        end
-                        cmap_label(end+1)=iNs;
-                        X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    end
-                end
-            end
-        else
-            for lev2= 1:numel(MDP.mdp(iNs).mdp)
-                MDP_lev2 = MDP.mdp(iNs).mdp(lev2);
-                for lev3 = 1:MDP_lev2.T
-                    if MDP_lev2.o(1,lev3) == 1 %ha visto lettera vuota
-                        pos_lett = num_lett_pos{MDP_lev1,MDP.mdp(iNs).o(2,lev2)};
-                        position(2,lev3) = round((MDP_lev2.o(2,lev3)*length(pos_lett))/length(phr_sent_final{1,1}));
-                        position(1,lev3) = 256;
-                    else
-                        pos_lett = num_lett_pos{MDP_lev1,MDP.mdp(iNs).o(2,lev2)};
-                        position(2,lev3) = pos_lett(MDP_lev2.o(2,lev3));
-                        position(1,lev3) = MDP_lev2.o(1,lev3);
-                    end
-                end
-                for is = 1:size(position,2)
-                    if MDP.o(2,iNs) <= NUMBW_LINE
-                        n = 0;
-                        if position(1,is) == 256
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:);
-                        end
-                            cmap_label(end+1)=iNs;  
-                            X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    elseif MDP.o(2,iNs) <= NUMBW_LINE*2
-                        n = 1;
-                        if position(1,is) == 256
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:);
-                        end
-                        cmap_label(end+1)=iNs;
-                        X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    elseif MDP.o(2,iNs) <= NUMBW_LINE*3
-                        n = 2;
-                        if position(1,is) == 256
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:);
-                        end
-                        cmap_label(end+1)=iNs;
-                        X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    elseif MDP.o(2,iNs) <= NUMBW_LINE*4
-                        n = 3;
-                        if position(1,is) == 256
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:);
-                        end
-                        cmap_label(end+1)=iNs;
-                        X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    elseif MDP.o(2,iNs) <= NUMBW_LINE*5
-                        n = 4;
-                        if position(1,is) == 256
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:)+1;
-                        else
-                            X(end + 1,:) = y{n+1}(MDP.o(2,iNs)-(NUMBW_LINE*n),:) + x(position(2,is),:);
-                        end
-                        cmap_label(end+1)=iNs;
-                        X(end,2) = (line_center(n+1,2)+line_center(n+1,1))/2;
-                    end
-                end
-                clear position
-            end  
-        end
-    end
-end
 
+
+%% for each MDP step
+cmaps=linspecer(length(MDP.oname{2})); % one color for each word location **** old one: % cmaps=linspecer(length(MDP.mdp));
+[X,cmap_label] = PLOT_getSaccadesCOORD(MDP_STEPS,Nsteps,x,y,line_center,num_lett_pos,phr_sent_final,NUMBW_LINE);
 DARC=ry_max/(8);
 % Smooth and plot eye movements
 %--------------------------------------------------------------------------

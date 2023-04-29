@@ -20,22 +20,25 @@ for step =1:Nsteps
     DIC_STEPS{step} =fn{1};
 end
 rmpath(dic_dir);
+sub_save_dir            = [rootdir SEP 'tmp' SEP 'SACCADES' SEP];
 
 SEP = filesep;
-pltparams               =PLOT_defaultParams;
-pltparams.hfig          =figure('visible','off');
+pltparams               = PLOT_defaultParams;
+pltparams.hfig          = figure('visible','off');
 pltparams.NUMBW_LINE    = 11;
 rootdir                 = '~';
-pltparams.SAVE_MOVIE    = [ rootdir SEP 'tmp' SEP 'SACCADES' SEP 'MOVIE' SEP];
+pltparams.SAVE_MOVIE    = [sub_save_dir SEP 'MOVIE' SEP];
 pltparams.INT_LINE      = 0.2;%0.2;
-PLOT_Saccades_paragraph(MDP_STEPS,pltparams)
-sub_save_dir =[rootdir SEP 'tmp' SEP 'SACCADES' SEP];
+
 if ~isfolder(sub_save_dir)
     mkdir(sub_save_dir)
 end
 if ~isfolder(pltparams.SAVE_MOVIE)
     mkdir(pltparams.SAVE_MOVIE)
 end
+% PLOT_Saccades_paragraph_original(MDP_STEPS,pltparams)
+PLOT_Saccades_paragraph(MDP_STEPS,pltparams)
+
 
 ext='pdf'; hfig=gcf;
 nf  = sprintf('SACCADES.%s',ext);
