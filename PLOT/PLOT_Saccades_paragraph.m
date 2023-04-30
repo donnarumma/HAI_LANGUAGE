@@ -188,7 +188,9 @@ end
 %--------------------------------------------------------------------------
 hold on; legend off; axis ij; 
 cax=gca;
-wp=[0,0,XMAX_T*30,80]; set(hfig, 'Position',wp);
+wp=[0,0,XMAX_T*30,80]; 
+wp=[0,0,ceil(WORDNUMBER/NUMBW_LINE)*500,NUMBW_LINE*30]; 
+set(hfig, 'Position',wp);
 cax.XAxis.Visible=0;
 cax.YAxis.Visible=0;
 set(cax,'color',0.95*[1 1 1])
@@ -219,21 +221,26 @@ end
 
 %% for each MDP step
 cmaps=linspecer(length(MDP.oname{2})); % one color for each word location **** old one: % cmaps=linspecer(length(MDP.mdp));
-[X,cmap_label] = PLOT_getSaccadesCOORD(MDP_STEPS,Nsteps,x,y,line_center,num_lett_pos,phr_sent_final,NUMBW_LINE);
-DARC=ry_max/(8);
+[X,cmap_label] = PLOT_getSaccadesCOORD(MDP_STEPS,Nsteps,x,y,line_center,num_lett_pos,NUMBW_LINE);
+DARC=0*ry_max/(2^8);
 % Smooth and plot eye movements
 %--------------------------------------------------------------------------
 plot(X(1,1),X(1,2),'marker',markertype,'linestyle','none','color',map_yellow,'MarkerSize',ms,'MarkerEdgeColor','k','MarkerFaceColor',map_yellow)
 
+if params.SAVE_MOVIE
+    nf = [params.SAVE_MOVIE filesep 'SaccadesMovie'];
+    nf = sprintf('%s',nf,fromNumToOrderedString(0,size(X,1)));
+    print(hfig,nf,'-djpeg');
+end
 for pl = 1:size(X,1)-1
     x1 = X(pl,:);
     x3 = X(pl+1,:);
     ns = randn*0.1; % noise
 
     if mod(pl,2)==0
-        x2 = [mean([x1(1),x3(1)]), ((x1(2)/8 + DARC + ns))/4];
+        x2 = [mean([x1(1),x3(1)]), mean([x1(2),x3(2)]) + (DARC + ns)];
     else
-        x2 = [mean([x1(1),x3(1)]), (-x1(2)/8 - DARC - ns)/4];
+        x2 = [mean([x1(1),x3(1)]), mean([x1(2),x3(2)]) - (DARC + ns)];
     end
     x_pl = [x1;x2;x3];
     f = fit(x_pl(:,1),x_pl(:,2),'poly2');
