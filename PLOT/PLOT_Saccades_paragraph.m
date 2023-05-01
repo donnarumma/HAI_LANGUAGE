@@ -14,12 +14,13 @@ if nargout>0
     h = hfig;
 end
 
-lw          = 2;                % linewidth of the saccadic lines
+% lw          = 2;                % linewidth of the saccadic lines
 LDIM        = 2;                % space between two letters
 map_yellow  = [0.8,0.8,0.2];    % color of the saccadic points
 markertype  ='o';              % marker of the saccadic point
-ms          = 5;               % marker size
-
+% ms          = 5;               % marker size
+ms          = params.ms;
+lw          = params.lw;
 % Define the number of word for each line and the interline lenght
 % NUMBW_LINE  = 6;
 NUMBW_LINE  = params.NUMBW_LINE;
@@ -34,7 +35,6 @@ else
 end
 
 MDP         =MDP_STEPS{Nsteps};  
-n_max_line = 5;					% This is the max number of line. If want to increase the number of lines, create a new elseif code.
 
 STS     =MDP.sname{1};          % assumes that the first  level are sentences 
 words   =HAI_level(MDP.MDP,''); % assumes that the second level are words 
@@ -137,9 +137,6 @@ for len = 1:length(phr_sent_final)
     len_lett(len) = size(phr_sent_final{len},2);
 end
 LETTERNUMBER=max(len_lett);
-if WORDNUMBER/NUMBW_LINE > n_max_line
-    disp('reduce number of words for line')
-end
 
 % Count number or line
 [N_LINE,LINE_VEC,iw_end]=PLOT_LineCount(WORDNUMBER,NUMBW_LINE);
@@ -189,7 +186,7 @@ end
 hold on; legend off; axis ij; 
 cax=gca;
 wp=[0,0,XMAX_T*30,80]; 
-wp=[0,0,ceil(WORDNUMBER/NUMBW_LINE)*500,NUMBW_LINE*30]; 
+wp=[0,0,ceil(WORDNUMBER/NUMBW_LINE)*500,NUMBW_LINE*300]; 
 set(hfig, 'Position',wp);
 cax.XAxis.Visible=0;
 cax.YAxis.Visible=0;

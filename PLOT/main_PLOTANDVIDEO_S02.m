@@ -1,4 +1,4 @@
-% function main_PLOTANDVIDEO
+% function main_PLOTANDVIDEO_S02
 SEP         = filesep;
 rootdir     = '~';
 %% directory in which MDP_STEPS have been stored
