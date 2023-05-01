@@ -206,7 +206,7 @@ for p = 1: length(LINE_VEC)
     for iWW = 1:LINE_VEC(p)
         a = HAI_retrieveLevel(phr_sent_final{iWW+NUMBW_LINE*m});
         for iLL = 1:numel(a)
-            image(rx + y{1,p}(iWW,1) + x(iLL,1),ry + y{1,p}(iWW,2) + x(iLL,2),  PLOT_createCharacterImage(a(iLL)));% hold on
+            image(rx + y{1,p}(iWW,1) + x(iLL,1),ry + y{1,p}(iWW,2) + x(iLL,2),  PLOT_createCharacterImage(a(iLL),250));% hold on
         end
     end
     m = m+1;
