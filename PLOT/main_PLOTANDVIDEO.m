@@ -2,7 +2,7 @@
 SEP         = filesep;
 rootdir     = '~';
 %% directory in which MDP_STEPS have been stored
-% test_name='BERT_v1_S01';
+test_name   = 'BERT_v1_S01';
 test_name   = 'BERT_v1_S02';
 dic_dir     = ['DICTIONARY' SEP 'BERT_DIC' SEP test_name SEP]; 
 

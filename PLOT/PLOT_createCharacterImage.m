@@ -1,15 +1,11 @@
-function   IMC=PLOT_createCharacterImage(inchar,SIZE)
+function   IMC=PLOT_createCharacterImage(inchar)
 % function IMC=PLOT_createCharacterImage(inchar)
 
-try
-    SIZE;
-catch
-    SIZE=250;
-end
-hfig=figure('visible','off'); 
-text(0.5-0.25,0.5,inchar,'fontsize',SIZE,'FontWeight','bold'); 
-xlim([0,1]), 
-ylim([0,1])
+X=0.5; Y=0.5; HOR='center'; VER='middle'; SIZE=430;    
+hfig=figure('visible','off');
+text(X,Y,inchar,'fontsize',SIZE,'FontWeight','bold','HorizontalAlignment',HOR,'VerticalAlignment',VER);
+xlim([-inf,inf]);
+ylim([-inf,inf]);
 axis off;
 F = getframe(hfig);
 IMC = frame2im(F);

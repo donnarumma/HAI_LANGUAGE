@@ -1,9 +1,8 @@
-% function main_PLOTANDVIDEO_S02
+% function main_PLOTANDVIDEO
 SEP         = filesep;
 rootdir     = '~';
 %% directory in which MDP_STEPS have been stored
-% test_name='BERT_v1_S01';
-test_name   = 'BERT_v1_S02';
+test_name   = 'BERT_v1_S01';
 dic_dir     = ['DICTIONARY' SEP 'BERT_DIC' SEP test_name SEP]; 
 
 Mstepfiles  = dir([dic_dir 'MDP*']);
@@ -29,14 +28,18 @@ pltparams.hfig          = figure('visible','off');
 pltparams.SAVE_MOVIE    = [sub_save_dir SEP 'MOVIE' SEP];
 
 last_sentence           = HAI_retrieveLevel(MDP_STEPS{end}.sname{1}{MDP_STEPS{end}.s(1,end)});
-GT                      = [last_sentence, ...
-                         ' THE MODEL PERFORMANCE WAS EVALUATED BY COMPARING ITS SIMULATED EYE MOVEMENTS WITH EMPIRICAL EYE MOVEMENT DATA FROM HUMAN PARTICIPANTS AS WELL AS BY CONDUCTING SIMULATIONS OF DYSLEXIA'];
-DICTIONARY = DICTIONARY_save(['SacDic_' test_name],dic_dir,[DICTIONARY_words(tmpDIC);DICTIONARY_getWords({GT})],{GT},0,1);
-pltparams.GT=DICTIONARY.Sentence{1};
-GT2                     = ['WE PRESENT A NOVEL COMPUTATIONAL MODEL THAT USES HIERARCHICAL ACTIVE INFERENCE TO SIMULATE THE READING PROCESS AND EYE MOVEMENTS DURING READING. ' ... 
-                         ' THE COMPUTATIONAL MODEL IS ABLE TO HELP TO PREDICT A SPECIFIC TIME PERIOD IN A SINGLE HUMAN READING PROCESS.', ...
-                         ' THE MODEL PERFORMANCE WAS EVALUATED BY COMPARING ITS SIMULATED EYE MOVEMENTS WITH EMPIRICAL EYE MOVEMENT DATA FROM HUMAN PARTICIPANTS AS WELL AS BY CONDUCTING SIMULATIONS OF DYSLEXIA'];
-pltparams.GT2           = GT2;
+GT2                     = [last_sentence '.'];
+% DICTIONARY              = DICTIONARY_save('SacDic',dic_dir,[DICTIONARY_words(tmpDIC);DICTIONARY_getWords({GT})],{GT},0,1);
+
+% pltparams.GT=DICTIONARY.Sentence{1};
+
+% GT            = [HAI_retrieveLevel(MDP_STEPS{end}.sname{1}{MDP_STEPS{end}.s(1,end)}), ...
+%                           ' THE MODEL PERFORMANCE WAS EVALUATED BY COMPARING ITS SIMULATED EYE MOVEMENTS WITH EMPIRICAL EYE MOVEMENT DATA FROM HUMAN PARTICIPANTS AS WELL AS BY CONDUCTING SIMULATIONS OF DYSLEXIA'];
+% 
+% 
+% DICTIONARY = DICTIONARY_save('SacDic',dic_dir,[DICTIONARY_words(tmpDIC);DICTIONARY_getWords({GT})],{GT},0,1);
+% pltparams.GT=DICTIONARY.Sentence{1};
+pltparams.GT2=GT2;
 rmpath(dic_dir);
 
 if ~isfolder(sub_save_dir)

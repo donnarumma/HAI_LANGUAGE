@@ -186,7 +186,7 @@ end
 hold on; legend off; axis ij; 
 cax=gca;
 wp=[0,0,XMAX_T*30,80]; 
-wp=[0,0,ceil(WORDNUMBER/NUMBW_LINE)*500,NUMBW_LINE*300]; 
+wp=[0,0,NUMBW_LINE*720,ceil(WORDNUMBER/NUMBW_LINE)*210]; 
 set(hfig, 'Position',wp);
 cax.XAxis.Visible=0;
 cax.YAxis.Visible=0;
@@ -204,9 +204,14 @@ m = 0;
 line_center = [ry; zeros(length(LINE_VEC),2)];
 for p = 1: length(LINE_VEC)
     for iWW = 1:LINE_VEC(p)
-        a = HAI_retrieveLevel(phr_sent_final{iWW+NUMBW_LINE*m});
+        if ~isempty(params.GT2)
+            words=strsplit(params.GT2, ' ');
+            a = words{iWW+NUMBW_LINE*m};
+        else
+            a = HAI_retrieveLevel(phr_sent_final{iWW+NUMBW_LINE*m});
+        end
         for iLL = 1:numel(a)
-            image(rx + y{1,p}(iWW,1) + x(iLL,1),ry + y{1,p}(iWW,2) + x(iLL,2),  PLOT_createCharacterImage(a(iLL),250));% hold on
+            image(rx + y{1,p}(iWW,1) + x(iLL,1),ry + y{1,p}(iWW,2) + x(iLL,2),  PLOT_createCharacterImage(a(iLL)));% hold on
         end
     end
     m = m+1;
