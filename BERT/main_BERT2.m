@@ -1,8 +1,8 @@
 % function main_BERT2
 if ~exist('bertparams','var')
-    bertparams=getDefaultBertParams;
+    bertparams=BERT_getDefaultParams;
 else
-    bertparams=getDefaultBertParams(bertparams.bert);
+    bertparams=BERT_getDefaultParams(bertparams.bert);
 end
 
 DICTIONARY=VARIABLES_DYSLEXIA_v6;
@@ -13,7 +13,8 @@ input_str = retrieveLevel(sentence);
 input_str = 'IN THIS PAPER';
 input_str = 'IN THIS PAPER A BIG SECRET IS';
 input_str = 'IN THIS PAPER A BIG SECRET IS IS FINALLY PUT ON THE';
-
+input_str = 'Researchers seeking FUNDING within this panel can expect their work to be evaluated by a panel of experts dedicated to advancing knowledge and addressing societal challenges';
+input_str = upper(input_str);
 % input_str = 'IN THIS PAPER APPEAR THE FOLLOWING TWO NEW';
 % input_str = 'IN THIS PAPER IS THE FIRST FULL INTERNATIONAL';
 irng=11;
