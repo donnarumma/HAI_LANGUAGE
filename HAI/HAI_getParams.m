@@ -1,20 +1,22 @@
 function    [params, noisedescription]=HAI_getParams(index,dictionary)
 %% function [params, noisedescription]=HAI_getParams(index,dictionary)
 
-    params                              = HAI_getDefaultParams(dictionary);
-    noisedescription                    = '';
-    params.irng                         = 10; %'default';
-    DICTIONARY                          = params.DICTIONARY();
+params              = HAI_getDefaultParams(dictionary);
+noisedescription    = '';
+params.irng         = 10; %'default';
+DICTIONARY          = params.DICTIONARY();
+params.ID           = index;
+     
 switch index
     case  0
         params.level(2).obsnoise        = [0.0,0.0,0.0];  % noise on [word    ,Location,  report] recognition 
-        params.level(2).statesnoise      = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
+        params.level(2).statesnoise     = [0.0,0.0,0.0];  % noise on [sentence,Location, context]  transition
         params.level(2).jump            = 0;  % no jump in location
         params.level(2).umode           = 0;  % Friston matrix no jump
         params.level(2).CLASSES         = DICTIONARY.CLASSES{2};
 
-        params.level(2).chi                 = []; % no sentence exit when no more in doubt
-        noisedescription                   = 'default';
+        params.level(2).chi             = []; % no sentence exit when no more in doubt
+        noisedescription                = 'default';
     case  1
         % noise on likelihood  p(   obs|state)
         % noise on transitions p(S(t+1)| S(t))
@@ -378,4 +380,24 @@ noisedescription                   = 'word transition noise, jump mode, (no cont
         params.level(3).location_priors = 1;
         params.level(3).alpha           = 4;
         noisedescription                = '3 levels, jump mode, no context, Poisson policy priors, low precision';
+    case 24
+        % params.level(1).obsnoise        = [0.0,0.0];     % noise on [letter  ,location]      recognition 
+        % params.level(1).statesnoise     = [0.0,0.0];     % noise on [syllable,location]      transition 
+        params.level(1).chi             = 1/8;
+        params.level(1).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        
+        % params.level(2).obsnoise        = [0.0,0.0];     % noise on [syllable,Location]      recognition 
+        % params.level(2).statesnoise     = [0.0,0.0];     % noise on [word    ,Location]      transition
+        params.level(2).chi             = 1/8;
+        params.level(2).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        
+        % params.level(3).obsnoise        = [0.0,0.0];     % noise on [word    ,Location]      recognition 
+        % params.level(3).statesnoise     = [0.0,0.0];     % noise on [sentence,Location]      transition
+        params.level(3).chi             = 1/8;
+        params.level(3).factor          = 1;             % exit factor on upper level 2: I am sure of the sentence;
+        params.level(3).location_priors = 1;
+        params.level(3).alpha           = 4;             % softmax parameter for action selection
+        params.level(3).maxT            = 16;
+        noisedescription                = '3 levels, jump mode, ERC context, Poisson policy priors, low precision';
 end
+params.description                  = noisedescription;

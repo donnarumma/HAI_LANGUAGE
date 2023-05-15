@@ -27,9 +27,10 @@ if ~isempty(params.CLASSES)
     end
     FEEDBACKS={'null','correct','wrong'};
     
-    D{3}    = zeros(length(CLASSES)+1,1);
-    D{3}(1) = 1;         % start with 'unknown'
-%     D{3} = [1 0 0 0]';         % report: {'unknown','Eat','Drink','Sleep'}
+    % D{3}    = zeros(length(CLASSES)+1,1);
+    % D{3}(1) = 1;                % start with 'unknown'
+    D{3}    = ones(length(CLASSES)+1,1);
+    % D{3} = [1 0 0 0]';        % report: {'unknown','Eat','Drink','Sleep'}
 end
 
 NLocations=length(D{2});
@@ -56,12 +57,15 @@ end
 %% Level Transition matrix p(St+1|St)
 B       = HAI_getB(Ns,sval,params.jump);
 %--------------------------------------------------------------------------
-Ng       = length(No);           % number of obs factors
+Ng      = length(No);           % number of obs factors
 % if context
 % allowable policies (specified as the next action) U
 % --------------------------------------------------------------------------
 if (~forceSimmetry)% && (~params.jump)% || params.umode==0) % deprecated
-     mdp.U=HAI_getU(params.umode,CLASSES); % allowable policies
+     try
+         mdp.U=HAI_getU(params.umode,CLASSES); % allowable policies
+     catch
+     end
 end
     
 if ~forceSimmetry 

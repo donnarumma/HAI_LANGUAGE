@@ -1,5 +1,6 @@
 function   s=TRACE_printStatus(MDP,t,vname,mname)
 % function s=TRACE_printStatus(MDP,t,vname,mname)
+% e.g. s=TRACE_printStatus(MDP,t,'s','A'); print state 
 
 observation = MDP.(vname)(:,t);
 s           = sprintf('%s=',vname);

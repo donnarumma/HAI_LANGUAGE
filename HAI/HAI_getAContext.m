@@ -21,18 +21,15 @@ for f1 = 1:Ns(1)
     STATE = STATES{f1};
     for f2 = 1:Ns(2)
         for f3 = 1:Ns(3)
-            % sequence of pictures for each story
-            %--------------------------------------------------------------
-            % A{1} picture: 'word1','word2','word3'    
             %==============================================================         
             % saccade to cue location
             %----------------------------------------------------------
-           for iw=1:No(1) % number of OBS splitting
-%                 cmp               = min(strcmp(STATE{f2},OBS{iw}));
+            for iw=1:No(1) % number of OBS splitting
+            %   cmp               = min(strcmp(STATE{f2},OBS{iw}));
                 cmp               = all(strcmp(STATE{f2},OBS{iw}));
                 A{1}(iw,f1,f2,f3) = cmp*val(1)+(1-cmp)*antival(1);
-
-           end
+            
+            end
             % A{2} Words Location: {'Location1',...,'Location4'}
             %----------------------------------------------------------
             A{2}(f2,f1,f2,f3) = 1*val(2);

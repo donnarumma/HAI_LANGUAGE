@@ -23,10 +23,11 @@ for k = 1:Ns(2)
 end
 
 if Nf>2
-    for k = 1:Ns(3)
+    for k = 2:Ns(3)
         B{3}(:,:,k) = antival(3);
         B{3}(k,:,k) = val(3);
     end
+    % B{3}()
 end
 
 if ~jump % (sequenzial transition) - no jump

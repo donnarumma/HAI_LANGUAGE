@@ -525,11 +525,6 @@ for t = 1:T
         EPpr  = HAI_getLocationPriors(loc_tm1,Npolicies,OPTIONS.level(MDP.level)); 
         EPpr  = spm_norm(EPpr);
         qEpr  = spm_log(EPpr);
-        % if MDP.level==3
-        %     if  OPTIONS.level(MDP.level).location_priors
-        %         fprintf('lello\n')
-        %     end
-        % end
 
         EPps  = HAI_getLocationPriors(  loc_t,Npolicies,OPTIONS.level(MDP.level)); 
         EPps  = spm_norm(EPps);

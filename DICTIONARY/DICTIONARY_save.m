@@ -1,5 +1,12 @@
-function   DICTIONARY=DICTIONARY_save(filename,dic_dir,words,sentences,deleteoldsentences,dohyphen,CLASSES)
-% function DICTIONARY=DICTIONARY_save(filename,dic_dir,words,sentences,deleteoldsentences,dohyphen,CLASSES)
+function   DICTIONARY=DICTIONARY_save(filename,dic_dir,words,sentences,deleteoldsentences,dohyphen,CLASSES,cleanpast)
+% function DICTIONARY=DICTIONARY_save(filename,dic_dir,words,sentences,deleteoldsentences,dohyphen,CLASSES,cleanpast)
+try
+    if cleanpast
+        delete([dic_dir filesep filename '.m']);
+        delete([dic_dir filesep filename '.mat']);
+    end
+catch
+end
 try
     deleteoldsentences;
 catch
@@ -17,7 +24,9 @@ else
     s = DICTIONARY_createHyphenated(filename,words,sentences,deleteoldsentences);
 end
 try
-    s = sprintf('%s%s',s,DICTIONARY_classprint(CLASSES));
+    if ~isempty(CLASSES)
+        s = sprintf('%s%s',s,DICTIONARY_classprint(CLASSES));
+    end
 catch
     
 end
