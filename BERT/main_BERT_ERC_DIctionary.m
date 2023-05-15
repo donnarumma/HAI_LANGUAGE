@@ -5,12 +5,12 @@ else
     bertparams=BERT_getDefaultParams(bertparams.bert);
 end
 % bertparams.Nsentences=3;%10;
-bertparams.HM        =10;
+bertparams.HM           =5;
 % 1) Social Sciences and Humanities
 % 2) Physical Sciences and Engineering
 % 3) Life Sciences
 GuessedSentences        =cell(0,0);
-WORDS_TO_READ           = 8;%8;
+WORDS_TO_READ           = 5;%8;
 LABELS                  = [];
 clindexes               = [];
 input_strs              = cell(0,0);

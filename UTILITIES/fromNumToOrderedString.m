@@ -1,4 +1,4 @@
-function numStr=fromNumToOrderedString(i,maxNumber)
+function numStr  =fromNumToOrderedString(i,maxNumber)
 % function numStr=fromNumToOrderedString(i,maxNumber)
 % default maxNumber=100
 try 

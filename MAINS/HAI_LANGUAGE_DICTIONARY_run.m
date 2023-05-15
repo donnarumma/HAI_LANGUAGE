@@ -1,5 +1,5 @@
-function   MDP=DEBUG_HAI_LANGUAGE_DICTIONARY_v0_sample_main(dictionary,idsentence,irng)
-% function MDP=DEBUG_HAI_LANGUAGE_DICTIONARY_v0_sample_main(dictionary,idsentence,irng)
+function   MDP=HAI_LANGUAGE_DICTIONARY_run(dictionary,idsentence,irng)
+% function MDP=HAI_LANGUAGE_DICTIONARY_run(dictionary,idsentence,irng)
 % MDP_v5_CF=DEBUG_HAI_LANGUAGE_DICTIONARY_v0_sample_main('DICTIONARY_v5');
 % MDP_v6_CT=DEBUG_HAI_LANGUAGE_DICTIONARY_v0_sample_main('DICTIONARY_v6');
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -34,8 +34,6 @@ for iLev=1:length(langparams.level)
     langparams.level(iLev).chi     = 1/8; % confidence level on exit level iLev
     langparams.level(iLev).factor  = 1;
 end
-        
-
 %% run the inference
 
 MDP                                = HAI_RUN(langparams,dictionary);
@@ -43,9 +41,12 @@ MDP                                = HAI_RUN(langparams,dictionary);
 %% create BAR NOISE PLOT
 SEP = filesep;
 root_dir =[SEP 'tmp' SEP 'TESTS' SEP 'HAI_LANGUAGE_TESTS' SEP]; % saving in results /tmp/HAI_LANGUAGE_TESTS/
-save_dir =[root_dir SEP 'SENTENCE' fromNumToOrderedString(N_TRIALS,idsentence) SEP dictionary SEP];
+save_dir =[root_dir SEP dictionary SEP 'SENTENCE' fromNumToOrderedString(idsentence) SEP];
 
 MDP      = HAI_smartMDP(MDP);
+if ~isfolder(save_dir); 
+    mkdir(save_dir); 
+end
 save([save_dir SEP 'MDP'],'MDP');
 
 return
