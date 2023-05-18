@@ -1,5 +1,5 @@
-function   [stree] = HAI_getTreeMDPTime(MDP,LevelFun,AppendFun,root_level,stree,node)
-% function [stree] = HAI_getTreeMDP(MDP,LevelFun,AppendFun,root_level,stree,node)
+function   [stree] = TREE_getMDPTime(MDP,LevelFun,AppendFun,root_level,stree,node)
+% function [stree] = TREE_getMDPTime(MDP,LevelFun,AppendFun,root_level,stree,node)
 
 if nargin < 6
     stree=[];
@@ -13,7 +13,8 @@ end
 %%
 
 if MDP.level==root_level 
-    stree   = tree('ROOT');
+    element = LevelFun(MDP,stree,0);
+    stree   = tree(element);
 end
 subnode=zeros(MDP.T,1);
 for iT=1:MDP.T
@@ -22,7 +23,7 @@ for iT=1:MDP.T
 end
 if isfield(MDP,'mdp')
     for iT=1:length(MDP.mdp)
-        stree  = HAI_getTreeMDPTime(MDP.mdp(iT),LevelFun,AppendFun,root_level,stree,subnode(iT));
+        stree  = TREE_getMDPTime(MDP.mdp(iT),LevelFun,AppendFun,root_level,stree,subnode(iT));
     end
 else
     stree=AppendFun(MDP,stree,node);

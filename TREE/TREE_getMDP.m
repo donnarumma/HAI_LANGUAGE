@@ -1,6 +1,6 @@
-function   [stree] = HAI_getTreeMDP(MDP,LevelFun,AppendFun,root_level,stree,node)
-% function [stree] = HAI_getTreeMDP(MDP,LevelFun,AppendFun,root_level,stree,node)
-% [stree] = HAI_getTreeMDP(MDP,@HAI_stateTreeFun,@HAI_obsTreeFun);
+function   [stree] = TREE_getMDP(MDP,LevelFun,AppendFun,root_level,stree,node)
+% function [stree] = TREE_getMDP(MDP,LevelFun,AppendFun,root_level,stree,node)
+% [stree] = TREE_getMDP(MDP,@HAI_stateTreeFun,@HAI_obsTreeFun);
 
 if nargin < 6
     stree=[];
@@ -22,7 +22,7 @@ else
 end
 if isfield(MDP,'mdp')
     for iT=1:length(MDP.mdp)
-        stree  = HAI_getTreeMDP(MDP.mdp(iT),LevelFun,AppendFun,root_level,stree,node);
+        stree  = TREE_getMDP(MDP.mdp(iT),LevelFun,AppendFun,root_level,stree,node);
     end
 else
     stree=AppendFun(MDP,stree,node);

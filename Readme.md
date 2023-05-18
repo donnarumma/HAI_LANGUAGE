@@ -116,6 +116,11 @@ provided an API-KEY.txt for OPEN-AI chatGPT, given the same context of (6)
 produce a random sentence:
 e.g. THIS MODEL HAS BEEN DESIGNED TO ENABLE THE ACCOMMODATION OF A COMPREHENSIVE SET OF ADAPTIVE BEHAVIORS TO ACHIEVE BEST ACCURACY
 
+### Package needed
+To enable tree visualization and computation on MDP
+add matlab-tree package 
+https://tinevez.github.io/matlab-tree/index.html  
+
 ## Authors and acknowledgment
 Francesco Donnaruma	francesco.donnarumma@istc.cnr.it
 
