@@ -28,8 +28,8 @@ for f1 = 1:Ns(1)            % loop on the structures
             % saccade to cue location
             %----------------------------------------------------------
             for iw=1:No(1) % number of OBS splitting
-            %   cmp               = min(strcmp(STATE{f2},OBS{iw}));
-                cmp               = all(strcmp(STATE{f2},OBS{iw}));
+                cmp   = isequal(HAI_retrieveLevel(STATE{f2},''),HAI_retrieveLevel(OBS{iw},''));
+                % cmp   = all(strcmp(STATE{f2},OBS{iw}));
                 A{1}(iw,f1,f2,f3) = cmp*val(1)+(1-cmp)*antival(1);            
             end
             % A{2} Location: {'Location1',...,'LocationN'}

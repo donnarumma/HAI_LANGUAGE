@@ -94,7 +94,16 @@ for il=1:N_LABS
 end
 
 
-dohyphen                        = false;
+dohyphen                            = false;
+dohyphen                            = true;
+if dohyphen
+    dic_name                        = 'DICTIONARY_v7';  % no class
+    dic_name_class                  = 'DICTIONARY_v8';  % class
+else
+    dic_name                        = 'DICTIONARY_v5';  % no class
+    dic_name_class                  = 'DICTIONARY_v6';  % class
+end
+
 Labels          =Labels(goodlabels);
 GuessedSentences=GuessedSentences(goodlabels);
 
@@ -109,13 +118,17 @@ for il=1:length(GuessedSentences)
 end
 % NO_CLASSES{dohyphen+2}{1}=1:length(GuessedSentences);
 newwords                        = DICTIONARY_getWords(GuessedSentences);
-dic_name                        = 'DICTIONARY_v5';  % no class
-dic_name_class                  = 'DICTIONARY_v6';  % class
+% dic_name                        = 'DICTIONARY_v5';  % no class
+% dic_name_class                  = 'DICTIONARY_v6';  % class
 dic_dir                         = 'DICTIONARY';
 cleanpast                       = true;
 DICTIONARY                      = DICTIONARY_save(dic_name      ,dic_dir,newwords,GuessedSentences,1,dohyphen,        [],cleanpast);
 % DICTIONARY                      = DICTIONARY_save(dic_name      ,dic_dir,newwords,GuessedSentences,1,dohyphen,NO_CLASSES,cleanpast);
 DICTIONARY_CLASS                = DICTIONARY_save(dic_name_class,dic_dir,newwords,GuessedSentences,1,dohyphen,CLASSES   ,cleanpast);
+
+
+
+
 fprintf('Expected:%g ,Total:%g, Remaining:%g, Discarded:%g\n',N_non_specific_words*length(class_specific_words)*bertparams.HM*length(input_strs),TOTAL,length(GuessedSentences),TOTAL-length(GuessedSentences));
 
 return

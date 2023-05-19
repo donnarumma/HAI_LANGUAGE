@@ -1,4 +1,4 @@
-% function main_TEST_CONTEXT
+function main_TEST_CONTEXT
 rng(0);
 DIC         =DICTIONARY_v5();
 N_TRIALS    =100;
@@ -12,8 +12,9 @@ while length(ID_sequence)<N_TRIALS
     ID_sequence=[ID_sequence,randperm(length(DIC.Sentence))]; 
 end
 irngs        = randi(1000,N_TRIALS,1);
-DICTIONARIES = {'DICTIONARY_v5','DICTIONARY_v6'};
-% DICTIONARIES = {'DICTIONARY_v6'};
+% DICTIONARIES = {'DICTIONARY_v5','DICTIONARY_v6'};
+DICTIONARIES = {'DICTIONARY_v7','DICTIONARY_v8'};
+% DICTIONARIES = {'DICTIONARY_v8'}; % DICTIONARIES = {'DICTIONARY_v6'};
 ID_sequence  =ID_sequence(1:N_TRIALS);
 for i_trial=1:N_TRIALS
     irng        = irngs(i_trial);

@@ -1,5 +1,5 @@
 function   HAI_compare(MDP1,MDP2,LEVEL)
-% function HAI_compare(MDP1,MDP2)
+% function HAI_compare(MDP1,MDP2,LEVEL)
 
 try
     level=LEVEL;
