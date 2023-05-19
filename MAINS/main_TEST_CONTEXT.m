@@ -13,12 +13,14 @@ while length(ID_sequence)<N_TRIALS
 end
 irngs        = randi(1000,N_TRIALS,1);
 DICTIONARIES = {'DICTIONARY_v5','DICTIONARY_v6'};
+% DICTIONARIES = {'DICTIONARY_v6'};
 ID_sequence  =ID_sequence(1:N_TRIALS);
 for i_trial=1:N_TRIALS
     irng        = irngs(i_trial);
     idsentence  = ID_sequence(i_trial);
     for i_dic=1:length(DICTIONARIES)
         dictionary  = DICTIONARIES{i_dic};
+        fprintf('Trial:%g/%g | SentenceID: %g | Dic: %s\n',i_trial,N_TRIALS,idsentence,dictionary)
         HAI_LANGUAGE_DICTIONARY_run(dictionary,idsentence,irng);
     end
 end

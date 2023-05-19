@@ -596,7 +596,8 @@ for t = 1:T
         % break if there is no further uncertainty to resolve
         %----------------------------------------------------------
         if sum(H(:)) > - chi
-            fprintf('NO MORE IN DOUBT! %s Exiting at %g\n',MDP.Hname,t);
+            fprintf('%s sure. Exiting at time %g\n',MDP.Hname,t);
+            % fprintf('NO MORE IN DOUBT! %s Exiting at time %g\n',MDP.Hname,t);
             T = t;
         end
     end
@@ -664,8 +665,11 @@ for t = 1:T
         break;
     end
 
-    fprintf('Loop in t\n');
-    MDP.X=pSTime;TRACE_printHierarchicalLevel(MDP,t);
+    
+    if OPTIONS.debugmode
+        fprintf('Loop in t\n');
+        MDP.X=pSTime;TRACE_printHierarchicalLevel(MDP,t);
+    end
 end % end of loop over time
 
 % learning - accumulate concentration parameters
@@ -734,8 +738,10 @@ if OPTIONS.plot
 %     spm_MDP_VB_trial(MDP(1))
 end
 
-fprintf('BEFORE EXIT\n');
-TRACE_printHierarchicalLevel(MDP,t);
+if OPTIONS.debugmode
+    fprintf('BEFORE EXIT\n');
+    TRACE_printHierarchicalLevel(MDP,t);
+end
 fprintf('MDP %s exiting %s\n',mfilename,MDP.Hname);
 
 % auxillary functions

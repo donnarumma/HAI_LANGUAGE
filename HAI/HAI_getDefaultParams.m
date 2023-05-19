@@ -39,6 +39,8 @@ for iLev=1:NLevels
     params.level(iLev).location_priors  = 0;                            % priors on locations (default 0) | 0 flat, 1 Poisson with LocPrLambda parameter
     params.level(iLev).LocPrLambda      = 6;                            % LocPrLambda parameter for Poisson priors (Default 6)
     params.level(iLev).alpha            = 512;                          % softmax parameter for action selection (Default 512). if Poisson Priors, good alpha=4 
+    params.level(iLev).unknown          = true;    % if CLASSES is present add 'unknown' class together with 'null' report 
+
 end
 
 % simulation function
@@ -47,5 +49,4 @@ end
 % params.spm_MDP_VB_H                  = str2func('spm_MDP_VB_X_tutorial_debug_v11');     % Latest version
 params.spm_MDP_VB_H                  = str2func('VB_MDP');                                % Latest version
 
-params.debugmode                     = 1;       % 1 verbose printing mode
-
+params.debugmode                     = false;       % 1 verbose printing mode

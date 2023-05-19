@@ -1,4 +1,4 @@
-function   B = HAI_getB(Ns,val,jump)
+function   B = HAI_getB(Ns,val,jump,addUnk)
 % function B = HAI_getB(Ns,val,jump)
 % Level Transition matrix p(St+1|St)
 % val(1) good value on p(s{1}(t)|s(t-1))
@@ -23,7 +23,7 @@ for k = 1:Ns(2)
 end
 
 if Nf>2
-    for k = 2:Ns(3)
+    for k = (1+addUnk):Ns(3)
         B{3}(:,:,k) = antival(3);
         B{3}(k,:,k) = val(3);
     end

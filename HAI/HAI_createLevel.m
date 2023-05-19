@@ -13,23 +13,27 @@ lcnm            = [params.ObsName 'Location'];
 %==========================================================================
 % D matrix: Prior beliefs about Initial state
 % D{1} = [1 1 1 1 1 1]';   % Sentences:   {'Sentence1',...,'Sentence6'}
-D{1}            = ones(length(STATES),1);
-D{2}            = zeros(length(STATES{1}),1);
-D{2}(1)         = 1;
+D               = params.D;
+% D{1}            = ones(length(STATES),1);
+% D{2}            = zeros(length(STATES{1}),1);
+% D{2}(1)         = 1;
 % D{2} = [1 0 0 0]';       % Words Location:  {'Location1',...,'Location4'}
 forceSimmetry=isempty(params.CLASSES);
 if ~isempty(params.CLASSES)
     CLASSES         = params.CLASSES;
-    CLASSNAMES      = cell(1,length(CLASSES)+1);
-    CLASSNAMES{1}   ='Unk';
+    CLASSNAMES      = cell(1,length(CLASSES)+params.unknown);
+    CLASSNAMES{1,1}   ='Unk';
     for iC=1:length(CLASSES)
-        CLASSNAMES{iC+1}=sprintf('C%g',iC);
+        CLASSNAMES{iC+1,1}=sprintf('C%g',iC);
     end
-    FEEDBACKS={'null','correct','wrong'};
-    
+
+    FEEDBACKS={'null','correct','wrong'}';
+    CLASSNAMES=CLASSNAMES((end-((length(CLASSES)-1)+params.unknown)):end,1);
+    FEEDBACKS=FEEDBACKS(end-(1+params.unknown):end);
     % D{3}    = zeros(length(CLASSES)+1,1);
     % D{3}(1) = 1;                % start with 'unknown'
-    D{3}    = ones(length(CLASSES)+1,1);
+    
+    % D{3}    = ones(length(CLASSES)+1,1);
     % D{3} = [1 0 0 0]';        % report: {'unknown','Eat','Drink','Sleep'}
 end
 
@@ -52,10 +56,11 @@ if forceSimmetry
     A   = HAI_getA(OBS,STATES,length(LOCATIONS),oval);
 else
     No  = [length(OBS),length(LOCATIONS),length(FEEDBACKS)];% number of obs per factor
-    A   = HAI_getAContext(OBS,STATES,CLASSES,length(LOCATIONS),oval);
+    A   = HAI_getAContext(OBS,STATES,CLASSES,length(LOCATIONS),oval,params.unknown);
+    % A   = HAI_getAContextUnk(OBS,STATES,CLASSES,length(LOCATIONS),oval);
 end
 %% Level Transition matrix p(St+1|St)
-B       = HAI_getB(Ns,sval,params.jump);
+B       = HAI_getB(Ns,sval,params.jump,params.unknown);
 %--------------------------------------------------------------------------
 Ng      = length(No);           % number of obs factors
 % if context
@@ -77,8 +82,9 @@ if ~forceSimmetry
         C{ig}  = zeros(No(ig),1);
     end
 %     C{3}(2,:) =  0;                 % the agent expects to be right
-    C{3}(3,:) = -4;                 % and not wrong
-    mdp.C = C;                      % preferred outcomes
+    % C{3}(3,:) = -4;                 % and not wrong
+    C{3}(end,:) = -4;                 % and not wrong
+    mdp.C       = C;                  % preferred outcomes
 end
 %% MDP structure 
 if ~isempty(params.MDP)

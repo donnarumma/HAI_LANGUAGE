@@ -13,8 +13,6 @@ catch
     params  = defaultParams;
 end
 rng(params.irng);
-% OPTIONS.Ht  = params.imode;
-% OPTIONS.sX  = params.sX;
 
 MDPsub =[];
 NLevels=length(params.level);

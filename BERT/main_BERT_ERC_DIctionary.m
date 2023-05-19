@@ -5,22 +5,29 @@ else
     bertparams=BERT_getDefaultParams(bertparams.bert);
 end
 % bertparams.Nsentences=3;%10;
-bertparams.HM           =5;
+bertparams.HM           =10;
+CLASSNAMES={'Social Sciences and Humanities','Physical Sciences and Engineering','Life Sciences'};
 % 1) Social Sciences and Humanities
 % 2) Physical Sciences and Engineering
 % 3) Life Sciences
 GuessedSentences        =cell(0,0);
-WORDS_TO_READ           = 5;%8;
+WORDS_TO_READ           = 7;%8;
 LABELS                  = [];
-clindexes               = [];
+clindexes               = cell(0,0);
 input_strs              = cell(0,0);
+class_specific_words    = cell(0,length(CLASSNAMES));
 input_strs{end+1}       = ['Researchers seeking funding within this domain can expect their work to be evaluated by a panel of experts ' ...
-                           'dedicated to advancing knowledge and addressing societal challenges'];  clindexes = [clindexes, 25];
+                           'dedicated to advancing scientific knowledge and addressing societal challenges'];  clindexes{end+1}= 26;
 input_strs{end+1}       = ['Researchers seeking funding within this domain can expect their work to be evaluated by a panel of experts ' ...
-                           'dedicated to advancing societal issues in supported proposals'];        clindexes = [clindexes, 22];
+                           'dedicated to advancing cultural knowledge and addressing societal challenges'];  clindexes{end+1} = [22, 26];
+% input_strs{end+1}       = ['Researchers seeking funding within this domain can expect their work to be evaluated by a panel of experts ' ...
+                           % 'dedicated to advancing societal issues in supported proposals'];        clindexes = [clindexes, 22];
 
-class_specific_words    = {'societal','technological','health'};
-class_specific_words    = upper(class_specific_words);
+class_specific_words{end+1}= upper({'societal','technological','health'});
+
+class_specific_words{end+1}= [upper({'cultural','computational','medical'});upper({'societal','technological','health'})];
+
+% class_specific_words    = upper(class_specific_words);
 Labels                  = [];
 N_LABS                  = length(class_specific_words);
 class_labels            = 1:N_LABS;
@@ -31,8 +38,8 @@ for i_string=1:length(input_strs) % iterate on number of initial sentences
     words                   = strsplit(input_str,' ');
     LEN_S                   = length(words);
     idxes                   = (length(words)-WORDS_TO_READ+1):length(words);
-    N_non_specific_words    = length(idxes(~ismember(idxes,clindexes(i_string))));
-    for idx = idxes(~ismember(idxes,clindexes(i_string))) % iterate on number of non class specific words
+    N_non_specific_words    = length(idxes(~ismember(idxes,clindexes{i_string})));
+    for idx = idxes(~ismember(idxes,clindexes{i_string})) % iterate on number of non class specific words
         TokenGuessed            = BERT_getTokenIdx(input_str,idx,bertparams);
         isGoodToken             = BERT_checkTokens(TokenGuessed);
         TokenGuessed            = TokenGuessed(isGoodToken);
@@ -46,8 +53,9 @@ for i_string=1:length(input_strs) % iterate on number of initial sentences
                 for iw=1:LEN_S                      % iterate on words in the sentence
                     if iw==idx
                         w = TokenGuessed{iS};
-                    elseif iw==clindexes(i_string)
-                        w = class_specific_words{ic};
+                    elseif ismember(iw,clindexes{i_string})
+                        cli=find(clindexes{i_string}==iw);
+                        w = class_specific_words{i_string}{cli,ic};
                     else
                         w = words{iw};
                     end 
@@ -66,7 +74,7 @@ for i_string=1:length(input_strs) % iterate on number of initial sentences
 end
 
 TOTAL           =length(GuessedSentences);
-GuessedSentences=DICTIONARY_reduceSentences(GuessedSentences,WORDS_TO_READ+1,1);
+GuessedSentences=DICTIONARY_reduceSentences(GuessedSentences,WORDS_TO_READ+2,1);
 
 [~,iA,~]        =unique(GuessedSentences);
 Labels          =Labels(iA);
@@ -105,8 +113,8 @@ dic_name                        = 'DICTIONARY_v5';  % no class
 dic_name_class                  = 'DICTIONARY_v6';  % class
 dic_dir                         = 'DICTIONARY';
 cleanpast                       = true;
-% DICTIONARY                      = DICTIONARY_save(dic_name      ,dic_dir,newwords,GuessedSentences,1,dohyphen,     [],cleanpast);
-DICTIONARY                      = DICTIONARY_save(dic_name      ,dic_dir,newwords,GuessedSentences,1,dohyphen,NO_CLASSES,cleanpast);
+DICTIONARY                      = DICTIONARY_save(dic_name      ,dic_dir,newwords,GuessedSentences,1,dohyphen,        [],cleanpast);
+% DICTIONARY                      = DICTIONARY_save(dic_name      ,dic_dir,newwords,GuessedSentences,1,dohyphen,NO_CLASSES,cleanpast);
 DICTIONARY_CLASS                = DICTIONARY_save(dic_name_class,dic_dir,newwords,GuessedSentences,1,dohyphen,CLASSES   ,cleanpast);
 fprintf('Expected:%g ,Total:%g, Remaining:%g, Discarded:%g\n',N_non_specific_words*length(class_specific_words)*bertparams.HM*length(input_strs),TOTAL,length(GuessedSentences),TOTAL-length(GuessedSentences));
 
