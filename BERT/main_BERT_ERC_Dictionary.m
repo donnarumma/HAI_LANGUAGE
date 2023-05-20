@@ -1,4 +1,4 @@
-% function main_BERT_ERC_DIctionary
+% function main_BERT_ERC_Dictionary
 if ~exist('bertparams','var')
     bertparams=BERT_getDefaultParams;
 else
@@ -29,7 +29,7 @@ class_specific_words{end+1}= [upper({'cultural','computational','medical'});uppe
 
 % class_specific_words    = upper(class_specific_words);
 Labels                  = [];
-N_LABS                  = length(class_specific_words);
+N_LABS                  = length(CLASSNAMES);
 class_labels            = 1:N_LABS;
 
 for i_string=1:length(input_strs) % iterate on number of initial sentences
@@ -97,8 +97,10 @@ end
 dohyphen                            = false;
 dohyphen                            = true;
 if dohyphen
-    dic_name                        = 'DICTIONARY_v7';  % no class
-    dic_name_class                  = 'DICTIONARY_v8';  % class
+    % dic_name                        = 'DICTIONARY_v7';  % no class
+    % dic_name_class                  = 'DICTIONARY_v8';  % class
+    dic_name                        = 'DICTIONARY_v11';  % no class
+    dic_name_class                  = 'DICTIONARY_v12';  % class
 else
     dic_name                        = 'DICTIONARY_v5';  % no class
     dic_name_class                  = 'DICTIONARY_v6';  % class
@@ -110,11 +112,11 @@ GuessedSentences=GuessedSentences(goodlabels);
 CLASSES=cell(1,dohyphen+2);
 for il=1:N_LABS
     lab=LABS(il);
-    CLASSES{dohyphen+2}{il}=(find(Labels==lab))';
+    CLASSES{1,dohyphen+2}{il,1}=(find(Labels==lab))';
 end
 NO_CLASSES=cell(1,dohyphen+2);
 for il=1:length(GuessedSentences)
-    NO_CLASSES{dohyphen+2}{il}=il;
+    NO_CLASSES{1,dohyphen+2}{il,1}=il;
 end
 % NO_CLASSES{dohyphen+2}{1}=1:length(GuessedSentences);
 newwords                        = DICTIONARY_getWords(GuessedSentences);

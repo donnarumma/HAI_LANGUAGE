@@ -16,8 +16,10 @@ irngs        = randi(1000,N_TRIALS,1);
 % DICTIONARIES = {'DICTIONARY_v5','DICTIONARY_v6'};     % 2 Levels
 DICTIONARIES   = {'DICTIONARY_v7','DICTIONARY_v8'};     % 3 Levels
 DICTIONARIES   = {'DICTIONARY_v9'};
+DICTIONARIES   = {'DICTIONARY_v8'};
+
 ID_sequence  =ID_sequence(1:N_TRIALS);
-context_priors = [0,1];
+context_priors = [1];
 
 for i_trial=1:N_TRIALS
     irng        = irngs(i_trial);

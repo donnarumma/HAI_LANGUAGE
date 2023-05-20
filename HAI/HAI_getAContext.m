@@ -1,6 +1,6 @@
 function    A=HAI_getAContext(OBS,STATES,CLASSES,NLocations,val,addUnk)
 %function   A=HAI_getAContext(OBS,STATES,CLASSES,NLocations,val,addUnk)
-% function  A=HAI_getAContext(LETTERS,WORDS,CLASSES,NLocations,val)
+% function  A=HAI_getAContext(LETTERS,WORDS,CLASSES,NLocations,val,addUnk)
 % Level likelihood p(obs|S)
 % val(1) good value on p(o{1}|s)
 % val(2) good value on p(o{2}|s)

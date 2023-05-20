@@ -11,7 +11,7 @@ for il=1:length(CLASSES)
         s=sprintf('%s%s',s,ctxt);
     else
         for ic=1:LEN_C
-            ctxt=sprintf('CLASSES{%g}{%g} =[',il,ic);
+            ctxt=sprintf('CLASSES{%g}{%g,1} =[',il,ic);
             SUBCLASS=CLASS{ic};
             for is=1:length(SUBCLASS)
                 ctxt=sprintf('%s%g,',ctxt,SUBCLASS(is));
