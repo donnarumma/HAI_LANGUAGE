@@ -1,5 +1,5 @@
-function   MDP=RUN_HAI_COMPARE_CONTEXT(dictionary,idsentence,irng)
-% function MDP=RUN_HAI_COMPARE_CONTEXT(dictionary,idsentence,irng)
+function   MDP=RUN_HAI_COMPARE_CONTEXT(dictionary,idsentence,irng,context_prior)
+% function MDP=RUN_HAI_COMPARE_CONTEXT(dictionary,idsentence,irng,context_prior)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 wstart                             = 1;
 dic_fun                            = str2func(dictionary);
@@ -31,7 +31,7 @@ langparams.irng                    = irng;
 langparams.level(end).maxT         = 16;
 langparams.level(end).unknown      = false;
 langparams                         = HAI_initialiseParams(langparams);
-if ~isempty(langparams.level(end).CLASSES)
+if ~isempty(langparams.level(end).CLASSES) && context_prior
     langparams.level(end).D{end}   =langparams.level(end).D{end}*0;
     langparams.level(end).D{end}(LABELS(idsentence))=1;
 end
