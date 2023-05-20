@@ -1,4 +1,4 @@
-% function HAI_LANGUAGE_DICTIONARY_v0_sample_main
+% function MAIN_HAI_DICTIONARY_v0-
 % Level 2, Time 0:
 % Sentence(1):BDAA BCBA BCAA BCBA
 % Sentence(2):BCBA BCBA BCBA BCAA

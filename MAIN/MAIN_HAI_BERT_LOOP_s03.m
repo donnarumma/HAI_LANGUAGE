@@ -1,4 +1,7 @@
-%% MAIN WITH BERT WITH A SENTENCE THAT HAS A NEW WORD (BUTTER) IN IT
+%% function MAIN_HAI_BERT_LOOP_s03
+% MAIN WITH BERT WITH A SENTENCE THAT HAS A NEW WORD (BUTTER) IN IT
+% the model does not recognize the word, but recognize the syllables of the
+% word. Thus, it adds the new word to the dictionary
 clear all;
 SEP                 =filesep;
 % DICTIONARY          =BERT_v1_001();

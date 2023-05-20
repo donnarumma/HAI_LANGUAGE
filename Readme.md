@@ -25,8 +25,8 @@ then choose one of the main in directory "MAINS" to see a demonstration of code 
 
 ## Code
 
-### (1) HAI_LANGUAGE_DICTIONARY_v0_sample_main.m
-simple example with a simple dictionary
+### (1) MAIN_HAI_DICTIONARY_v0.m
+HAI example with a simple dictionary
 2-level hierarchy 
 level 1 
 states  = [    word, locations of letters in the word]
@@ -37,7 +37,7 @@ obs     = [    word, locations of words in the sentence]
 
 DICTIONARY: Simple dictionary of 6 words composed by A B C D 
 
-### (2) HAI_LANGUAGE_DICTIONARY_v1_sample_main.m
+### (2) MAIN_HAI_DICTIONARY_v1.m
 2-level hierarchy 
 level 1 
 states  = [    word, locations of letters in the word]
@@ -46,9 +46,9 @@ level 2
 states  = [sentence, locations of words in the sentence]
 obs     = [    word, locations of words in the sentence]
 
-DICTIONARY: Simple dictonary of English words (two syllable words of six letters)
+DICTIONARY: Simple dictionary of English words (two syllable words of six letters)
 
-### (3) HAI_LANGUAGE_DICTIONARY_v2_sample_main.m
+### (3) MAIN_HAI_DICTIONARY_v2.m
 3-level hierarchy 
 level 1 
 states  = [syllable, locations of  letters in the syllable]
@@ -60,9 +60,9 @@ level 2
 states  = [sentence, locations of   word   in the sentence]
 obs     = [    word, locations of   word   in the sentence]
 
-DICTIONARY: Simple dictonary of English words (two syllable words of six letters)
+DICTIONARY: Simple dictionary of English words (two syllable words of six letters)
 
-### (4) HAI_LANGUAGE_DICTIONARY_v3_sample_main.m
+### (4) MAIN_HAI_DICTIONARY_v3.m
 2-level hierarchy 
 level 1 
 states  = [syllable, locations of  letters in the syllable]
@@ -75,7 +75,7 @@ DICTIONARY: Simple dictionary of English words (two syllable words of six letter
 
 ### TRANSFORMES IN THE LOOP
 
-### (5) HAI_LANGUAGE_BERT_LOOP_sample_01_main.m, 
+### (5) MAIN_HAI_BERT_LOOP_s01.m, 
 three level structure, Dictionary provided by BERT
 
 Read the produced BERT sentence 'THIS PAPER IS ALSO MENTIONED IN THE FAMOUS ENGLISH HISTORICAL NOVEL BY SIR ROBERT DE LA HAY'
@@ -90,7 +90,7 @@ level 3
 states  = [sentence, locations of words in the sentence]
 obs     = [    word, locations of words in the sentence]
 
-### (6) HAI_LANGUAGE_BERT_LOOP_sample_02_main.m, 
+### (6) MAIN_HAI_BERT_LOOP_s02.m, 
 Same as previous but given a context
 "We present a novel computational model that uses hierarchical active inference to simulate the reading process and eye movements during reading." 
 read the BERT produced sentence:
@@ -98,7 +98,7 @@ read the BERT produced sentence:
 THE COMPUTATIONAL MODEL IS ABLE TO PREDICT A TIME HORIZON FOR READING DURING A GIVEN TIME OR PLACE PERIOD
 
 
-### (7) HAI_LANGUAGE_BERT_LOOP_sample_03_main.m
+### (7) MAIN_HAI_BERT_LOOP_s03.m
 
 Loop with BERT reading a sentence that has a word (BUTTER) that BERT does not provide
 
@@ -116,8 +116,7 @@ provided an API-KEY.txt for OPEN-AI chatGPT, given the same context of (6)
 produce a random sentence:
 e.g. THIS MODEL HAS BEEN DESIGNED TO ENABLE THE ACCOMMODATION OF A COMPREHENSIVE SET OF ADAPTIVE BEHAVIORS TO ACHIEVE BEST ACCURACY
 
-### Package needed
-To enable tree visualization and computation on MDP
+### Package needed to enable tree visualization and computation on MDP
 add matlab-tree package 
 https://tinevez.github.io/matlab-tree/index.html  
 

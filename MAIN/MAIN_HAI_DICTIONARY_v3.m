@@ -1,4 +1,4 @@
-% function HAI_LANGUAGE_DICTIONARY_v3_sample_main
+% function MAIN_HAI_DICTIONARY_v3
 % LETTER(1)=A
 % LETTER(2)=B
 % LETTER(3)=C

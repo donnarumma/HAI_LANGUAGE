@@ -1,4 +1,4 @@
-% function HAI_LANGUAGE_DICTIONARY_v2_sample_main
+function MAIN_HAI_DICTIONARY_v2
 %  'Level 2, Time 0:
 %      Sentence(1):BETTER CIRCLE RUBBER GARDEN
 %      Sentence(2):PURPLE RUBBER FINGER CIRCLE
