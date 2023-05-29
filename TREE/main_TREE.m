@@ -16,6 +16,7 @@ guard = TREE_getMDP(MDP,@TREE_Level_StateName,@TREE_Append_ObsName);
 % N_Saccades=find(vtree)
 % fprintf()
 
+maxTree= TREE_getMDP(MDP,@TREE_Level_maxT,@TREE_Append_NULL);
 % disp([stree.tostring,mtree.tostring,otree.tostring,vtree.tostring]);
 [ltree] = TREE_getMDPLevel(MDP);
 [lstree]=TREE_getMDPStructureStates(MDP);

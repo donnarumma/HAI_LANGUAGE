@@ -40,3 +40,4 @@ octave-workspace
 TRACE/traces/
 workinprogress/
 chatGPT/API-key.txt
+*.swp
