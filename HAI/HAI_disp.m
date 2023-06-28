@@ -1,7 +1,7 @@
 function   [tree_struct]=HAI_disp(MDP)
 % function [tree_struct]=HAI_disp(MDP)
 % if nargin > 0 returns tree_struct with MDP execution info and structure
-structures = TREE_getMDP(MDP,@TREE_Level_States,@TREE_Append_Obs);
+structures     = TREE_getMDP(MDP,@TREE_Level_States,@TREE_Append_Obs);
 [description] = TREE_getMDPStructure(MDP);
 
 [str_desc] = TREE_getMDPTime(MDP,@TREE_LevelTime_Location,@TREE_Append_NULL);

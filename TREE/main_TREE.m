@@ -23,3 +23,6 @@ maxTree= TREE_getMDP(MDP,@TREE_Level_maxT,@TREE_Append_NULL);
 [otree]=TREE_getMDPStructureLocations(MDP);
 disp([mtree.tostring,stree.tostring,lstree.tostring,vtree.tostring,otree.tostring,]);
 
+% obstree=TREE_getMDPStructureObs(MDP);
+% 
+% disp([mtree.tostring,stree.tostring,lstree.tostring,otree.tostring,vtree.tostring,]);

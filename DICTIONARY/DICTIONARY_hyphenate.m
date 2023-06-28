@@ -1,6 +1,8 @@
 function   wordsplitted=DICTIONARY_hyphenate(word)
 % function wordsplitted=DICTIONARY_hyphenate(word)
 switch word
+    case 'ACADEMIC'
+        wordsplitted = {'AC','A','DEM','IC'};
     case 'ARRANGED'
         wordsplitted = {'AR','RANGED'};
     case 'LABRADOR'
