@@ -2,7 +2,7 @@ function   MDP=HAI_smartMDP(MDP)
 % function MDP=HAI_smartMDP(MDP)
 ftr ={'A','B','C',...'D', ...
      'V', ...'U', ...
-     'R','P','Q','w','link','label','vn','xn','un','wn','dn','nP','O'}; %'MDP',
+     'R','P','Q','w','link','label','vn','un','wn','dn','nP','O'}; %'MDP','xn'
 for iF=1:length(ftr)
     try
         MDP=rmfield(MDP,ftr{iF});

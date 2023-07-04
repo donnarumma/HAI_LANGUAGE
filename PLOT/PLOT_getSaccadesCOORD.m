@@ -23,8 +23,12 @@ for istep = 1:Nsteps
                     end
                     x_value         = x(pos_lett(end))+1;
                     % x_value         = x(round((letter_loc*length(pos_lett))/length(phr_sent_final{1,1})))+1;
-                else            
-                    x_value         = x(pos_lett(letter_loc));
+                else 
+                    try
+                        x_value         = x(pos_lett(letter_loc));
+                    catch
+                        fprintf('ilev1%g\n',ilev1);
+                    end
                 end
                 cmap_label(end+1)   = word_loc;%ilev3;
                 try 
