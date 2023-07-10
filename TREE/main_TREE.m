@@ -165,7 +165,7 @@ disp(timetree.tostring);
  % +--++-+--+  |  ++-+  ++-+ 
  % |  |  |  |  |  |  |  |  | 
  % 1  1  1  1  1  1  1  1  1 
-
+disp(levtree);
 %% %%%%%% depth iterator time tree %%%%%%%
 depthtime_tree=time_tree;
 dtiterator=depthtime_tree.depthfirstiterator;
@@ -199,20 +199,6 @@ disp(RTtree.tostring);
 
 %% %%%%%%%%%%%%% CUMULATIVE REACTION TIME TREE %%%%%%%%%%%%%%%%%%%%%%%
 ABSRTtree=TREE_AbsRT(MDP);
-% ABSRTtree=RTtree;
-% diterator=ABSRTtree.depthfirstiterator;
-% for lev=1:length(dtiterator)
-%     current_node    =diterator(lev);
-% 
-%     leftmost_node = TREE_getTimeLeftMostNode(ABSRTtree,current_node);
-%     if ~isempty(leftmost_node)
-%         val= ABSRTtree.get(leftmost_node);
-%     else
-%         val=0;
-%     end
-%     val             = val+TREE_sum(ABSRTtree.subtree(diterator(lev)));
-%     ABSRTtree       = ABSRTtree.set(current_node,val);
-% end
 %                                    62.1755                                    
 %                      +----------------+------------+-----------------+        
 %                      |                             |                 |        
@@ -243,20 +229,19 @@ end
  % 9 10  11  12  13  14  15  16  17
 disp(breadthtime_tree.tostring);
 %%
-
-p=nan(MDP.level,length(btiterator));
-cmaps=lines(MDP.level);
-%%
-probLevel=cell(ABSRTtree.depth,1);
-for it=2:length(btiterator)
-    cnode=btiterator(it);
-    probLevel{levtree.get(cnode)}=[probLevel{levtree.get(cnode)}; 
-                          [ptree.get(cnode), ABSRTtree.get(cnode)]];
-end
+probLevel=HAI_getTimeProb(MDP);
+% probLevel=cell(ABSRTtree.depth,1);
+% btiterator=ABSRTtree.breadthfirstiterator;
+% for it=2:length(btiterator)
+%     cnode=btiterator(it);
+%     probLevel{levtree.get(cnode)}=[probLevel{levtree.get(cnode)}; 
+%                           [ptree.get(cnode), ABSRTtree.get(cnode)]];
+% end
 %%
 
 figure; 
 hold on
+cmaps=lines(MDP.level);
 Nlevels=length(probLevel);
 ALLT=[];
 for lev=1:Nlevels
@@ -264,14 +249,13 @@ for lev=1:Nlevels
 end
 LIMT=[min(ALLT),max(ALLT)];
 MDP_I=MDP;
-dt=1;
+dt=0.1;
 t0=0;
 for lev=Nlevels:-1:1
     subplot(Nlevels,1,Nlevels-lev+1);
     hold on; box on; grid on;
     Y=probLevel{lev}(:,1);
     T=probLevel{lev}(:,2)+t0;
-    gi  =~isnan(plev);
     if lev<Nlevels
         t_reset=probLevel{lev+1}(:,2);
         p_reset=zeros(size(t_reset));
@@ -279,7 +263,7 @@ for lev=Nlevels:-1:1
         
         T=[t_reset-dt;t_reset;t_resetend-dt;t_resetend;T];
         Y=[p_reset*nan;p_reset;p_resetend*nan;p_resetend;Y];
-        [T,sortind]=sort(T);
+        [T,sortind]=unique(T);
         Y=Y(sortind);
     else
         t_resetend=probLevel{end}(:,2);

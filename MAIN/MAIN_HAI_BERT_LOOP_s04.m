@@ -26,12 +26,35 @@ addpath(dic_dir);
 newsentence = {'THIS PAPER IS ALSO BUTTER IN THE'}; 
 % sentences   = [newsentence;sentences];
 % https://it.mathworks.com/help/textanalytics/ref/editdistance.html
+addto=true;
+if addto
+    sentences   = [{'THIS PAPER IS ALSO BUTTER IN THE'};sentences];
+end
+sentences   = [{'THIS PAPER IS ALSO BITTER IN THE'};sentences];
+sentences   = [{'THIS PAPER IS ALSO BETTER IN THE'};sentences];
+sentences   = [{'THIS PAPER IS ALSO FASTER IN THE'};sentences];
+sentences   = [{'THIS PAPER IS ALSO BUTTED IN THE'};sentences];
+sentences   = [{'THIS PAPER IS ALSO WARMER IN THE'};sentences];
+sentences   = [{'THIS PAPER IS ALSO BUTTEN IN THE'};sentences];
+
+
+fprintf('Saving %s in %s\n',dic_name,dic_dir);
+if addto
+    words=['BUTTER';words];
+end
+words=['BITTER';words];
+words=['BETTER';words];
+words=['FASTER';words];
+words=['BUTTED';words];
+words=['WARMER';words];
+words=['BUTTEN';words];
+
+DICTIONARY_save(dic_name,dic_dir,words,sentences,deleteoldsentences,dohyphen);
+dirfun=str2func(dic_name);
+actdir=dirfun();
+sentences=DICTIONARY_sentences(actdir);
 sends = cellfun(@(x)(editDistance(x,newsentence{1})),sentences);
 [~,sen] = min(sends);
-fprintf('Saving %s in %s\n',dic_name,dic_dir);
-words=['BITTER';words];
-DICTIONARY_save(dic_name,dic_dir,words,sentences,deleteoldsentences,dohyphen);
-
 
 % max saccades on letters    syllables     words
 nmaxT          = [   8,          8,          8  ];
@@ -71,7 +94,9 @@ while length(seq)<nmaxT(3)
 end
 %     1    2   3   4     5    6   7
 %  'THIS PAPER IS ALSO BUTTER IN THE'
-seq=[3     5     4     6     4     6     7     5];
+% seq=[3     5     4     6     4     6     7     5];
+seq=[3     5     4     6     4     6     7];
+
 seq                         =seq(1:nmaxT(3));
 % set true states syllables first level states 
 
@@ -124,12 +149,44 @@ fprintf('New word: %s, in word location %g\n',HAI_retrieveLevel(recword,''),inlo
 
 
 return
+%%
+save_dir='~/TESTS/HAI_LANGUAGE_TESTS/BERT_LOOP/DICTIONARY/BERT_DIC/BERT_v1_PAPER/IMAGES/';
+ison=false;
+pltparams.hfig     =figure('visible',ison);
+pltparams.factor   =1;     % plot first factor (CONTENT)
+pltparams.nla      =0.05;  % neuron line alpha
+pltparams.sa       =0.1;   % step alpha
+pltparams.humanlike=true;  % rescale times for human saccades
+
+h=PLOT_TimeProbLevel(MDPEXP,pltparams);
+optionsPlot(h);
+if addto
+    nf='KNOWN_Probabilities';
+else
+    nf='UNKNOWN_Probabilities';
+end
+% print(h,[save_dir nf],'-depsc2')
+export_fig([save_dir nf '.pdf']);
+%%
+
+return
+
+DEADBEAT
+HEARTBEAT
+UPBEAT
+OFFSHOOT
+OFFHAND
+OFFSET
+OFFLOAD
+OFFEND
+OFFSITE
+OFFSTAGE
+OFFSHORE
+OFFSPRING
+
 
 
     
 
-
-
-
-
+"THIS PAPER IS ALSO FRAMED IN AN OFFBEAT MANNER"
 

@@ -42,7 +42,7 @@ spm_MDP_VB_H=str2func(mfilename);
 % MDP.Q{F}(NF,T,P)      - expected hidden states under each policy
 % MDP.X{F}(NF,T)        - and Bayesian model averages over policies
 % MDP.R(P,T)            - response: conditional expectations over policies
-%
+%￼
 % MDP.un          - simulated neuronal encoding of hidden states    - neuralstates
 % MDP.vn          - simulated neuronal prediction error             - neuralprediction
 % MDP.xn          - simulated neuronal encoding of policies         - neuralpolicies
@@ -305,6 +305,10 @@ w    = 1/qb;                       % posterior precision (policy)
 current_pStates1=cell(1,NstateFactors);
 current_pStates2=cell(1,NstateFactors);
 current_pStates3=cell(1,NstateFactors);
+
+if MDP.level==2
+    fprintf('wtf\n');
+end
 
 % belief updating over successive time points
 %==========================================================================

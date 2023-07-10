@@ -13,6 +13,10 @@ switch word
         wordsplitted = {'TREV','OR'};
     case 'AUTO'
         wordsplitted = {'AU','TO'};
+    case 'BUTTED'
+        wordsplitted = {'BUT','TED'};
+    case 'BUTTEN'
+        wordsplitted = {'BUT','TEN'};
     case 'TATA'
         wordsplitted = {'TA','TA'};
     case 'TAXA'
