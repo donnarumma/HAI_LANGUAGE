@@ -1,5 +1,6 @@
 % function MAIN_CONTEXT_TEST
 rng(0);
+%% ORIGINAL DICTIONARY
 DIC         =DICTIONARY_v5();
 N_TRIALS    =100;
 ID_sequence =[];
@@ -13,12 +14,20 @@ while length(ID_sequence)<N_TRIALS
 end
 irngs        = randi(1000,N_TRIALS,1);
 %                    NO CONTEXT      CONTEXT
-% DICTIONARIES = {'DICTIONARY_v5','DICTIONARY_v6'};     % 2 Levels
+%% 2 Levels original
+% DICTIONARIES = {'DICTIONARY_v5','DICTIONARY_v6'};       % 2 Levels
+%% 3 Levels original (same as paper)
 % DICTIONARIES   = {'DICTIONARY_v7','DICTIONARY_v8'};     % 3 Levels
-DICTIONARIES   = {'DICTIONARY_v10','DICTIONARY_v11','DICTIONARY_v12'};     % 3 Levels
+%% PAPER With control v10 Topic no prior - v11 no Topic - v12 Topic with prior
+% DICTIONARIES   = {'DICTIONARY_v10','DICTIONARY_v11','DICTIONARY_v12'};     % 3 Levels
+% context_priors = [0,0,1];
+%% only Topic no prior Variable
+% DICTIONARIES   = {'DICTIONARY_v10'};     % 3 Levels
+% context_priors = 0;
+%% Figure 1 test with MDP with neurons
 context_priors = [0,0,1];
-DICTIONARIES   = {'DICTIONARY_v10'};     % 3 Levels
-context_priors = 0;
+DICTIONARIES   = {'DICTIONARY_v13','DICTIONARY_v14','DICTIONARY_v15'};     % 3 Levels
+%%
 ID_sequence  =ID_sequence(1:N_TRIALS);
 for i_trial=1:N_TRIALS
     irng        = irngs(i_trial);

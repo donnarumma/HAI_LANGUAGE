@@ -47,7 +47,7 @@ end
 
 MDP                                = HAI_RUN(langparams,dictionary);
 
-%% create BAR NOISE PLOT
+%% create MDP
 SEP = filesep;
 root_dir =[SEP 'tmp' SEP 'TESTS' SEP 'HAI_LANGUAGE_TESTS' SEP 'LEVEL' num2str(MDP.level) SEP]; % saving in results /tmp/HAI_LANGUAGE_TESTS/
 save_dir =[root_dir SEP dictionary SEP 'SENTENCE' fromNumToOrderedString(idsentence) SEP];

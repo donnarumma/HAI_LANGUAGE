@@ -6,28 +6,32 @@ else
     h=params.hfig;
 end
 hai_neu = HAI_getNeuralStatistics(MDP,params);
-x       = hai_neu.x;  %% difference in potential (neurons)
+% x       = hai_neu.x;  %% difference in potential (neurons)
 z       = hai_neu.z;  %% neuron potentials
 
-dt      = 1/64;                 % time bin (seconds)
+% dt      = 1/64;                 % time bin (seconds)
 % dt      = 3/48;
-Nt      = length(MDP);          % number of trials
-Ne      = size(z{1},1);         % number of epochs        
-Nb      = size(z{1}{1},1);      % number of time bins per epochs
+% Nt      = length(MDP);          % number of trials
+% Ne      = size(z{1},1);         % number of epochs        
+% Nb      = size(z{1}{1},1);      % number of time bins per epochs
 % Nx      = size(x{1},2)/Ne;      % number of states
-newsteps=Ne*Nb;
-rescale=1;
-if params.humanlike
-    % [x,rescale,newsteps]=HAI_humanlike(MDP,x);
-    [z,rescale,newsteps]=HAI_humanlike(MDP,z);
-    x = HAI_computeGradient(z);
-end
+
+[z,t,dt]=HAI_humanlike(MDP,z,params);
+x = HAI_computeGradient(z);
+
+% newsteps=Ne*Nb;
+% rescale=1;
+% if params.humanlike
+%     % [x,rescale,newsteps]=HAI_humanlike(MDP,x);
+%     [z,rescale,newsteps]=HAI_humanlike(MDP,z);
+%     x = HAI_computeGradient(z);
+% end
 % phase amplitude coupling
 %==========================================================================
 % t       = (1:(Nb*Ne*Nt))*dt;    % time (seconds)
-t       = (1:(sum(newsteps)*Nt))*dt;    % time (seconds)
+% t       = (1:(sum(newsteps)*Nt))*dt;    % time (seconds)
 
-t=t*rescale/t(end);
+% t=t*rescale/t(end);
 
 Hz  = 4:32;                     % frequency range
 n   = 1/(4*dt);                 % window length

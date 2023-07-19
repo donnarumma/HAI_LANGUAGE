@@ -8,12 +8,20 @@ end
 hai_neu = HAI_getNeuralStatistics(MDP,params);
 z=hai_neu.z;
 
-dt  = 1/64;                 % time bin (seconds)
+% dt  = 1/64;                 % time bin (seconds)
 Nt  = length(MDP);          % number of trials
 Ne  = size(z{1},1);         % number of epochs        
 Nb  = size(z{1}{1},1);      % number of time bins per epochs
 Nx =  size(z{1},2)/Ne;      % number of states
-t   = (1:(Nb*Ne*Nt))*dt;    % time (seconds)
+
+
+% [z,rescale,newsteps]=HAI_humanlike(MDP,z,params);
+[z,t,dt]=HAI_humanlike(MDP,z,params);
+% t = (1:(sum(newsteps)*Nt))*dt;    % time (seconds)
+% t = t*rescale/t(end);
+
+% t   = (1:(Nb*Ne*Nt))*dt;    % time (seconds)
+
 
 
 factor = params.factor;

@@ -24,6 +24,7 @@ addpath(dic_dir);
 
 % new sentence with a new unknown word (BUTTER) with known syllables (BUT and TER) 
 newsentence = {'THIS PAPER IS ALSO BUTTER IN THE'}; 
+% newsentence = {'THIS PAPER IS ALSO FRAMED IN AN OFFBEAT MANNER'}
 % sentences   = [newsentence;sentences];
 % https://it.mathworks.com/help/textanalytics/ref/editdistance.html
 sends = cellfun(@(x)(editDistance(x,newsentence{1})),sentences);

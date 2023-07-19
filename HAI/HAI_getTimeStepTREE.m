@@ -1,8 +1,6 @@
-function probLevel=HAI_getTimeProb(MDP)
-% function probLevel=HAI_getTimeProb(MDP)
+function   StepTREE=HAI_getTimeStepTREE(MDP)
+% function StepTREE=HAI_getTimeStepTREE(MDP)
 % need matlab-tree
-% get for each level the couples [prob(t),t]
-
 ptree   = TREE_getMDPTime(MDP,@TREE_LevelTime_StateProb,@TREE_Append_NULL);  % tree of probability per level
 levtree = TREE_getMDPTime(MDP,@TREE_LevelTime_t,@TREE_Append_NULL);          % tree of cumulative time per level
 
@@ -34,3 +32,8 @@ for ilev=2:length(probLevel)
     end
 end
 
+vectree=full(spm_cat(probLevel));
+vectree1=vectree(:,2);
+vectree2=vectree(:,3);
+StepTREE=TREE_substitute(ABSRTtree,vectree1,vectree2);
+StepTREE=StepTREE.set(1,StepTREE.get(1)+1);

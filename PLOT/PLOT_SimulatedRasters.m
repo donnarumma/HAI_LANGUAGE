@@ -19,20 +19,17 @@ z      = hai_neu.z;   % neuron potentials
 
 
 
-dt  = 1/64;                 % time bin (seconds)
 % dt  = 3/48;
-Nt  = length(MDP);          % number of trials
+% Nt  = length(MDP);          % number of trials
 Ne  = size(z{1},1);         % number of epochs        
-Nb  = size(z{1}{1},1);      % number of time bins per epochs
+% Nb  = size(z{1}{1},1);      % number of time bins per epochs
 Nx =  size(z{1},2)/Ne;      % number of states
-newsteps=Ne*Nb;
-rescale=1;
-if params.humanlike
-    [z,rescale,newsteps]=HAI_humanlike(MDP,z);
-end
-% t   = (1:(Nb*Ne*Nt))*dt;    % time (seconds)
-t = (1:(sum(newsteps)*Nt))*dt;    % time (seconds)
-t = t*rescale/t(end);
+% [z,rescale,newsteps]=HAI_humanlike(MDP,z,params);
+[z,t]=HAI_humanlike(MDP,z,params);
+% 
+% % t   = (1:(Nb*Ne*Nt))*dt;    % time (seconds)
+% t = (1:(sum(newsteps)*Nt))*dt;    % time (seconds)
+% t = t*rescale/t(end);
 
 %% %%%%%% POPULATION CODING %%%%%%%
 hold on; 

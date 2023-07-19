@@ -1,4 +1,4 @@
-% function MAIN_HAI_BERT_LOOP_s02_debug
+% function MAIN_HAI_BERT_LOOP_s02_DEB02
 deleteoldsentences              =  1;
 langparamsmode                  = 23; % 3 levels Poisson priors % 20 % 3 levels;
 rtmode                          =  0;
@@ -6,7 +6,7 @@ SEP                             = filesep;%'//';
 dohyphen                        = 1;
 starting_dic                    = 'BERT_v1';
 expname                         = 'S02';                                        
-dic_dir                         = ['.' SEP 'DICTIONARY' SEP 'BERT_DIC' SEP starting_dic '_S02' SEP];
+dic_dir                         = ['.' SEP 'DICTIONARY' SEP 'BERT_DIC' SEP starting_dic '_S02_DEB02' SEP];
 resetall                        =  1;
 save_dir                        = '~/TESTS/HAI_LANGUAGE_TESTS/BERT_LOOP/';
 dic_dir                         = [save_dir dic_dir];

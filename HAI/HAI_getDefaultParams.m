@@ -30,6 +30,7 @@ for iLev=1:NLevels
     params.level(iLev).maxT             = 20;                           % max time depth per level (Default 20)
     params.level(iLev).create           = str2func('HAI_createLevel');  % initilization function (Default HAI_createLevel)
     params.level(iLev).MDP              = [];                           % sublevel (Default empty sublevel) 
+    params.level(iLev).VBNi             = 16;                           % number of iterations of variational bayes
     params.level(iLev).jump             = 1;                            % 1 location can be reached from any state | 0 sequential location steps
     params.level(iLev).umode            =-1;                            % DEPRECATED: -1 all possible policies, 0 remove policy [1,1,1]
     params.level(iLev).chi              = 1/64;                         % Occams window for deep updates

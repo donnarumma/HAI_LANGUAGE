@@ -143,14 +143,14 @@ MDP = spm_MDP_check(MDP);
 
 % defaults
 %--------------------------------------------------------------------------
-try, alpha    = MDP.alpha;    catch, alpha = 512;       end % action precision
-try, beta     = MDP.beta;     catch, beta  = 1;         end % policy precision
-try, tau      = MDP.tau;      catch, tau   = 4;         end % update time constant
-try, chi      = MDP.chi;      catch, chi   = 1/64;      end % Occam window updates
-try, erp      = MDP.erp;      catch, erp   = 4;         end % update reset
-try, MDP.VBNi = OPTIONS.VBNi; catch, MDP.VBNi  = 16;    end % number of VB iterations
-try, alpha    = OPTIONS.level(MDP.level).alpha; catch, alpha = 512;       end % action precision
-try  MDP.t;                   catch MDP.t={0};          end
+try, alpha    = MDP.alpha;                      catch, alpha     = 512;   end % action precision
+try, beta     = MDP.beta;                       catch, beta      = 1;     end % policy precision
+try, tau      = MDP.tau;                        catch, tau       = 4;     end % update time constant
+try, chi      = MDP.chi;                        catch, chi       = 1/64;  end % Occam window updates
+try, erp      = MDP.erp;                        catch, erp       = 4;     end % update reset
+try, MDP.VBNi = OPTIONS.level(MDP.level).VBNi;  catch, MDP.VBNi  = 16;    end % number of VB iterations
+try, alpha    = OPTIONS.level(MDP.level).alpha; catch, alpha     = 512;   end % action precision
+try, MDP.t;                                     catch, MDP.t     = {0};   end
 % preclude precision updates for moving policies
 %--------------------------------------------------------------------------
 if isfield(MDP,'U'), OPTIONS.gamma = 1;         end
@@ -168,15 +168,15 @@ end
 
 % numbers of transitions, policies and states
 %----------------------------------------------------------------------
-NobsFactors      = numel(MDP.A);               % number of outcome factors
-NstateFactors    = numel(MDP.B);               % number of hidden state factors
-Npolicies        = size(Vset,2);                  % number of allowable policies
+NobsFactors      = numel(MDP.A);                    % number of outcome factors
+NstateFactors    = numel(MDP.B);                    % number of hidden state factors
+Npolicies        = size(Vset,2);                    % number of allowable policies
 for istatef = 1:NstateFactors
-    Nstates(istatef)    = size(MDP.B{istatef},1);     % number of hidden states   per factor
-    Nactions(istatef)   = size(MDP.B{istatef},3);     % number of hidden controls per factor
+    Nstates(istatef)    = size(MDP.B{istatef},1);   % number of hidden states   per factor
+    Nactions(istatef)   = size(MDP.B{istatef},3);   % number of hidden controls per factor
 end
 for iobsf = 1:NobsFactors
-    Nobs(iobsf) = size(MDP.A{iobsf},1);     % number of outcomes
+    Nobs(iobsf) = size(MDP.A{iobsf},1);             % number of outcomes
 end
 
 % parameters of generative model and policies
@@ -209,7 +209,7 @@ for istatef = 1:NstateFactors
         Dmatrix{istatef} = spm_norm(MDP.D{istatef});
     else
         Dmatrix{istatef} = spm_norm(ones(Nstates(istatef),1));
-        MDP.D{istatef} = Dmatrix{istatef};
+        MDP.D{istatef}   = Dmatrix{istatef};
     end
 end
 
@@ -306,9 +306,9 @@ current_pStates1=cell(1,NstateFactors);
 current_pStates2=cell(1,NstateFactors);
 current_pStates3=cell(1,NstateFactors);
 
-if MDP.level==2
-    fprintf('wtf\n');
-end
+% if MDP.level==2
+%     fprintf('wtf\n');
+% end
 
 % belief updating over successive time points
 %==========================================================================
@@ -602,6 +602,9 @@ for t = 1:T
         if sum(H(:)) > - chi
             fprintf('%s sure. Exiting at time %g\n',MDP.Hname,t);
             % fprintf('NO MORE IN DOUBT! %s Exiting at time %g\n',MDP.Hname,t);
+            if t==1
+                fprintf('wtf\n');
+            end
             T = t;
         end
     end

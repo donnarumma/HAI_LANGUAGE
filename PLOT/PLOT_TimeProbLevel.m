@@ -9,28 +9,41 @@ end
 if nargout>0
     h=hfig;
 end
-if ~exist('params','var') || ~isfield(params,'humanlike')
-    params.humanlike=true;
-end
 probLevel=HAI_getTimeProb(MDP);
-dt=0.1;
-if params.humanlike
-    fs      =(1000/3 + 1000/4)/2;   % mean frequency of human saccades in ms
-    maxTime =probLevel{end}(end,end)*1000;
-    nSacc   =size(probLevel{1},1);
-    h=(nSacc*fs)/maxTime;
-    for il=1:length(probLevel)
-        probLevel{il}(:,2)=probLevel{il}(:,2)*h;
-    end
-    dt=dt/1000;
+dt=eps;%0.1;
+dt=0.001;
+dt=eps*10;
+
+fs      =(1000/3 + 1000/4)/2;   % mean frequency of human saccades in ms
+fs      =(1/3 + 1/4)/2;         % mean frequency of human saccades in ms
+
+if params.RTstretch
+    indp=2;
+else
+    indp=4;
 end
+if indp==4
+    dt=-dt;
+end
+maxTime =probLevel{end}(end,indp);
+nSacc   =size(probLevel{1},1);
+if params.humanlike
+    h=(nSacc*fs)/maxTime;
+else
+    h=1;
+end
+for il=1:length(probLevel)
+    probLevel{il}(:,indp)=probLevel{il}(:,indp)*h;
+end
+% dt=dt/msconv;
+
 hold on
 cmaps=lines(MDP.level);
 
 Nlevels=length(probLevel);
 ALLT=[];
 for lev=1:Nlevels
-    ALLT=[ALLT; probLevel{lev}(:,2)];
+    ALLT=[ALLT; probLevel{lev}(:,indp)];
 end
 LIMT=[min(ALLT),max(ALLT)];
 MDP_I=MDP;
@@ -39,18 +52,24 @@ for lev=Nlevels:-1:1
     subplot(Nlevels,1,Nlevels-lev+1);
     hold on; box on; grid on;
     Y=probLevel{lev}(:,1);
-    T=probLevel{lev}(:,2)+t0;
+    T=probLevel{lev}(:,indp)+t0;
     if lev<Nlevels
-        t_reset=probLevel{lev+1}(:,2);
+        t_reset=probLevel{lev+1}(:,indp);
         p_reset=zeros(size(t_reset));
         xline([t0;t_reset],'color',cmaps(lev+1,:),'LineWidth',3);
-        
-        T=[t_reset-dt;t_reset;t_resetend-dt;t_resetend;T];
-        Y=[p_reset*nan;p_reset;p_resetend*nan;p_resetend;Y];
-        [T,sortind]=unique(T);
-        Y=Y(sortind);
+        if indp~=4
+            T=[t_reset-dt;t_reset;t_resetend-dt;t_resetend;T];
+            Y=[p_reset*nan;p_reset;p_resetend*nan;p_resetend;Y];
+            [T,sortind]=unique(T);
+            Y=Y(sortind);
+        else
+            T=[t_reset-dt;t_resetend-dt;T];
+            Y=[p_reset*0;p_resetend*0;Y];
+            [T,sortind]=unique(T);
+            Y=Y(sortind);
+        end
     else
-        t_resetend=probLevel{end}(:,2);
+        t_resetend=probLevel{end}(:,indp);
         p_resetend=zeros(size(t_resetend));
     end
     if lev>1
