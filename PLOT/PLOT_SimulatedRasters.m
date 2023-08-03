@@ -58,7 +58,7 @@ HN=yline(allyticks);
 set(HN,'alpha',nla);
 
 ylim([1-0.0,Ne*Nx+0.0]);
-if Ne*Nx>50
+if 1%Ne*Nx>50
     str=cell(Ne*Nx,1);               %% DONNARUMMA all strings reset
     str(1)=num2cell(allyticks(1));
     str(yt(2:end))=num2cell(yt(2:end));

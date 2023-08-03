@@ -16,6 +16,25 @@ Ne      = size(z{1},1);         % number of epochs
 [z,t]=HAI_humanlike(MDP,z,params);
 
 qx   = spm_cat(z);
+
+if params.initialNoise
+    qx(1:2,:)=0.5;
+end
+if params.smooth
+    newT = 1000;
+    tu=linspace(min(t),max(t),newT);
+    [~,Ns]=size(qx);
+    newqx=zeros(newT,Ns);
+    qx=full(qx);
+    for is=1:Ns
+        newqx(:,is)=interp1(t,qx(:,is),tu,'cubic');
+    end
+    t = tu; 
+    qx=newqx;
+end
+
+
+
 plot(t,qx,'linewidth',2), hold on, a = axis;
 grid on, 
 % set(gca,'XTick',(1:(Ne*Nt))*Nb*dt), axis(a)

@@ -289,6 +289,11 @@ for lev=Nlevels:-1:1
     ylim([0-0.01;1+0.01]);
 end
 % legend(MDP.Aname{q})
-%%
+%% VBI STEPS PER LEVEL
+
+steptree=TREE_getMDPTime(MDP,@TREE_LevelTime_Steps,@TREE_Append_NULL);
+
+%% stretched VBI steps
+ssteptree  = TREE_getMDP(EXPMDP.MDP,@TREE_LevelTime_StepsStretched,@TREE_Append_NULL);
 
 

@@ -10,15 +10,16 @@ if nargout>0
     h=hfig;
 end
 probLevel=HAI_getTimeProb(MDP);
-dt=eps;%0.1;
-dt=0.001;
+% dt=eps;%0.1;
+% dt=0.001;
 dt=eps*10;
 
-fs      =(1000/3 + 1000/4)/2;   % mean frequency of human saccades in ms
-fs      =(1/3 + 1/4)/2;         % mean frequency of human saccades in ms
-
-if params.RTstretch
+% fs      =(1000/3 + 1000/4)/2;   % mean frequency of human saccades in ms
+% fs      =(1/3 + 1/4)/2;         % mean frequency of human saccades in s
+fs      = params.fs;
+if ~params.Steps || params.RTstretch
     indp=2;
+    % hai_neu = HAI_getNeuralStatistics(MDP,params);
 else
     indp=4;
 end
@@ -72,12 +73,13 @@ for lev=Nlevels:-1:1
         t_resetend=probLevel{end}(:,indp);
         p_resetend=zeros(size(t_resetend));
     end
-    if lev>1
+    if lev>0
         T=[t0;T];
         Y=[t0;Y];
     end
     h(lev)=plot(T,Y,'o:','linewidth',3,'color',cmaps(lev,:),'markersize',8);%legend({'Level 1','Level 2','Level 3'});
-    legend(h(lev),MDP_I.Aname{1},'autoupdate','off','location','northwest');
+    % legend(h(lev),MDP_I.Aname{1},'autoupdate','off','location','northwest');
+    legend(h(lev),MDP_I.Aname{1},'autoupdate','off','location','southeast');
     try
         MDP_I=MDP_I.MDP;
     catch

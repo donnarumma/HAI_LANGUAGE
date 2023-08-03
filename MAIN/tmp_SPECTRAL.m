@@ -33,8 +33,35 @@ MDP=EXPMDP.MDP;
 EXPMDP=load('~/TESTS/HAI_LANGUAGE_TESTS/BERT_LOOP/DICTIONARY/BERT_DIC/BERT_v1_S02/MDP_STEP001.mat');
 MDP=EXPMDP.MDP;
 %%
-EXPMDP=load('~/TESTS/HAI_LANGUAGE_TESTS/LEVEL3/DICTIONARY_v11/SENTENCE003/MDP.mat');
+EXPMDP=load('~/TESTS/HAI_LANGUAGE_TESTS/LEVEL3/DICTIONARY_v13/SENTENCE006/MDP.mat');
 MDP=EXPMDP.MDP;
+%%
+EXPMDP=load('~/TESTS/HAI_LANGUAGE_TESTS/SHOW/DICTIONARY/BERT_DIC/DICTIONARY_v15_SHOW/MDP_STEP001.mat');
+MDP=EXPMDP.MDP;
+% HAI_disp(MDP);
+fprintf('SHOW\n')
+structures    = TREE_getMDP(MDP,@TREE_Level_States,@TREE_Append_Obs);
+[description] = TREE_getMDPStructure(MDP);
+
+[str_desc] = TREE_getMDPTime(MDP,@TREE_LevelTime_Location,@TREE_Append_NULL);
+
+[lstree]=TREE_getMDPStructureStates(MDP);
+[loc_desc]=TREE_getMDPStructureLocations(MDP);
+
+[ctree]=TREE_getMDPContent(MDP);
+
+tree_struct.description           = description;
+tree_struct.structures            = structures;
+tree_struct.structures_description= lstree;
+tree_struct.locations             = str_desc;
+tree_struct.locations_description = loc_desc;
+structures=structures.set(1,'ACTIVE INFERENCE MODEL OF EYE MOVEMENTS');
+structures=structures.set(19,'MOVE MENTS');
+structures=structures.set(22,'MENTS');
+% disp([description.tostring,ctree.tostring,structures.tostring,lstree.tostring,str_desc.tostring,loc_desc.tostring,]);
+disp([description.tostring,ctree.tostring,structures.tostring,str_desc.tostring,loc_desc.tostring,]);
+
+
 %%
 addpath ('~/tools/spm12');
 addpath ('~/tools/matlab-tree/');

@@ -34,3 +34,42 @@ for ilev=2:length(probLevel)
     end
 end
 
+%%
+% EXPMDP=MDP;
+minVB=MDP.VBNi;
+VBS=MDP.VBNi;
+try
+    while (true)
+        MDP=MDP.mdp(1);
+        minVB=min(minVB,MDP.VBNi);
+        VBS=[MDP.VBNi,VBS];
+    end
+catch
+end
+%%
+ll=full(spm_cat(probLevel));
+allvals=ll(:,2);
+% ll3=ll(:,3);
+[rtvals,ind2]=sort(allvals);
+% [val3,ind3]=sort(ll3);
+deltas=diff([0;rtvals]);
+mind=min(deltas);
+newsteps=round(minVB*deltas/mind);
+for il=1:length(probLevel)
+    for ii=1:size(probLevel{il},1)
+       probLevel{il}(ii,5)=newsteps(probLevel{il}(ii,3)==ind2);
+    end
+end
+%%
+for il=1:length(probLevel)
+    deltas=diff([0;probLevel{il}(:,2)]);
+    newsteps=round(minVB*deltas/mind);
+    probLevel{il}(:,6)=newsteps;
+end
+%%
+for il=1:length(probLevel)
+    deltas=diff([0;probLevel{il}(:,2)]);
+    mind=min(deltas);
+    newsteps=round(VBS(il)*deltas/mind);
+    probLevel{il}(:,7)=newsteps;
+end

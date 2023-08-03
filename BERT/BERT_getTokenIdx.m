@@ -1,5 +1,5 @@
 function   [TokenGuessed, pbscores]=BERT_getTokenIdx(input_str,Wid,params)
-% function [TokenGuessed, pbscores]=BERT_getTokenIdx(input_str,params)
+% function [TokenGuessed, pbscores]=BERT_getTokenIdx(input_str,Wid,params)
 %% Predict Masked Tokens Using BERT
 
 %% Load Pretrained BERT Model

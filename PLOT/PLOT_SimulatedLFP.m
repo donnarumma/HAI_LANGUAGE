@@ -28,7 +28,35 @@ x=HAI_computeGradient(z);
 
 
 a = axis;
-LFP=spm_cat(x);     
+LFP=spm_cat(x);
+
+if params.initialNoise
+    qx   = spm_cat(z);
+    act  = sum(qx,1);
+    indact=act>0.3;
+    val  = 0.2;
+    inoi = 2;
+    LFP(inoi,indact) =+val;
+    nact = find(~indact);
+    % nact = nact(end);%
+    nact=  nact(randi(length(nact)));
+    LFP(inoi,nact)=-val;
+
+    % qx(1:2,:)=0.5
+end
+
+if params.smooth
+    newT = 1000;
+    tu=linspace(min(t),max(t),newT);
+    [~,Ns]=size(LFP);
+    newLFP=zeros(newT,Ns);
+    LFP=full(LFP);
+    for is=1:Ns
+        newLFP(:,is)=interp1(t,LFP(:,is),tu,'cubic');
+    end
+    t = tu; 
+    LFP=newLFP;
+end
 plot(t,LFP,'linewidth',2),     hold off, axis(a)
 grid on
 % set(gca,'XTick',(1:(Ne*Nt))*Nb*dt), 
@@ -39,6 +67,7 @@ grid on
 title('Local field potentials','FontSize',16)
 xlabel('time [s]','FontSize',12)
 ylabel('response','FontSize',12)
+box on; grid on; 
 dy=0.015;
 ylim([min(LFP(:))-dy,max(LFP(:))+dy])
 xlim([t(1),t(end)]);

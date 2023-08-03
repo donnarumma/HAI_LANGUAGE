@@ -7,7 +7,15 @@ Nt = length(MDP);                    % number of trials
 Ne = size(MDP(1).xn{factor},4);      % number of epochs
 Nx = size(MDP(1).D{factor}, 1);      % number of states
 Nb = size(MDP(1).xn{factor},1);      % number of time bins per epochs
-
+if params.fakeneuron
+    Nx=Nx+params.fakeneuron;
+elseif params.killNNeurons
+    for ik=1:Nx
+        roms=sum(MDP(1).xn{factor}(:,ik,:,:));
+        bads(ik)=sum(roms(:));
+    end
+    Nx=Nx-sum(params.killNNeurons);
+end
 % units to plot
 %--------------------------------------------------------------------------
 UNITS   = [];
@@ -24,6 +32,20 @@ for i = 1:Nt
     %----------------------------------------------------------------------
     str    = {};
     xn = MDP(i).xn{factor};
+    if params.maxVBxn               % less VB iterations
+        xn=xn(1:params.maxVBxn,:,:,:);
+        Nb = size(xn,1);  
+    end
+    if params.fakeneuron
+        xxn=xn;
+        xxn(:,Nx-params.fakeneuron+(1:params.fakeneuron),:,:)=zeros(Nb,params.fakeneuron,Ne,Ne);
+        xn=xxn;
+    elseif params.killNNeurons
+        xxn=xn;
+        % xxn(:,[21:40,end-params.killNNeurons(1)+1:end],:,:)=[];
+        xxn(:,end-params.killNNeurons(1)+1:end,:,:)=[];
+        xn = xxn;
+    end
     for j = 1:size(UNITS,2)
         for k = 1:Ne
             try
