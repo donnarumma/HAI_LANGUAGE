@@ -51,12 +51,12 @@ DICTIONARY: Simple dictionary of English words (two syllable words of six letter
 ### (3) MAIN_HAI_DICTIONARY_v2.m
 3-level hierarchy 
 level 1 
-states  = [syllable, locations of  letters in the syllable]
-obs     = [  letter, locations of  letters in the syllable]
+states  = [syllable, locations of  letter  in the syllable]
+obs     = [  letter, locations of  letter  in the syllable]
 level 2
 states  = [    word, locations of syllable in the sentence]
 obs     = [syllable, locations of syllable in the sentence]
-level 2
+level 2 
 states  = [sentence, locations of   word   in the sentence]
 obs     = [    word, locations of   word   in the sentence]
 
@@ -116,11 +116,40 @@ provided an API-KEY.txt for OPEN-AI chatGPT, given the same context of (6)
 produce a random sentence:
 e.g. THIS MODEL HAS BEEN DESIGNED TO ENABLE THE ACCOMMODATION OF A COMPREHENSIVE SET OF ADAPTIVE BEHAVIORS TO ACHIEVE BEST ACCURACY
 
-### Package needed to enable tree visualization and computation on MDP
-add matlab-tree package 
+### Suggested packages
+
+1. matlab-tree package 
+Package needed to enable tree visualization and computation on MDP
 https://tinevez.github.io/matlab-tree/index.html  
 
+2.  spm12
+statistical parametric mapping version 12
+https://www.fil.ion.ucl.ac.uk/spm/software/download/
+
+3. export_fig
+enahanced routines for saving figures in MATLAB
+https://github.com/altmany/export_fig
+
+4. utilities
+https://github.com/donnarumma/utilities/
+
+## Non exaustive list of useful functions (in update...)
+HAI_disp    -> print tree structure
+HAI_compare -> compare two hierarchical structures
+
+## Notes: Major differences between 
+VB_MDP.m and spm12 spm_MDP_VB_X.m
+
+1) hidden states X are updated from t on.
+-Bayesian model averaging of hidden states-
+in spm_MDP_VB_X.m the second cycle is from 1 to S
+in VB_MDP.m it is possible to set it from t to S
+2) this consequently means that in section
+- check for residual uncertainty (in hierarchical schemes) -
+the state on which the Entropy is computed in t and not 1
+
 ## Authors and acknowledgment
+
 Francesco Donnaruma	francesco.donnarumma@istc.cnr.it
 
 Mirco Frosolone     mirco.frosolone@istc.cnr.it
@@ -129,6 +158,7 @@ Giovanni Pezzulo	giovanni.pezzulo@istc.cnr.it
 
 COgnition iN ActioN Laboratory (CONAN)
 https://www.istc.cnr.it/it/group/conan-0
+
 
 ## License
 This code is free software; you can redistribute it and/or modify

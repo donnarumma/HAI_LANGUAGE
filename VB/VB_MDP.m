@@ -143,13 +143,12 @@ MDP = spm_MDP_check(MDP);
 
 % defaults
 %--------------------------------------------------------------------------
-try, alpha    = MDP.alpha;                      catch, alpha     = 512;   end % action precision
-try, beta     = MDP.beta;                       catch, beta      = 1;     end % policy precision
-try, tau      = MDP.tau;                        catch, tau       = 4;     end % update time constant
-try, chi      = MDP.chi;                        catch, chi       = 1/64;  end % Occam window updates
-try, erp      = MDP.erp;                        catch, erp       = 4;     end % update reset
+try, MDP.alpha= OPTIONS.level(MDP.level).alpha; catch, MDP.alpha = 512;   end % action precision
+try, MDP.beta;                                  catch, MDP.beta  = 1;     end % policy precision
+try, MDP.tau;                                   catch, MDP.tau   = 4;     end % update time constant
+try, MDP.chi;                                   catch, MDP.chi   = 1/64;  end % Occam window updates
+try, MDP.erp;                                   catch, MDP.erp   = 4;     end % update reset
 try, MDP.VBNi = OPTIONS.level(MDP.level).VBNi;  catch, MDP.VBNi  = 16;    end % number of VB iterations
-try, alpha    = OPTIONS.level(MDP.level).alpha; catch, alpha     = 512;   end % action precision
 try, MDP.t;                                     catch, MDP.t     = {0};   end
 % preclude precision updates for moving policies
 %--------------------------------------------------------------------------
@@ -157,13 +156,11 @@ if isfield(MDP,'U'), OPTIONS.gamma = 1;         end
 
 % number of updates T & policies V (hidden Markov model with no policies)
 %--------------------------------------------------------------------------
-T           = MDP.T;                    % number of updates
 Vset(1,:,:) = MDP.U;                    % allowable actions (1,Np,Nf)
-VBNi        = MDP.VBNi;                 % number of VB iterations
 % ensure policy length is less than the number of updates
 %----------------------------------------------------------------------
-if size(Vset,1) > (T - 1)
-    Vset = Vset(1:(T - 1),:,:);
+if size(Vset,1) > (MDP.T - 1)
+    Vset = Vset(1:(MDP.T - 1),:,:);
 end
 
 % numbers of transitions, policies and states
@@ -206,10 +203,10 @@ end
 %----------------------------------------------------------------------
 for istatef = 1:NstateFactors
     if isfield(MDP,'D')
-        Dmatrix{istatef} = spm_norm(MDP.D{istatef});
+        MDP.D{istatef} = spm_norm(MDP.D{istatef});
     else
-        Dmatrix{istatef} = spm_norm(ones(Nstates(istatef),1));
-        MDP.D{istatef}   = Dmatrix{istatef};
+        MDP.D{istatef} = spm_norm(ones(Nstates(istatef),1));
+        % MDP.D{istatef}   = Dmatrix{istatef};
     end
 end
 
@@ -217,66 +214,63 @@ end
 %----------------------------------------------------------------------
 
 if isfield(MDP,'E')
-    E    = spm_norm(MDP.E);
+    MDP.E = spm_norm(MDP.E);
 else
-    E    = spm_norm(ones(Npolicies,1));
+    MDP.E = spm_norm(ones(Npolicies,1));
 end
-qE   = spm_log(E);
+qE   = spm_log(MDP.E);
 
 % prior preferences (log probabilities) : C
 %----------------------------------------------------------------------
 for iobsf = 1:NobsFactors
     if isfield(MDP,'C')
-        C{iobsf}  = MDP.C{iobsf};
+        MDP.C{iobsf}  = MDP.C{iobsf};
     else
-        C{iobsf}  = zeros(Nobs(iobsf),1);
+        MDP.C{iobsf}  = zeros(Nobs(iobsf),1);
     end
     
     % assume time-invariant preferences, if unspecified
     %------------------------------------------------------------------
-    if size(C{iobsf},2) == 1
-        C{iobsf} = repmat(C{iobsf},1,T);
+    if size(MDP.C{iobsf},2) == 1
+        MDP.C{iobsf} = repmat(MDP.C{iobsf},1,MDP.T);
     end
-    C{iobsf} = spm_log(spm_softmax(C{iobsf}));
+    MDP.C{iobsf} = spm_log(spm_softmax(MDP.C{iobsf}));
 end
 
 % initialise  posterior expectations of hidden states
 %----------------------------------------------------------------------
 for istatef = 1:NstateFactors
-%     neuralpolicies{istatef}     = zeros(VBNi,Nstates(istatef),1,1,Npolicies) + 1/Nstates(istatef); %%
-
-%     neuralpolicies{istatef}     = zeros(VBNi,Nstates(istatef),T,T,Npolicies) + 1/Nstates(istatef); %%
-
-    neuralpolicies{istatef}     = zeros(VBNi,Nstates(istatef),T,T,Npolicies); %%
-%     neuralpolicies{istatef}(:,:,1,1,:) = 1/Nstates(istatef); %%
-    
-    neuralpredictions{istatef}  = zeros(VBNi,Nstates(istatef),1,1,Npolicies);
-    
-    pstatesTimePols{istatef}    = zeros(Nstates(istatef),T,Npolicies);%      + 1/Nstates(istatef);
-    
-    pSTime{istatef}             = repmat(Dmatrix{istatef},1,1);
-
+% there are different ways to initialize neurons and states
+%     MDP.xnP{istatef}     = zeros(VBNi,Nstates(istatef),1,1,Npolicies) + 1/Nstates(istatef); %%
+    % MDP.xnP{istatef}= zeros(MDP.VBNi,Nstates(istatef),MDP.T,MDP.T,Npolicies); %%
+    MDP.xnP{istatef}= zeros(MDP.VBNi,Nstates(istatef),MDP.T,MDP.T,Npolicies) + 1/Nstates(istatef);  %%  **** Friston normalize  
+    MDP.vnP{istatef}= zeros(MDP.VBNi,Nstates(istatef),MDP.T,MDP.T,Npolicies);
+    MDP.Q{istatef}  = zeros(Nstates(istatef),MDP.T,Npolicies) + 1/Nstates(istatef);
+    MDP.X{istatef}  = repmat(MDP.D{istatef},1,1);
     for iNp = 1:Npolicies
-        pstatesTimePols{istatef}(:,1,iNp)       = Dmatrix{istatef};
-        pstatesTimePols{istatef}(:,:,iNp)       = spm_norm(pstatesTimePols{istatef}(:,:,iNp));     
+        MDP.Q{istatef}(:,1,iNp) = MDP.D{istatef};
+        % MDP.Q{istatef}(:,:,iNp) = spm_norm(MDP.Q{istatef}(:,:,iNp));  
     end
 end
-%squeeze(MODMDP.xn{2}(1,:,:,:))
 % initialise posteriors over polices and action
 %----------------------------------------------------------------------
-P                            = zeros([Nactions,1]);
-neuralstates                 = zeros(Npolicies,1);
-policyposteriorTime          = zeros(Npolicies,1);
-
+% MDP.P  = zeros([Nactions,1]);%MDP.T]);
+MDP.P  = zeros([Nactions,MDP.T-1]);
+MDP.R  = zeros(Npolicies,MDP.T);
+MDP.un = zeros(Npolicies,MDP.T*MDP.VBNi);
+MDP.F  = zeros(Npolicies,MDP.T);
+MDP.G  = zeros(Npolicies,MDP.T);
+MDP.H  = zeros(1,MDP.T);
+MDP.rt = zeros(1,MDP.T);
 % if there is only one policy
 %----------------------------------------------------------------------
 if Npolicies == 1
-    policyposteriorTime = ones(Npolicies,T);
+    MDP.R = ones(Npolicies,MDP.T);
 end
 
 % if states have not been specified set to 0
 %----------------------------------------------------------------------
-s        = zeros(NstateFactors,T);
+s        = zeros(NstateFactors,MDP.T);
 try
     good_s       = find(MDP.s);
     s(good_s) = MDP.s(good_s);
@@ -285,9 +279,9 @@ MDP.s    = s;
 
 % if outcomes have not been specified set to 0
 %----------------------------------------------------------------------
-o  = zeros(NobsFactors,T);
+o  = zeros(NobsFactors,MDP.T);
 try
-    good_o       = find(MDP.o);
+    good_o    = find(MDP.o);
     o(good_o) = MDP.o(good_o);
 end
 MDP.o = o;
@@ -298,21 +292,17 @@ pols  = 1:Npolicies;
 
 % expected rate parameter (precision of posterior over policies)
 %----------------------------------------------------------------------
-qb   = beta;                       % initialise rate parameters
-w    = 1/qb;                       % posterior precision (policy)
+qb   = MDP.beta;                   % initialise rate parameters
+MDP.w= 1/qb;                       % posterior precision (policy)
 
 % support struct for likelihood dot produtct
 current_pStates1=cell(1,NstateFactors);
-current_pStates2=cell(1,NstateFactors);
+% current_pStates2=cell(1,NstateFactors);
 current_pStates3=cell(1,NstateFactors);
-
-% if MDP.level==2
-%     fprintf('wtf\n');
-% end
 
 % belief updating over successive time points
 %==========================================================================
-for t = 1:T
+for t = 1:MDP.T
     MDP.t{1}=t;
     % generate hidden states and outcomes for each agent or model
     %======================================================================
@@ -350,8 +340,8 @@ for t = 1:T
         if ~MDP.o(iobsf,t)         
             % sample from likelihood given hidden state
             %--------------------------------------------------
-            ind           = num2cell(MDP.s(:,t));
-            po            = MDP.A{iobsf}(:,ind{:});
+            ind            = num2cell(MDP.s(:,t));
+            po             = MDP.A{iobsf}(:,ind{:});
             MDP.o(iobsf,t) = find(rand < cumsum(po),1);                   
         end
     end
@@ -363,7 +353,7 @@ for t = 1:T
     for iobsf = 1:NobsFactors 
         % specified as the sampled outcome
         %----------------------------------------------------------
-        ObsProb{iobsf,t} = sparse(MDP.o(iobsf,t),1,1,Nobs(iobsf),1);
+        MDP.O{iobsf,t} = sparse(MDP.o(iobsf,t),1,1,Nobs(iobsf),1);
     end         
     % or generate outcomes from a subordinate MDP
     %==================================================================
@@ -376,7 +366,6 @@ for t = 1:T
             mdp = MDP.MDP(1);
             if OPTIONS.sX(2)
                 try
-                    % mdp.s=squeeze(mdp.s(:,:,t));
                     mdp.t=[{0} , MDP.t(:)'];
                     mdp.s=squeeze(mdp.s(:,:,MDP.t{:}));
                 catch
@@ -395,7 +384,7 @@ for t = 1:T
         %--------------------------------------------------------------
         for istatef = 1:NstateFactors
             %----------------------------------------------------------
-            current_pStates1{istatef} = pSTime{istatef}(:,t);
+            current_pStates1{istatef} = MDP.X{istatef}(:,t);
         end
     
         % priors over states (of subordinate level)
@@ -407,12 +396,12 @@ for t = 1:T
                     
                     % subordinate state has hierarchical constraints
                     %--------------------------------------------------
-                    mdp.factor(end + 1)     = istatef;
+                    mdp.factor(end + 1)   = istatef;
                                             
                     % empirical priors over initial states
                     %--------------------------------------------------
-                    ObsProb{iobsf,t}        = spm_dot(MDP.A{iobsf},current_pStates1);
-                    mdp.D{istatef}          = MDP.link{istatef,iobsf}*ObsProb{iobsf,t};
+                    MDP.O{iobsf,t}        = spm_dot(MDP.A{iobsf},current_pStates1);
+                    mdp.D{istatef}        = MDP.link{istatef,iobsf}*MDP.O{iobsf,t};
                     
                     % hidden state for lower level is the outcome
                     %--------------------------------------------------
@@ -439,10 +428,10 @@ for t = 1:T
             for iobsf = 1:size(MDP.link,2)
                 if ~isempty(MDP.link{istatef,iobsf})
                     if OPTIONS.Ht
-                        ObsProb{iobsf,t} = MDP.link{istatef,iobsf}'*MDP.mdp(t).X{istatef}(:,1);
+                        MDP.O{iobsf,t} = MDP.link{istatef,iobsf}'*MDP.mdp(t).X{istatef}(:,1);
                     else
                         %% DONNARUMMA VERSION: take the latest probability on hidden states (end)
-                        ObsProb{iobsf,t} = MDP.link{istatef,iobsf}'*MDP.mdp(t).X{istatef}(:,end);
+                        MDP.O{iobsf,t} = MDP.link{istatef,iobsf}'*MDP.mdp(t).X{istatef}(:,end);
                     end
                 end
             end
@@ -453,7 +442,7 @@ for t = 1:T
     %==================================================================
     Likelihood{t} = 1;
     for iobsf = 1:NobsFactors
-        Likelihood{t} = Likelihood{t}.*spm_dot(MDP.A{iobsf},ObsProb{iobsf,t});
+        Likelihood{t} = Likelihood{t}.*spm_dot(MDP.A{iobsf},MDP.O{iobsf,t});
     end
     
     % Variational updates 
@@ -461,48 +450,47 @@ for t = 1:T
     % processing time and reset
     %--------------------------------------------------------------
     tstart = tic;
-    if 0
-        for istatef = 1:NstateFactors
-            pstatesTimePols{istatef}    = spm_softmax(spm_log(pstatesTimePols{istatef})/erp);
-        end
-    end
+    % if 0
+    %     for istatef = 1:NstateFactors
+    %         MDP.Q{istatef}    = spm_softmax(spm_log(MDP.Q{istatef})/erp);
+    %     end
+    % end
     % Variational updates (hidden states) under sequential policies
     %==============================================================
     
     % variational message passing (VMP)
     %--------------------------------------------------------------
-    TimeHorizon        = size(Vset,1) + 1;   % horizon
-    FreeEnergyPols     = zeros(Npolicies,1);  
+    TimeHorizon    = size(Vset,1) + 1;   % horizon
+    FreeEnergy     = zeros(Npolicies,1);  
     for iNp = pols                      % loop over plausible policies               
-        [pstatesTimePols,neuralpolicies,neuralpredictions,FreeEnergy]=VB_iterate(pstatesTimePols,neuralpolicies,neuralpredictions,t,TimeHorizon,Likelihood,iNp,Vset,Dmatrix,MDP);
-        FreeEnergyPols(iNp)=FreeEnergy;
+        [MDP,FreeEnergy(iNp)] = VB_iterate(MDP,t,Likelihood,iNp,Vset);
     end
     
     % accumulate expected free energy of policies (Q)
     %==============================================================
-    policyprior         = 1;                        % empirical prior   (pu)
-    policyposterior     = 1;                        % posterior         (qu)
-    ExpectedFreeEnergy  = zeros(Npolicies,1);       % expected free energy
+    % policyprior         = 1;                        % empirical prior   (pu)
+    % policyposterior     = 1;                        % posterior         (qu)
+    EFE  = zeros(Npolicies,1);       % expected free energy
     for iNp = pols     
         for iTH = t:TimeHorizon
             
             % get expected states for this policy and time
             %--------------------------------------------------
             for istatef = 1:NstateFactors
-                current_pStates3{istatef} = pstatesTimePols{istatef}(:,iTH,iNp);
+                current_pStates3{istatef} = MDP.Q{istatef}(:,iTH,iNp);
             end
             
             % (negative) expected free energy
             %==================================================                
             % Bayesian surprise about states
             %--------------------------------------------------
-            ExpectedFreeEnergy(iNp) = ExpectedFreeEnergy(iNp) + spm_MDP_G(MDP.A(:),current_pStates3);
+            EFE(iNp) = EFE(iNp) + spm_MDP_G(MDP.A(:),current_pStates3);
             
             for iobsf = 1:NobsFactors
                 % prior preferences about outcomes
                 %----------------------------------------------
                 qo   = spm_dot(MDP.A{iobsf},current_pStates3);
-                ExpectedFreeEnergy(iNp) = ExpectedFreeEnergy(iNp) + qo'*(C{iobsf}(:,iTH));
+                EFE(iNp) = EFE(iNp) + qo'*(MDP.C{iobsf}(:,iTH));
             end
         end
     end % end loop over policies
@@ -513,7 +501,7 @@ for t = 1:T
     % previous expected precision
     %----------------------------------------------------------
     if t > 1
-        w(t) = w(t - 1);
+        MDP.w(t) = MDP.w(t - 1);
     end
     % posterior and prior beliefs about policies
     %------------------------------------------------------
@@ -537,28 +525,28 @@ for t = 1:T
         qEpr=qE;
         qEps=qE;
     end
-    policyposterior = spm_softmax(qEps(pols) + w(t)*ExpectedFreeEnergy(pols) + FreeEnergyPols(pols));
-    policyprior     = spm_softmax(qEpr(pols) + w(t)*ExpectedFreeEnergy(pols));
+    policyposterior = spm_softmax(qEps(pols) + MDP.w(t)*EFE(pols) + FreeEnergy(pols));
+    policyprior     = spm_softmax(qEpr(pols) + MDP.w(t)*EFE(pols));
     
     % precision (w) with free energy gradients (v = -dF/dw)
     %------------------------------------------------------
     
     if OPTIONS.gamma
-        w(t) = 1/beta;
+        MDP.w(t) = 1/MDP.beta;
     else
-        eg      = (policyposterior - policyprior)'*ExpectedFreeEnergy(pols);
-        dFdg    = qb - beta + eg;
-        qb   = qb - dFdg/2;
-        w(t) = 1/qb;
+        eg       = (policyposterior - policyprior)'*EFE(pols);
+        dFdg     = qb - MDP.beta + eg;
+        qb       = qb - dFdg/2;
+        MDP.w(t) = 1/qb;
     end
-    policyposteriorTime(pols,t)             = policyposterior;
+    MDP.R(pols,t)             = policyposterior;
         
-    for iVB = 1:VBNi     
+    for iVB = 1:MDP.VBNi     
         % simulated dopamine responses (expected precision)
         %------------------------------------------------------
-        n                           = (t - 1)*VBNi + iVB;
-        neuralprecision(n,1)        = w(t);
-        neuralstates(pols,n)        = policyposterior;      
+        n                   = (t - 1)*MDP.VBNi + iVB;
+        MDP.wn(n,1)         = MDP.w(t);
+        MDP.un(pols,n)      = policyposterior;      
     end               
     
     
@@ -572,18 +560,18 @@ for t = 1:T
     end
     for istatef = 1:NstateFactors
         for iTH = Ht:TimeHorizon
-            pSTime{istatef}(:,iTH) = reshape(pstatesTimePols{istatef}(:,iTH,:),Nstates(istatef),Npolicies)*policyposteriorTime(:,t);
+            MDP.X{istatef}(:,iTH) = reshape(MDP.Q{istatef}(:,iTH,:),Nstates(istatef),Npolicies)*MDP.R(:,t);
         end
     end
     
     % processing (i.e., reaction) time
     %--------------------------------------------------------------
-    rt(t)      = toc(tstart);
+    MDP.rt(t)      = toc(tstart);
     
     % record (negative) free energies
     %--------------------------------------------------------------
-    MDP.F(:,t) = FreeEnergyPols;
-    MDP.G(:,t) = ExpectedFreeEnergy;
+    MDP.F(:,t) = FreeEnergy;
+    MDP.G(:,t) = EFE;
     MDP.H(1,t) = policyposterior'*MDP.F(pols,t) - policyposterior'*(spm_log(policyposterior) - spm_log(policyprior));
     
     % check for residual uncertainty (in hierarchical schemes)
@@ -592,47 +580,45 @@ for t = 1:T
         
         for istatef = MDP.factor(:)'
             %% DONNARUMMA VERSION: consider uncertainty only on future time
-            qx     = pSTime{istatef}(:,Ht);
+            qx     = MDP.X{istatef}(:,Ht);
 %             qx     = pstatesTime{m,istatef}(:,end); % take last 
             H(istatef) = qx'*spm_log(qx);
         end
         
         % break if there is no further uncertainty to resolve
         %----------------------------------------------------------
-        if sum(H(:)) > - chi
+        if sum(H(:)) > - MDP.chi
             fprintf('%s sure. Exiting at time %g\n',MDP.Hname,t);
-            % fprintf('NO MORE IN DOUBT! %s Exiting at time %g\n',MDP.Hname,t);
-            if t==1
-                fprintf('wtf\n');
-            end
-            T = t;
+            % if t==1
+            %     fprintf('wtf\n');
+            % end
+            MDP.T = t;
         end
     end
     
     % action selection
     %==============================================================
-    if t < T
-        
+    if t < MDP.T       
         % marginal posterior over action (for each factor)
         %----------------------------------------------------------
         Pu    = zeros([Nactions,1]);
         for iVB = 1:Npolicies
             sub        = num2cell(Vset(t,iVB,:));
-            Pu(sub{:}) = Pu(sub{:}) + policyposteriorTime(iVB,t);
+            Pu(sub{:}) = Pu(sub{:}) + MDP.R(iVB,t);
         end
         
         % action selection (softmax function of action potential)
         %----------------------------------------------------------
         sub            = repmat({':'},1,NstateFactors);
-        Pu(:)          = spm_softmax(alpha*log(Pu(:)));
-        P(sub{:},t)    = Pu;
+        Pu(:)          = spm_softmax(MDP.alpha*log(Pu(:)));
+        MDP.P(sub{:},t)= Pu;
         
         % next action - sampled from marginal posterior
         %----------------------------------------------------------
         try
             MDP.u(:,t) = MDP.u(:,t);
         catch
-            ind           = find(rand < cumsum(Pu(:)),1);
+            ind        = find(rand < cumsum(Pu(:)),1);
             MDP.u(:,t) = spm_ind2sub(Nactions,ind);
         end
         
@@ -644,7 +630,7 @@ for t = 1:T
                 Vset(t,:,istatef) = MDP.u(istatef,t);
             end
             for iaction = 1:size(MDP.U,1)
-                if (t + 1) < T
+                if (t + 1) < MDP.T
                     Vset(t + 1,:,:) = MDP.U(:,:);
                 end
             end
@@ -653,7 +639,7 @@ for t = 1:T
             %------------------------------------------------------
             for istatef = 1:NstateFactors
                 for iNp = 1:Npolicies
-                    pstatesTimePols{istatef}(:,:,iNp) = 1/Nstates(istatef);
+                    MDP.Q{istatef}(:,:,iNp) = 1/Nstates(istatef);
                 end
             end
         end
@@ -662,20 +648,41 @@ for t = 1:T
     
     % terminate evidence accumulation
     %----------------------------------------------------------------------
-    if t == T
-        if T == 1
+    if t == MDP.T
+        if MDP.T == 1
             MDP.u  = zeros(NstateFactors,0);
         end
-        MDP.o  = MDP.o(:,1:T);        % outcomes at 1,...,T
-        MDP.s  = MDP.s(:,1:T);        % states   at 1,...,T
-        MDP.u  = MDP.u(:,1:T - 1);    % actions  at 1,...,T - 1
+        MDP.o  = MDP.o(:,1:MDP.T);        % outcomes at 1,...,T
+        MDP.s  = MDP.s(:,1:MDP.T);        % states   at 1,...,T
+        MDP.u  = MDP.u(:,1:MDP.T - 1);    % actions  at 1,...,T - 1
+        
+        %% DONNARUMMA: only good T
+        for istatef = 1:NstateFactors
+            MDP.Q{istatef}  = MDP.Q  {istatef}(:,1:MDP.T,:);
+            MDP.X{istatef}  = MDP.X  {istatef}(:,1:MDP.T);
+            
+            MDP.xnP{istatef}= MDP.xnP{istatef}(:,:,1:MDP.T,1:MDP.T,:);
+            MDP.vnP{istatef}= MDP.vnP{istatef}(:,:,1:MDP.T,1:MDP.T,:);
+        end
+        for iobsf = 1:NobsFactors
+            MDP.C{iobsf}=MDP.C{iobsf}(:,1:MDP.T);
+        end
+        sub   =repmat({':'},1,length(Nactions));
+        MDP.P =MDP.P(sub{:},1:MDP.T-1);
+        MDP.R =MDP.R (:,1:MDP.T);
+        MDP.un=MDP.un(:,1:MDP.VBNi*MDP.T);
+        MDP.F =MDP.F (:,1:MDP.T);
+        MDP.G =MDP.G (:,1:MDP.T);
+        MDP.H =MDP.H (1,1:MDP.T);
+        MDP.rt=MDP.rt(1,1:MDP.T);
         break;
     end
 
     
     if OPTIONS.debugmode
         fprintf('Loop in t\n');
-        MDP.X=pSTime;TRACE_printHierarchicalLevel(MDP,t);
+        % MDP.X=pSTime;
+        TRACE_printHierarchicalLevel(MDP,t);
     end
 end % end of loop over time
 
@@ -684,54 +691,52 @@ end % end of loop over time
 % simulated dopamine (or cholinergic) responses
 %----------------------------------------------------------------------
 if Npolicies > 1
-    dn = 8*gradient(neuralprecision) + neuralprecision/8;
+    MDP.dn = 8*gradient(MDP.wn) + MDP.wn/8;
 else
-    dn = [];
-    neuralprecision = [];
+    MDP.dn = [];
+    MDP.wn = [];
 end
 
 % Bayesian model averaging of expected hidden states over policies
 %----------------------------------------------------------------------
 for istatef = 1:NstateFactors
-    Xn{istatef} = zeros(VBNi,Nstates(istatef),T,T);
-    Vn{istatef} = zeros(VBNi,Nstates(istatef),T,T);
-    for iTH = 1:T
+    MDP.xn{istatef} = zeros(MDP.VBNi,Nstates(istatef),MDP.T,MDP.T);
+    MDP.vn{istatef} = zeros(MDP.VBNi,Nstates(istatef),MDP.T,MDP.T);
+    for iTH = 1:MDP.T
         for iNp = 1:Npolicies
-            Xn{istatef}(:,:,1:T,iTH) = Xn{istatef}(:,:,1:T,iTH) + neuralpolicies   {istatef}(:,:,1:T,iTH,iNp)*policyposteriorTime(iNp,iTH);
-            Vn{istatef}(:,:,1:T,iTH) = Vn{istatef}(:,:,1:T,iTH) + neuralpredictions{istatef}(:,:,1:T,iTH,iNp)*policyposteriorTime(iNp,iTH);
+            MDP.xn{istatef}(:,:,1:MDP.T,iTH) = MDP.xn{istatef}(:,:,1:MDP.T,iTH) + MDP.xnP{istatef}(:,:,1:MDP.T,iTH,iNp)*MDP.R(iNp,iTH);
+            MDP.vn{istatef}(:,:,1:MDP.T,iTH) = MDP.vn{istatef}(:,:,1:MDP.T,iTH) + MDP.vnP{istatef}(:,:,1:MDP.T,iTH,iNp)*MDP.R(iNp,iTH);
         end
-    end
-    %% DONNARUMMA: only good T
-    pstatesTimePols{istatef} = pstatesTimePols{istatef}(:,1:T,:);
-    pSTime{istatef}     = pSTime{istatef}(:,1:T);
-
+    end  
 end
 
 % use penultimate beliefs about moving policies
 %----------------------------------------------------------------------
 if isfield(MDP,'U')
-    policyposteriorTime(:,T)  = [];
-    try neuralstates(:,(end - VBNi + 1):end) = []; catch, end
+    MDP.R(:,MDP.T)  = [];
+    try MDP.un(:,(end - MDP.VBNi + 1):end) = []; catch, end
 end
 
-% assemble results and place in NDP structure
+% assemble results and place in MDP structure
 %----------------------------------------------------------------------
-MDP.T  = T;                     % number of belief updates
-MDP.O  = ObsProb;               % outcomes
-MDP.P  = P;                     % probability of action at time 1,...,T - 1
-MDP.R  = policyposteriorTime;   % conditional expectations over policies
-MDP.Q  = pstatesTimePols;       % conditional expectations over N states
-MDP.X  = pSTime;                % Bayesian model averages over T outcomes
-MDP.C  = C;                     % utility
+% MDP.VBNi;     % number of VB iterations
+% MDP.T;        % number of belief updates
+% MDP.O;        % outcomes
+% MDP.P;        % probability of action at time 1,...,T - 1
+% MDP.R;        % conditional expectations over policies
+% MDP.Q;        % conditional expectations over N states
+% MDP.X;        % Bayesian model averages over T outcomes
+% MDP.C;        % utility
 
-MDP.w  = w;                     % posterior expectations of precision (policy)
-MDP.vn = Vn;                    % simulated neuronal prediction error
-MDP.xn = Xn;                    % simulated neuronal encoding of hidden states
-MDP.un = neuralstates;          % simulated neuronal encoding of policies
-MDP.wn = neuralprecision;       % simulated neuronal encoding of precision
-MDP.dn = dn;                    % simulated dopamine responses (deconvolved)
-MDP.nP = neuralpolicies;
-MDP.rt = rt;                    % simulated reaction time (seconds)
+% MDP.w;        % posterior expectations of precision (policy)
+% MDP.vn;       % simulated neuronal prediction error
+% MDP.xn;       % simulated neuronal encoding of hidden states
+% MDP.un;       % simulated neuronal encoding of policies
+% MDP.wn;       % simulated neuronal encoding of precision
+% MDP.dn;       % simulated dopamine responses (deconvolved)
+% MDP.xnP;      % support for xn
+% MDP.unP;      % support for vn
+% MDP.rt;       % simulated reaction time (seconds)
 
 
 % plot

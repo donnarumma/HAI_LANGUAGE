@@ -4,6 +4,6 @@ function   Sentences = DICTIONARY_sentences(DICTIONARY)
     for is = 1:length(Sentence)
         Sentences{is}= [HAI_retrieveLevel(Sentence{is},' ') ' '];
     end
-    Sentences=Sentences(:);
+    Sentences=strtrim(Sentences(:));
     % Sentence;
 end

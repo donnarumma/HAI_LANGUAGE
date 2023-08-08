@@ -47,7 +47,8 @@ end
 % simulation function
 % params.spm_MDP_VB_H                  =str2func('spm_MDP_VB_X_tutorial_debug_v0');       % Friston original
 % params.spm_MDP_VB_H                  =str2func('spm_MDP_VB_X_tutorial_debug_v2_bis');   % Friston simulation with friendly variable
-% params.spm_MDP_VB_H                  = str2func('spm_MDP_VB_X_tutorial_debug_v11');     % Latest version
+% params.spm_MDP_VB_H                  = str2func('spm_MDP_VB_X_tutorial_debug_v11');     % Last debug version
+% params.spm_MDP_VB_H                  = str2func('VB_MDP_INC');                          % Last version  
 params.spm_MDP_VB_H                  = str2func('VB_MDP');                                % Latest version
 
 params.debugmode                     = false;       % 1 verbose printing mode
