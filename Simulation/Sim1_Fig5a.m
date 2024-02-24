@@ -1,4 +1,5 @@
-%% main for boxplot figures 5 a)
+% Sim1_Fig5a 
+% main for boxplot figures 5 a)
 
 %% parameters
 rem_out = false; % remove outliers  
@@ -6,25 +7,24 @@ campion = true; % Standard deviation for population or sample
 sigma_parameter = [1 2 3]; %percentage of the sigma interval
 
 %% Four Letters MDP paths
+SEP = filesep;
 %% Four Letter
-path1 = 'D:\HAI_LANGUAGE_MIRKO\Dati.mat\FourLetter_NoNoise_NewDIC';
+path1 = ['.' SEP 'HAI_LANGUAGE' SEP 'Sim1_CM_4l'  SEP];
 
-path2 = 'D:\HAI_LANGUAGE_MIRKO\Dati.mat\FourLetter_NoiseLevel1_NewDIC';
+path2 = ['.' SEP 'HAI_LANGUAGE' SEP 'Sim1_DM1_4l' SEP];
 
-path3 = 'D:\HAI_LANGUAGE_MIRKO\Dati.mat\FourLetter_NoiseLevel2_NewDIC';
+path3 = ['.' SEP 'HAI_LANGUAGE' SEP 'Sim1_DM2_4l' SEP];
 
-path4 = 'D:\HAI_LANGUAGE_MIRKO\Dati.mat\FourLetter_NoiseLevel12_NewDIC';
+path4 = ['.' SEP 'HAI_LANGUAGE' SEP 'Sim1_DM_4l'  SEP];
 
 %% Eight Letter
+path5 = ['.' SEP 'HAI_LANGUAGE' SEP 'Sim1_CM_8l'  SEP];
 
-path5 = 'D:\HAI_LANGUAGE_MIRKO\Dati.mat\EightLetter_NoNoise';
+path6 = ['.' SEP 'HAI_LANGUAGE' SEP 'Sim1_DM1_8l' SEP];
 
-path6 = 'D:\HAI_LANGUAGE_MIRKO\Dati.mat\EightLetter_NoiseLevel1';
+path7 = ['.' SEP 'HAI_LANGUAGE' SEP 'Sim1_DM2_8l' SEP];
 
-path7 = 'D:\HAI_LANGUAGE_MIRKO\Dati.mat\EightLetter_NoiseLevel2';
-
-path8 = 'D:\HAI_LANGUAGE_MIRKO\Dati.mat\EightLetter_NoiseLevel12';
-
+path8 = ['.' SEP 'HAI_LANGUAGE' SEP 'Sim1_DM_8l'  SEP];
 
 Output_parameters_Group1 = boxplotparameters(path1,rem_out,campion,sigma_parameter(1));
 

@@ -1,13 +1,11 @@
 %% This function extract all MDP from one path and evaluate intresting parameters
-
 function [Pre_Result,Result] = MDP_analysis(path)
 %% MDP analysis on sentence
 
 %% backword saccades
 % Get the list of files and initialize parameters
-filesep = '\\';
 SEP = filesep;
-path_name = strcat(path,'\**\*.mat');
+path_name = strcat(path,[SEP '**' SEP '*' '.mat']);
 f_names = dir(path_name);
 len = length(f_names);
 Back_final = cell(len,2);
@@ -21,7 +19,7 @@ Sacc_total = cell(len,2);
 % Loop over the input files
 for p=1:length(f_names)
       % data file load
-    data=load(strcat(f_names(p).folder,'\',f_names(p).name));
+    data=load(strcat(f_names(p).folder,SEP,f_names(p).name));
     try 
         MDP = data.MDP;
     catch

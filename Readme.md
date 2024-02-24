@@ -24,6 +24,11 @@ Type HAI_LANGUAGE_pathsLoad; in main the directory to add necessary subpaths.
 then choose one of the main in directory "MAINS" to see a demonstration of code features
 
 ## Code
+### Example in Simulation 1
+Execute reading simulation (in folder simulation) to produce the outputs
+- four letters reading simulation:  Sim1_CM_4l, Sim1_DM1_4l, Sim1_DM2_4l, Sim1_DM_4l 
+- eight letters reading simulation: Sim1_CM_8l, Sim1_DM1_8l, Sim1_DM2_8l, Sim1_DM_8l 
+Then execute Sim1_Fig5a to produce Fig5(a) of the paper. 
 
 ### (1) MAIN_HAI_DICTIONARY_v0.m
 HAI example with a simple dictionary

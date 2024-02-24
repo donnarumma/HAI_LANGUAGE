@@ -1,20 +1,24 @@
-function   paths = HAI_LANGUAGE_pathsLoad()
-% function paths = HAI_LANGUAGE_pathsLoad()
-curdir      = pwd;
+function   paths = HAI_LANGUAGE_pathsLoad(hai_dir)
+% function paths = HAI_LANGUAGE_pathsLoad(hai_dir)
+try 
+    haidir=hai_dir;
+catch
+    haidir      = pwd;
+end
 SEP         = filesep;
 D           = pathsep;
 p           = '';
-p           = [p, curdir SEP 'BERT'         D];
-p           = [p, curdir SEP 'chatGPT'      D];
-p           = [p, curdir SEP 'DICTIONARY'   D];
-p           = [p, curdir SEP 'HAI'          D];
-p           = [p, curdir SEP 'MAIN'         D];
-p           = [p, curdir SEP 'PLOT'         D];
-p           = [p, curdir SEP 'SPM12_UTILS'  D];
-p           = [p, curdir SEP 'TRACE'        D];
-p           = [p, curdir SEP 'TREE'         D];
-p           = [p, curdir SEP 'UTILITIES'    D];
-p           = [p, curdir SEP 'VB'           D];
+p           = [p, haidir SEP 'BERT'         D];
+p           = [p, haidir SEP 'chatGPT'      D];
+p           = [p, haidir SEP 'DICTIONARY'   D];
+p           = [p, haidir SEP 'HAI'          D];
+p           = [p, haidir SEP 'MAIN'         D];
+p           = [p, haidir SEP 'PLOT'         D];
+p           = [p, haidir SEP 'SPM12_UTILS'  D];
+p           = [p, haidir SEP 'TRACE'        D];
+p           = [p, haidir SEP 'TREE'         D];
+p           = [p, haidir SEP 'UTILITIES'    D];
+p           = [p, haidir SEP 'VB'           D];
 
 % p           = genpath (curdir);
 
