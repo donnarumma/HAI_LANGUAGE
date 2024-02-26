@@ -1,28 +1,10 @@
 %% main to evaluate the Analysis Result obtained
 function [Time_over_max,Wrong_sent,Accuracy_final,Back_level,Backw_statistic,Saccad_statistic,Prob_statistic] = HAI_result_eval(Back_final,Sacc_total,Exit_time,Accuracy,Prob_exit,Probability)
-m= 1;
+
 %% Number of wrong elment
         Time_over_max = find([Exit_time{:,2}] == 8);
         Wrong_sent = find([Accuracy{:,2}] == 0);
- if  m == 0
-    % Max T evaluation
-    Time_good = find([Exit_time{:,2}] ~= 8);
-    if length(Time_good) ~= 100
-       Time_over = find([Exit_time{:,2}] == 8);
-       Accuracy(Time_over,:) = [];
-       Back_final(Time_over,:) = [];
-       Sacc_total(Time_over,:) = [];
-       Prob_exit(Time_over,:) = [];
-    end
-    % Wrong sentence identification
-    Wrong_Acc = find([Accuracy{:,2}] == 0);
-    if Wrong_Acc ~=0
-           Back_final(Wrong_Acc,:) = [];
-           Sacc_total(Wrong_Acc,:) = [];
-           Prob_exit(Wrong_Acc,:) = [];
-    end
- end
- % Wrong sentence identification
+  % Wrong sentence identification
     Wrong_Acc = find([Accuracy{:,2}] == 0);
     if Wrong_Acc ~=0
            Back_final(Wrong_Acc,:) = [];
