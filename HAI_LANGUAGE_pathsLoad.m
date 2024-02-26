@@ -19,6 +19,7 @@ p           = [p, haidir SEP 'TRACE'        D];
 p           = [p, haidir SEP 'TREE'         D];
 p           = [p, haidir SEP 'UTILITIES'    D];
 p           = [p, haidir SEP 'VB'           D];
+p           = [p, haidir SEP 'Simulation'   D];
 
 % p           = genpath (curdir);
 
