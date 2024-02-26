@@ -1,11 +1,12 @@
-% main Sim1_DM_8l.m
-% Simulation 1: reading 100 words of eight letters from the BERT Dictionary, Dyslexic Model
+% main Sim1_DM1_8l.m
+% Simulation 1: reading 100 words of eight letters from the BERT
+% Dictionary, Dyslexic Model - DM1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 clear;
 
 irng                                = randi([1 10],1);  %'default';
 length_of_words                     = 8;                % words of eight letters
-paramsmodes                         = 23;               % select the SUB parameter: Dyslexic Model, two level (Syllables, Words), noise on level 1 and 2
+paramsmodes                         = 21;               % select the SUB parameter: Dyslexic Model - DM1, two level (Syllables, Words), noise on level 1 (syllables)
 Nruns                               = 100;              % number of runs
 dictionary                          = 'BERT_100_SY';
 fundic                              = str2func(dictionary);

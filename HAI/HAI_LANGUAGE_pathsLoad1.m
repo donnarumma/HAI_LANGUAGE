@@ -1,4 +1,4 @@
-function   paths = HAI_LANGUAGE_pathsLoad()
+function   paths = HAI_LANGUAGE_pathsLoad1()
 % function paths = HAI_LANGUAGE_pathsLoad()
 curdir      = pwd;
 SEP         = filesep;
@@ -15,7 +15,6 @@ p           = [p, curdir SEP 'TRACE'        D];
 p           = [p, curdir SEP 'TREE'         D];
 p           = [p, curdir SEP 'UTILITIES'    D];
 p           = [p, curdir SEP 'VB'           D];
-
 % p           = genpath (curdir);
 
 addpath(p);
