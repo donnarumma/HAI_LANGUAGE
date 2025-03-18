@@ -5,21 +5,23 @@ try
 catch
     haidir      = pwd;
 end
-SEP         = filesep;
-D           = pathsep;
+FS          = filesep;
+PS          = pathsep;
 p           = '';
-p           = [p, haidir SEP 'BERT'         D];
-p           = [p, haidir SEP 'chatGPT'      D];
-p           = [p, haidir SEP 'DICTIONARY'   D];
-p           = [p, haidir SEP 'HAI'          D];
-p           = [p, haidir SEP 'MAIN'         D];
-p           = [p, haidir SEP 'PLOT'         D];
-p           = [p, haidir SEP 'SPM12_UTILS'  D];
-p           = [p, haidir SEP 'TRACE'        D];
-p           = [p, haidir SEP 'TREE'         D];
-p           = [p, haidir SEP 'UTILITIES'    D];
-p           = [p, haidir SEP 'VB'           D];
-p           = [p, haidir SEP 'Simulation'   D];
+p           = [p, haidir FS 'BERT'         PS];
+p           = [p, haidir FS 'chatGPT'      PS];
+p           = [p, haidir FS 'DICTIONARY'   PS];
+p           = [p, haidir FS 'HAI'          PS];
+p           = [p, haidir FS 'HAI' FS 'haipms' PS];
+p           = [p, haidir FS 'MAIN'         PS];
+p           = [p, haidir FS 'PLOT'         PS];
+p           = [p, haidir FS 'PLOT' FS 'plotpms' PS];
+p           = [p, haidir FS 'SPM12_UTILS'  PS];
+p           = [p, haidir FS 'TRACE'        PS];
+p           = [p, haidir FS 'TREE'         PS];
+p           = [p, haidir FS 'UTILITIES'    PS];
+p           = [p, haidir FS 'VB'           PS];
+p           = [p, haidir FS 'Simulation'   PS];
 
 % p           = genpath (curdir);
 

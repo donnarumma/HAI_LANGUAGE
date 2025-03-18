@@ -1,4 +1,4 @@
-function DICTIONARY = DICTIONARY_v1
+function DICTIONARY = DICTIONARY_v0
 
 LETTERS{1,1}      = 'A';
 LETTERS{2,1}      = 'B';

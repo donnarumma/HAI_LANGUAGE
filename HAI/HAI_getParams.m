@@ -1,7 +1,7 @@
 function    [params, noisedescription]=HAI_getParams(index,dictionary)
 %% function [params, noisedescription]=HAI_getParams(index,dictionary)
 
-params              = HAI_getDefaultParams(dictionary);
+params              = HAI_DefaultParams(dictionary);
 noisedescription    = '';
 params.irng         = 10; %'default';
 DICTIONARY          = params.DICTIONARY();

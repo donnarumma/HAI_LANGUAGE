@@ -5,7 +5,7 @@ if ~exist('params','var') || isempty(params.hfig) || ~isvalid(params.hfig)
 else
     h=params.hfig;
 end
-hai_neu=HAI_getNeuralStatistics(MDP,params);
+hai_neu= HAI_getNeuralStatistics(MDP,params);
 % x       = hai_neu.x;  %% difference in potential (neurons)
 z       = hai_neu.z;  %% neuron potentials
 
@@ -17,9 +17,9 @@ z       = hai_neu.z;  %% neuron potentials
 % Nx =  size(x{1},2)/Ne;      % number of states
 
 % [z,rescale,newsteps]=HAI_humanlike(MDP,z,params);
-[z,t]=HAI_humanlike(MDP,z,params);
-% [x,rescale,newsteps]=HAI_humanlike(MDP,x,params);
-x=HAI_computeGradient(z);
+[z,t]   = HAI_humanlike(MDP,z,params);
+x       = HAI_computeGradient(z);
+LFP     = spm_cat(x);
 
 % t = (1:(sum(newsteps)*Nt))*dt;    % time (seconds)
 % t = t*rescale/t(end);
@@ -28,7 +28,6 @@ x=HAI_computeGradient(z);
 
 
 a = axis;
-LFP=spm_cat(x);
 
 if params.initialNoise
     qx   = spm_cat(z);

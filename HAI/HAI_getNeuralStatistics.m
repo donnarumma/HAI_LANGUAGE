@@ -1,44 +1,41 @@
 function   hai_neu = HAI_getNeuralStatistics(MDP,params)
 % function hai_neu = HAI_getNeuralStatistics(MDP,params)
 
-factor = params.factor;
+factor  = params.factor;
 
-Nt = length(MDP);                    % number of trials
-Ne = size(MDP(1).xn{factor},4);      % number of epochs
-Nx = size(MDP(1).D{factor}, 1);      % number of states
-Nb = size(MDP(1).xn{factor},1);      % number of time bins per epochs
+nSteps  = length(MDP);                    % number of steps
+nEpochs = size(MDP(1).xn{factor},4);      % number of epochs
+nStates = size(MDP(1).D{factor}, 1);      % number of states
+nBins   = size(MDP(1).xn{factor},1);      % number of time bins per epochs
 if params.fakeneuron
-    Nx=Nx+params.fakeneuron;
+    nStates=nStates+params.fakeneuron;
 elseif params.killNNeurons
-    for ik=1:Nx
-        roms=sum(MDP(1).xn{factor}(:,ik,:,:));
-        bads(ik)=sum(roms(:));
-    end
-    Nx=Nx-sum(params.killNNeurons);
+    nStates=nStates-sum(params.killNNeurons);
 end
 % units to plot
 %--------------------------------------------------------------------------
+% [iState; iEpoch]
 UNITS   = [];
-for ie = 1:Ne
-    for jx = 1:Nx
-        UNITS(:,end + 1) = [jx;ie];
+for iEpoch = 1:nEpochs
+    for iState = 1:nStates
+        UNITS(:,end + 1) = [iState;iEpoch];
     end
 end
 
 % summary statistics
 %==========================================================================
-for i = 1:Nt   
+for iStep = 1:nSteps   
     % all units
     %----------------------------------------------------------------------
     str    = {};
-    xn = MDP(i).xn{factor};
+    xn = MDP(iStep).xn{factor};    % nBins x nStates x nEpochs x nEpochs
     if params.maxVBxn               % less VB iterations
         xn=xn(1:params.maxVBxn,:,:,:);
-        Nb = size(xn,1);  
+        nBins = size(xn,1);  
     end
     if params.fakeneuron
         xxn=xn;
-        xxn(:,Nx-params.fakeneuron+(1:params.fakeneuron),:,:)=zeros(Nb,params.fakeneuron,Ne,Ne);
+        xxn(:,nStates-params.fakeneuron+(1:params.fakeneuron),:,:)=zeros(nBins,params.fakeneuron,nEpochs,nEpochs);
         xn=xxn;
     elseif params.killNNeurons
         xxn=xn;
@@ -46,22 +43,19 @@ for i = 1:Nt
         xxn(:,end-params.killNNeurons(1)+1:end,:,:)=[];
         xn = xxn;
     end
-    for j = 1:size(UNITS,2)
-        for k = 1:Ne
-            try
-                zj{k,j} = xn(:,UNITS(1,j),UNITS(2,j),k);
-            catch
-                fprintf('wtf\n');
-            end
-            xj{k,j} = gradient(zj{k,j}')';
+    for j = 1:size(UNITS,2) % nStates*nEpochs
+        for iEpoch = 1:nEpochs
+            zj{iEpoch,j} = xn(:,UNITS(1,j),UNITS(2,j),iEpoch);
+            xj{iEpoch,j} = gradient(zj{iEpoch,j}')';
         end
         % str{j} = sprintf('%s: t=%i',MDP(1).label.name{f}{UNITS(1,j)},UNITS(2,j));
         % str{j} = sprintf('(%i,%i):',UNITS(1,j),UNITS(2,j));
         % str{j} = sprintf('%s:%i)',MDP(1).Aname{2},UNITS(2,j));
         str{j} = sprintf('C^{%g}_{%g}: t=%i',MDP(1).level,UNITS(1,j),UNITS(2,j));
+        % str{j} = sprintf('Population Coding C^{%i} (%s x time step)',MDP(1).level,MDP(1).Aname{factor});
     end
-    z{i,1} = zj;
-    x{i,1} = xj;
+    z{iStep,1} = zj;
+    x{iStep,1} = xj;
     
     % % selected units
     % %----------------------------------------------------------------------
@@ -79,6 +73,9 @@ for i = 1:Nt
     % dn(:,i) = mean(MDP(i).dn,2);
 
 end
-hai_neu.z=z;  % neuron potentials
-hai_neu.x=x;  % difference in potential neurons
-hai_neu.str=str;
+hai_neu.z   = z;                    % neuron potentials
+hai_neu.x   = x;                    % difference in potential neurons
+hai_neu.str = str;
+hai_neu.Ne  = size(z{1},1);         % number of epochs        
+hai_neu.Nb  = size(z{1}{1},1);      % number of time bins per epochs
+hai_neu.Nx  = size(z{1},2)/nEpochs;      % number of states

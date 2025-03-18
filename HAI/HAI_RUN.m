@@ -6,7 +6,7 @@ function   MDP=HAI_RUN(params,dictionary)
 % steps (Ht=1); spm_MDP_VB_X_tutorial_debug_v0 should behave exactly 
 % as spm_MDP_VB_X_tutorial. NO WARRANTY GIVEN :)
 
-defaultParams=HAI_getDefaultParams(dictionary);
+defaultParams=HAI_DefaultParams(dictionary);
 try
     params  = recopyFields(params,defaultParams);
 catch
@@ -29,10 +29,11 @@ if params.debugmode
     description = params.getDescription(params);
     idfile      = num2str(getTimeStamp);
     save_dir    = './TRACE/traces/';    % trace dir
-    filename    = sprintf('%s%s_%s.txt',save_dir,description,idfile);
+    filename    = sprintf('%s %s_%s.txt',save_dir,description,idfile);
     diary (filename);
     TRACE_printMDP(mdp);
 end
+
 MDP      = params.spm_MDP_VB_H(mdp,params);
 if params.debugmode
     diary('off');

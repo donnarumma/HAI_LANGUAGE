@@ -41,7 +41,7 @@ for iLev=1:NLevels
     params.level(iLev).LocPrLambda      = 6;                            % LocPrLambda parameter for Poisson priors (Default 6)
     params.level(iLev).alpha            = 512;                          % softmax parameter for action selection (Default 512). if Poisson Priors, good alpha=4 
     params.level(iLev).unknown          = true;    % if CLASSES is present add 'unknown' class together with 'null' report 
-
+    params.level(iLev).maskval          = 0;       % uniform
 end
 
 % simulation function

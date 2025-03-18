@@ -14,18 +14,36 @@ end
 factor = params.factor;
 nla    = params.nla;
 sa     = params.sa;
-hai_neu= HAI_getNeuralStatistics(MDP,params);
-z      = hai_neu.z;   % neuron potentials
+if isempty(params.Ne)
+    hai_neu = HAI_getNeuralStatistics(MDP,params);
+    z       = hai_neu.z;        % neuron potentials
+    Ne      = size(z{1},1);     % number of epochs        
+    Nx      = size(z{1},2)/Ne;  % number of states
+    % Ne      = hai_neu.Ne;       % number of epochs
+    % Nx      = hai_neu.Nx;       % number of states
+    [z,t]   = HAI_humanlike(MDP,z,params);
+    z       = spm_cat(z)';
+    
+else
+    % warning: no human like
+    z       = MDP;
+    Ne      = params.Ne; 
+    Nx      = params.Nx;
+    Nb      = params.Nb;
+    dt      = params.dt;
+    t       = 1:Ne*Nb;
+    t       = t*dt;
+    % z     -> nCells x nTimes
+    % nTimes-> Ne*Nb 
+    % nCells-> Nx*Nb
 
+end
 
 
 % dt  = 3/48;
 % Nt  = length(MDP);          % number of trials
-Ne  = size(z{1},1);         % number of epochs        
 % Nb  = size(z{1}{1},1);      % number of time bins per epochs
-Nx =  size(z{1},2)/Ne;      % number of states
 % [z,rescale,newsteps]=HAI_humanlike(MDP,z,params);
-[z,t]=HAI_humanlike(MDP,z,params);
 % 
 % % t   = (1:(Nb*Ne*Nt))*dt;    % time (seconds)
 % t = (1:(sum(newsteps)*Nt))*dt;    % time (seconds)
@@ -35,9 +53,10 @@ Nx =  size(z{1},2)/Ne;      % number of states
 hold on; 
 Nnr   = 16;      % Number of duplicate neurons per state
 Nev   = 16;      % Number of duplicate events
-SpT   = 1/16;   % Threshold to spikes
+SpT   = 1/16;    % Threshold to spikes
 % SpT   = 1/2;
-R  = kron(spm_cat(z)',ones(Nnr,Nev));
+% create a matrix of {0,1} R=~Spikes. 0 are spikes, 1 are non spikes 
+R  = kron(z,ones(Nnr,Nev));
 R  = rand(size(R)) > R*(1 - SpT);
 imagesc(t,1:(Nx*Ne + 1),R),title('Unit firing','FontSize',16)
 xlabel('time [s]','FontSize',12)
@@ -45,9 +64,10 @@ colormap gray;
 
 grid on, 
 % set(gca,'XTick',(1:(Ne*Nt))*Nb*dt)
-
-ylabel(sprintf('Population Coding C^{%i} (%s x time step)',MDP(1).level,MDP(1).Aname{factor})); %% DONNARUMMA
-
+try
+    ylabel(sprintf('Population Coding C^{%i} (%s x time step)',MDP(1).level,MDP(1).Aname{factor})); %% DONNARUMMA
+catch
+end
 yt   =yticks;
 % Nlabels=length(yticks);
 

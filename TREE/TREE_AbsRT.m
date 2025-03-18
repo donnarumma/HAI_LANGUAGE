@@ -1,5 +1,6 @@
 function   ABSRTtree=TREE_AbsRT(MDP)
 % function ABSRTtree=TREE_AbsRT(MDP)
+% tree of cumulative depthfirst reaction times
 RTtree   = TREE_getMDPTime(MDP,@TREE_LevelTime_RT,@TREE_Append_NULL);
 ABSRTtree= RTtree;
 diterator=ABSRTtree.depthfirstiterator;

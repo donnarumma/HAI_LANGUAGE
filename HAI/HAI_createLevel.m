@@ -8,7 +8,7 @@ statesnoise     = params.statesnoise;
 stnm            = params.StateName;
 obnm            = params.ObsName;
 lcnm            = [params.ObsName 'Location'];
-
+maskval         = params.maskval;
 %% Level State Priors
 %==========================================================================
 % D matrix: Prior beliefs about Initial state
@@ -53,7 +53,7 @@ sval    =1-statesnoise;
 % probabilistic mapping from hidden states to outcomes: A
 if forceSimmetry
     No  = [length(OBS),length(LOCATIONS)];                  % number of obs per factor
-    A   = HAI_getA(OBS,STATES,length(LOCATIONS),oval);
+    A   = HAI_getA(OBS,STATES,length(LOCATIONS),oval,maskval);
 else
     No  = [length(OBS),length(LOCATIONS),length(FEEDBACKS)];% number of obs per factor
     A   = HAI_getAContext(OBS,STATES,CLASSES,length(LOCATIONS),oval,params.unknown);
@@ -106,10 +106,10 @@ else
     mdp.Aname   = {stnm,lcnm,'Context' };
     mdp.Bname   = {obnm,lcnm,'Feedback'};
 end
-if params.chi
-    mdp.chi     = params.chi;
-    mdp.tau     = 2;                      % alto-convergenza lenta del gradiente ma sistema più stabile
-end
+% if params.chi
+mdp.chi     = params.chi;
+mdp.tau     = params.tau;                  % high -> low convergenge of the gradient but more stable
+% end
 mdp.sname{1}= STATES;
 mdp.sname{2}= LOCATIONS;
 mdp.oname{1}= OBS;
