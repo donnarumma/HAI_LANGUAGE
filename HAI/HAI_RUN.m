@@ -32,8 +32,7 @@ if params.debugmode
     filename    = sprintf('%s %s_%s.txt',save_dir,description,idfile);
     diary (filename);
     TRACE_printMDP(mdp);
-end
-
+end 
 MDP      = params.spm_MDP_VB_H(mdp,params);
 if params.debugmode
     diary('off');
