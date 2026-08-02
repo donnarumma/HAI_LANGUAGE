@@ -1,0 +1,51 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite both the software release and the associated article."
+title: "HAI_LANGUAGE: Hierarchical active inference for language, reading, and eye movements"
+type: software
+version: 1.0.0
+date-released: "2026-08-02"
+license: GPL-1.0-or-later
+repository-code: "https://github.com/donnarumma/HAI_LANGUAGE"
+url: "https://github.com/donnarumma/HAI_LANGUAGE"
+abstract: >-
+  MATLAB implementation of a hierarchical active inference model of language,
+  reading, and eye movements. The software combines hierarchical generative
+  models with large-language-model predictions and includes simulations of
+  known and novel word recognition, saccades, and dyslexic reading.
+authors:
+  - family-names: Donnarumma
+    given-names: Francesco
+    affiliation: "Institute of Cognitive Sciences and Technologies, National Research Council of Italy"
+    orcid: "https://orcid.org/0000-0003-4248-5360"
+  - family-names: Frosolone
+    given-names: Mirco
+    affiliation: "Institute of Cognitive Sciences and Technologies, National Research Council of Italy"
+    orcid: "https://orcid.org/0000-0003-4565-2769"
+  - family-names: Pezzulo
+    given-names: Giovanni
+    affiliation: "Institute of Cognitive Sciences and Technologies, National Research Council of Italy"
+    orcid: "https://orcid.org/0000-0001-6813-8282"
+keywords:
+  - active inference
+  - hierarchical generative models
+  - reading
+  - eye movements
+  - dyslexia
+  - large language models
+  - MATLAB
+references:
+  - type: article
+    title: "Integrating large language models and active inference to understand eye movements in reading and dyslexia"
+    authors:
+      - family-names: Donnarumma
+        given-names: Francesco
+      - family-names: Frosolone
+        given-names: Mirco
+      - family-names: Pezzulo
+        given-names: Giovanni
+    journal: "Physics of Life Reviews"
+    volume: 55
+    start: 61
+    end: 78
+    year: 2025
+    doi: "10.1016/j.plrev.2025.08.008"
