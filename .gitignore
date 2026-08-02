@@ -37,6 +37,7 @@ octave-workspace
 *.gif
 
 # project specific
+local/
 TRACE/traces/
 workinprogress/
 chatGPT/API-key.txt
