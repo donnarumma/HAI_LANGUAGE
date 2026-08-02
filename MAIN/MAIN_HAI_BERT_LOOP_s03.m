@@ -16,7 +16,7 @@ sentences           =HAI_level(MDP,' ');
 
 dohyphen            =1;
 deleteoldsentences  =1;
-dic_name            ='BERT_v1_tmp';
+dic_name            ='BERT_v1_BUTTER';
 
 dic_dir             = ['.' SEP 'BERT' SEP dic_name  SEP];
 mkdir(dic_dir);
@@ -128,7 +128,6 @@ return
 
 
     
-
 
 
 

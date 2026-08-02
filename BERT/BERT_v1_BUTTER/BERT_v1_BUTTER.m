@@ -1,4 +1,4 @@
-function DICTIONARY = BERT_v1_tmp()
+function DICTIONARY = BERT_v1_BUTTER()
 LETTERS=cell(0,0);
 LETTERS{end+1,1}=' '; iL.s=length(LETTERS);
 LETTERS{end+1,1}='A'; iL.(LETTERS{end})=length(LETTERS);
