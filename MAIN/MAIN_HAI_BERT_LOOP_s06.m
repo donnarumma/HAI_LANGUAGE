@@ -1,4 +1,4 @@
-%% function MAIN_HAI_BERT_LOOP_s04
+%% function MAIN_HAI_BERT_LOOP_s06
 % MAIN WITH BERT WITH A SENTENCE THAT HAS A NEW WORD (BUTTER) IN IT
 % the model does not recognize the word, but recognize the syllables of the
 % word. Thus, it adds the new word to the dictionary
@@ -22,11 +22,11 @@ dic_dir             = ['.' SEP 'BERT' SEP dic_name  SEP];
 mkdir(dic_dir);
 addpath(dic_dir);
 
-% new sentence with a new unknown word (BUTTER) with known syllables (BUT and TER) 
-newsentence = {'THIS PAPER IS ALSO BUTTER IN THE'}; 
+% new sentence with a new unknown word (BUTTER) with known syllables (BUT and TER)
+newsentence = {'THIS PAPER IS ALSO BUTTER IN THE'};
 % sentences   = [newsentence;sentences];
 % https://it.mathworks.com/help/textanalytics/ref/editdistance.html
-addto=false;
+addto=true;
 if addto
     sentences   = [{'THIS PAPER IS ALSO BUTTER IN THE'};sentences];
 end
@@ -57,7 +57,7 @@ sends = cellfun(@(x)(editDistance(x,newsentence{1})),sentences);
 [~,sen] = min(sends);
 
 % max saccades on letters    syllables     words
-nmaxT          = [   8,          8,          8  ];
+% nmaxT          = [   8,          8,          8  ];
 nmaxT          = [   5,          6,          7  ];
 dictionary_function = str2func(dic_name);
 
@@ -78,60 +78,37 @@ for isy=1:hmsyllables
 end
 
 %% NEW PARAMS
-unparams            = HAI_getParams(23,dic_name);
-for il = 1:length(unparams.level); unparams.level(il).maxT=nmaxT(il); end
-unparams            = HAI_initialiseParams(unparams);
+% unparams            = HAI_getParams(23,dic_name);
+unparams                          = HAI_DefaultParams(dic_name);
 
-syllables_location_states       = randi(length(names),1,nmaxT(2)); 
-while (syllables_location_states(1)~=1)
-    syllables_location_states=circshift(syllables_location_states,1);
-end
-% set corresponding saccades on the second level location states
-wolocs  = MDP.s(2,1):length(MDP.sname{2});
-seq     = [];
-while length(seq)<nmaxT(3)
-    seq = [seq,wolocs(randperm(length(wolocs)))];
-end
-%     1    2   3   4     5    6   7
-%  'THIS PAPER IS ALSO BUTTER IN THE'
-% seq=[3     5     4     6     4     6     7     5];
-seq=[3     5     4     6     4     6     7];
+for il = 1:length(unparams.level); unparams.level(il).maxT=nmaxT(il);   end
+for il = 1:length(unparams.level); unparams.level(il).chi = 1/32;       end
+for il = 1:length(unparams.level); unparams.level(il).Ht=false;         end
 
-seq                         =seq(1:nmaxT(3));
-% set true states syllables first level states 
+indnewword                        = 97;
+% unparams.level(2).idkContent      = indnewword;
 
-% level 1
-% states x nmaxT(1), nmaxT(2), nmaxT(3)
-for iT2=1:nmaxT(2)
-    for iT3=find(seq==5)%1:nmaxT(2)
-        unparams.level(1).s(1,:,iT2,iT3)=ones(1,nmaxT(1))*names(syllables_location_states(iT2));
-    end
-end
-% level 2
-% states x nmaxT(2), nmaxT(3)
-% when word is 'BUTTER', set up locations
-for iT3=find(seq==5)
-    unparams.level(2).s(2,:,iT3)=syllables_location_states;
-end
-% level 3
-% states x nmaxT(3)
-% set up word locations
-unparams.level(3).s(2,:)    = seq;
+unparams                        = HAI_initialiseParams(unparams);
+% unparams.level(2).D{1}(indnewword)= 0;
+unparams.irng                   = 344;
 
 % set up sentence
 unparams.level(3).s(1,:)    = sen*ones(1,nmaxT(3));
 
-MDPEXP                      = HAI_RUN(unparams,dic_name);
+fprintf('Reading %s\n',HAI_retrieveLevel(unparams.level(3).STATES{sen},' '))
 
+unparams.debugmode          = true;
+MDPEXP                      = HAI_RUN(unparams,dic_name);
+%%
 [val,ind]=max(MDPEXP.X{1}(:,end));
 fprintf('P(%s)=%g\n',HAI_retrieveLevel(MDPEXP.sname{1}{ind}),val);
-
+fprintf('Number of saccades: %g\n',HAI_getSaccades(MDPEXP));
 mdp=MDPEXP.mdp;
 for im=1:length(mdp)
     loc=MDPEXP.s(2,im);
     [val,ind]=max(mdp(im).X{1}(:,end));
     add='';
-    if mdp(im).T==nmaxT(2)
+    if mdp(im).T==nmaxT(2) || val<0.6
         add='I am not sure! Probably a new word';
         inloc=loc;
     end
@@ -141,10 +118,14 @@ for im=1:length(mdp)
         [val,ind]=max(mdpmdp(imm).X{1}(:,end));
         sloc=mdp(im).s(2,imm);
         recword{sloc}=MDPEXP.mdp(im).mdp(imm).sname{1}{ind};
-        fprintf('SL(%g):P(%s)=%g\n',sloc,HAI_retrieveLevel(MDPEXP.mdp(im).mdp(imm).sname{1}{ind},''),val);   
+        fprintf('SL(%g):P(%s)=%g\n',sloc,HAI_retrieveLevel(MDPEXP.mdp(im).mdp(imm).sname{1}{ind},''),val);
     end
 end
-fprintf('New word: %s, in word location %g\n',HAI_retrieveLevel(recword,''),inloc)
+try
+    fprintf('New word: %s, in word location %g\n',HAI_retrieveLevel(recword,''),inloc);
+catch
+    fprintf('All read smoothly\n');
+end
 
 
 
@@ -186,7 +167,6 @@ OFFSPRING
 
 
 
-    
+
 
 "THIS PAPER IS ALSO FRAMED IN AN OFFBEAT MANNER"
-

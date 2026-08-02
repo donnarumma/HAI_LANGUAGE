@@ -4,23 +4,24 @@
 dictionary = 'BERT_100_SY';
 %% Four Letters MDP paths
 SEP = filesep;
+root_dir = [HAI_testsRoot() SEP];
 %% Four Letter
-path1 = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP dictionary SEP 'Sim1_CM_4l' SEP];
+path1 = [root_dir dictionary SEP 'Sim1_CM_4l' SEP];
 
-path2 = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP dictionary SEP 'Sim1_DM1_4l' SEP];
+path2 = [root_dir dictionary SEP 'Sim1_DM1_4l' SEP];
 
-path3 = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP dictionary SEP 'Sim1_DM2_4l' SEP];
+path3 = [root_dir dictionary SEP 'Sim1_DM2_4l' SEP];
 
-path4 = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP dictionary SEP 'Sim1_DM_4l'  SEP];
+path4 = [root_dir dictionary SEP 'Sim1_DM_4l'  SEP];
 
 %% Eight Letter
-path5 = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP dictionary SEP 'Sim1_CM_8l'  SEP];
+path5 = [root_dir dictionary SEP 'Sim1_CM_8l'  SEP];
 
-path6 = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP dictionary SEP 'Sim1_DM1_8l' SEP];
+path6 = [root_dir dictionary SEP 'Sim1_DM1_8l' SEP];
 
-path7 = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP dictionary SEP 'Sim1_DM2_8l' SEP];
+path7 = [root_dir dictionary SEP 'Sim1_DM2_8l' SEP];
 
-path8 = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP dictionary SEP 'Sim1_DM_8l'  SEP];
+path8 = [root_dir dictionary SEP 'Sim1_DM_8l'  SEP];
 
 Out_par_CM4l = boxplotparameters(path1);
 

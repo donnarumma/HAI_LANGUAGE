@@ -113,7 +113,7 @@ for iSub=1:NSubs
 end
 
 SEP = filsep;
-root_dir =[SEP 'tmp' SEP 'HAI_LANGUAGE' SEP];
+root_dir = [HAI_testsRoot() SEP];
 save_dir =[root_dir  SEP    dictionary  SEP];
 
 PLOT_BAR_modes(MDPsub,noisedescription,dictionary,paramsmodes,rtmode,'',save_dir)

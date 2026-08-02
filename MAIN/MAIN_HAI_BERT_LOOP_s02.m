@@ -16,7 +16,7 @@ else
     end
 end
 addpath(dic_dir);
-root_dir                        = [SEP 'tmp' SEP 'HAI_LANGUAGE_TESTS' SEP];
+root_dir = [HAI_testsRoot() SEP];
    
 %% bertparams
 bertparams                      = BERT_getDefaultParams;

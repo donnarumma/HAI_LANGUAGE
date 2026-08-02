@@ -21,7 +21,7 @@ sccprj/
 # Matlab code generation folders
 codegen/
 # Matlab mat files
-#*.mat
+*.mat
 
 # Simulink autosave extension
 *.autosave

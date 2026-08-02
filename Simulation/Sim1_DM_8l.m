@@ -19,7 +19,7 @@ par_series.irng                     = irng;
 maxT                                = par_series.level(end).maxT;       % max number of iterations
 SEP                                 = filesep;
 % save in current dir - change to save in other dirs
-root_dir                            = ['.' SEP 'HAI_LANGUAGE_TESTS' SEP];
+root_dir = [HAI_testsRoot() SEP];
     
 %%----- WORD SELECTION
 word_eval                           = cell(Nruns,1);  

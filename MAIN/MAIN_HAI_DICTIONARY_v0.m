@@ -45,7 +45,7 @@ MDP                                = HAI_RUN(langparams,dictionary);
 
 %% create BAR NOISE PLOT
 SEP = filesep;%'//';
-root_dir =[SEP 'tmp' SEP 'HAI_LANGUAGE_TESTS' SEP]; % saving in results /tmp/HAI_LANGUAGE_TESTS/
+root_dir = [HAI_testsRoot() SEP]; % saving in results ~/TESTS/HAI_LANGUAGE/
 save_dir =[root_dir SEP dictionary SEP];
 desc     = 'default parameters';
 PLOT_BAR_modes({MDP},{desc},dictionary,0,rtmode,'',save_dir)
