@@ -7,5 +7,5 @@ sn2=sprintf('%g_',round(100*params.level(2).statesnoise));   sn2=['tn2_',sn2];  
 
 dn = func2str(params.DICTIONARY);
 
-description =['HMDP' params.version 'm_' dn '_' num2str(params.imode) '_' on1 '_' sn1 '_' on2 '_' sn2];
+description =['HMDP' params.version 'm_' dn '_' strrep( num2str([params.level.Ht]),' ','') '_' on1 '_' sn1 '_' on2 '_' sn2];
 end

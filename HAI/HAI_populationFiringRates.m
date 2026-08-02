@@ -1,5 +1,5 @@
 function   [data_trials] = HAI_populationFiringRates(MDP,par)
-%function  [data_trials] = HAI_populationFiringRates(MDP,par)
+%function  [popFiringRates,data_trials] = HAI_populationFiringRates(MDP,par)
 % return:
 % Spikes     - nCells x nTimes
 % time       - 1 x nTimes (in seconds)

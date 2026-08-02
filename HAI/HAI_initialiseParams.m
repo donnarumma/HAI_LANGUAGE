@@ -24,4 +24,4 @@ for iLev=1:length(params.level)
     end
 end
 
-params.Ht=params.imode;  %% to be removed
+% params.Ht=params.imode;  %% to be removed

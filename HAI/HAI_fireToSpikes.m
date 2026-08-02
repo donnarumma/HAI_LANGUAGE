@@ -1,8 +1,9 @@
-function [Spikes] = HAI_fireToSpikes(FiringRates,par)
+function   [Spikes] = HAI_fireToSpikes(FiringRates,cap,th,SpT)
+% function [Spikes] = HAI_fireToSpikes(FiringRates,cap,th,SpT)
 % cap         = 0.8;
-cap         = par.cap;
-th          = par.th;
-SpT         = par.SpT;
+% cap         = par.cap;
+% th          = par.th;
+% SpT         = par.SpT;
 FiringRates(FiringRates>cap)=cap;
 Spikes      = rand(size(FiringRates)) > FiringRates*(1 - SpT) + th;
 Spikes      = ~Spikes;
@@ -16,6 +17,7 @@ for iEpoch=1:nEpochs
         %imod       = mod(0:nStates-1,nStats)+1;
         for iRep=1:Nnr
             iCell      = iCell+1;
+            % str{iCell} = sprintf('%s: t=%i',MDP.label.name{par.factor}{iState},iEpoch);
             str{iCell} = sprintf('%s: t=%i',MDP.label.name{par.factor}{iState},iEpoch);
         end
     end

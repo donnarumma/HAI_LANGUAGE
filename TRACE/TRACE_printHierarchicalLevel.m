@@ -12,6 +12,7 @@ s2=TRACE_printStatus(MDP,t,'s','A');
 s3=TRACE_printStatus(MDP,t,'o','B');
 if printHidden
     s4=TRACE_printHiddenStates(MDP,t,'X');
+    % s4=TRACE_printHiddenStates(MDP,t,'O');
 else
     s4='';
 end

@@ -1,4 +1,4 @@
-function   [data_trials] = HAI_extendFiringRates(popFiringRates,par)
+function   [FiringRates,timeFR,labEpochs] = HAI_extendFiringRates(popFiringRates,nBins,Nnr,Nev,dt)
 % function [data_trials] = HAI_extendFiringRates(popFiringRates,par)
 % return:
 % Spikes     - nCells x nTimes
@@ -12,14 +12,13 @@ function   [data_trials] = HAI_extendFiringRates(popFiringRates,par)
 % popFiringRates probabilities as 
 % nStates*nEpochs (nPopulations) x nBins*nEpochs (nTimes)
 
-Nnr         = par.Nnr;      % Number of duplicate neurons per population
-Nev         = par.Nev;      % Number of duplicate events
-% SpT         = par.SpT;      % Threshold to spikes
-dt          = par.dt;       % time of one bin
+% Nnr:      Number of duplicate neurons per population
+% Nev:      Number of duplicate events
+% nBins:    Number of bin updated
+% dt:       time of one bin
 TotalNev    = sum(Nev);
-nEpochs     = par.nEpochs;%length(Nev);
+nEpochs     = length(Nev); %par.nEpochs;%
 nStates     = size(popFiringRates,1)/nEpochs;
-nBins       = par.nBins;
 labEpochs   = nan(1,TotalNev*nBins*nEpochs);
 if length(Nev)==nEpochs
     FiringRates= nan(Nnr*nStates*nEpochs,TotalNev*nBins*nEpochs);
@@ -37,11 +36,9 @@ else
     % Nev        = sum(Nev);
     FiringRates = kron(popFiringRates,ones(Nnr,TotalNev));
 end
-cap                 = 0.8;
-FiringRates(FiringRates>cap)=cap;
 
-time                = (1:TotalNev*nBins*nEpochs)*dt;
-data_trials.firingRates     = FiringRates;
-data_trials.timeFiringRates = time;
-data_trials.labEpochs       = labEpochs;
+timeFR          = (1:TotalNev*nBins*nEpochs)*dt;
+% data_trials.firingRates     = FiringRates;
+% data_trials.timeFiringRates = time;
+% data_trials.labEpochs       = labEpochs;
 return

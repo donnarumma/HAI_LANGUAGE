@@ -3,12 +3,12 @@ function s=TRACE_printHiddenStates(MDP,t,hiddenstatename)
 % s       = sprintf('%s, Time %g\n',MDP.Hname,t);
 s       = '';
 State   = MDP.(hiddenstatename);
-Anames  = MDP.(['Aname']);
+Bnames  = MDP.(['Bname']);
 for is=1:length(State)
     pb      =State{is}(:,t);
-    gs      =sprintf('p(%s)=(',Anames{is});
+    gs      =sprintf('p(s%g=%s)=(',is,Bnames{is});
     for ip=1:length(pb)
-        gs=sprintf('%s%.2g,',gs,pb(ip));
+        gs=sprintf('%s%.2f,',gs,full(pb(ip)));
     end
     gs(end) =')';
     s=sprintf('%s%s\n',s,gs);

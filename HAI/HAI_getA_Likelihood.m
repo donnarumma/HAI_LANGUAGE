@@ -2,7 +2,13 @@ function    A=HAI_getA_Likelihood(    OBS,STATES,CLASSES,NLocations,params)%val,
 % function  A=HAI_getA_Likelihood(    OBS,STATES,CLASSES,NLocations,val,maskval,addUnk)
 % function  A=HAI_getA_Likelihood(    OBS,STATES,CLASSES,NLocations,val,maskval,addUnk)
 % function  A=HAI_getA_Likelihood(LETTERS, WORDS,CLASSES,NLocations,val,maskval,addUnk)
-% Level likelihood p(obs|S)
+% Level likelihood p(obs|S):
+%                      obs_1          obs_2             obs_No
+%                  p(obs_1|S_1 ), p(obs_2|S_1 ) ... p(obs_No,S_1 ) % S_1
+%                  p(obs_1|S_2 ), p(obs_2|S_2 ) ... p(obs_No,S_2 ) % S_2
+%                  ... 
+%                  p(obs_1|S_Ns), p(obs_2|S_Ns) ... p(obs_No,S_Ns) % S_Ns
+%
 % val(1) good value on p(o{1}|s)
 % val(2) good value on p(o{2}|s)
 maskval = params.maskval;

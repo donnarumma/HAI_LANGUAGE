@@ -20,7 +20,13 @@ NLevels=length(params.level);
 for iLev=1:NLevels
     params.level(iLev).MDP  = MDPsub;
     mdp                     = params.level(iLev).create(params.level(iLev));    
-    mdp.s                   = params.level(iLev).s;%
+    if iLev<NLevels
+        if strcmp('VB_MDP',func2str(params.spm_MDP_VB_H))
+            mdp.s           = params.level(iLev).s;%
+        end
+    else
+        mdp.s               = params.level(iLev).s;
+    end
     MDPsub                  = mdp;
 end
 
@@ -29,7 +35,7 @@ if params.debugmode
     description = params.getDescription(params);
     idfile      = num2str(getTimeStamp);
     save_dir    = './TRACE/traces/';    % trace dir
-    filename    = sprintf('%s %s_%s.txt',save_dir,description,idfile);
+    filename    = sprintf('%s%s_%s.txt',save_dir,description,idfile);
     diary (filename);
     TRACE_printMDP(mdp);
 end 

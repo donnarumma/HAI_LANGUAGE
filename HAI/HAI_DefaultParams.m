@@ -2,18 +2,18 @@ function   params=HAI_DefaultParams(dictionary)
 % function params=HAI_DefaultParams(dictionary)
 params.irng         ='default';
 params.idhighest    =1;
-params.imode        =0;                             % to emulate Friston (Ryan Smith version) default is 1 and (should make) makes its behaviour 
+% params.imode        =0;                             % to emulate Friston (Ryan Smith version) default is 1 and (should make) makes its behaviour 
                                                     % overimposable to Friston's code. 
                                                     % Ht make do not overwrite past hidden states
                                                     % probabilities at the end of the run (OPTIONS.HT)
-params.sX           =[1,1];                         % code on s: with 1 s becomes sample guess when s assumes initial values -1
+% params.sX           =[1,1];                         % code on s: with 1 s becomes sample guess when s assumes initial values -1
 params.DICTIONARY                       = str2func(dictionary);                                                       
 DICTIONARY                              = params.DICTIONARY();
-params.version                          ='v12';         
+params.version                          = 'v13';         
 % params.maxT                           =[ 3 5];     % Friston default
 
 params.getDescription                   = str2func('HAI_getDescription');
-NLevels=length(DICTIONARY.STATES);
+NLevels                                 = length(DICTIONARY.STATES);
 for iLev=1:NLevels
     %% states
     params.level(iLev).STATES           = DICTIONARY.STATES{iLev};     
@@ -30,10 +30,10 @@ for iLev=1:NLevels
     params.level(iLev).maxT             = 20;                               % max time depth per level  (Default 20)
     params.level(iLev).create           = str2func('HAI_buildLevel');       % initialization function   (Default HAI_createLevel)
     params.level(iLev).getA             = str2func('HAI_getA_Likelihood');  % likelihood function       (Default HAI_getA_Likelihood)
-    params.level(iLev).getB             = str2func('HAI_getB_Transitions');% Transition Matrix
-    params.level(iLev).SaccadesLocation = true;                         % point to the first state of the second factor
-    params.level(iLev).plan2D           = [];                        % planar navigation
-    params.level(iLev).MDP              = [];                           % sublevel (Default empty sublevel) 
+    params.level(iLev).getB             = str2func('HAI_getB_Transitions'); % Transition Matrix
+    params.level(iLev).SaccadesLocation = true;                             % point to the first state of the second factor
+    params.level(iLev).plan2D           = [];                               % planar navigation
+    params.level(iLev).MDP              = [];                               % sublevel (Default empty sublevel) 
     
     params.level(iLev).C                = []; % preferences                           % sublevel (Default empty sublevel) 
     
@@ -52,6 +52,15 @@ for iLev=1:NLevels
     params.level(iLev).alpha            = 512;                          % softmax parameter for action selection (Default 512). if Poisson Priors, good alpha=4 
     params.level(iLev).unknown          = false;   % if CLASSES is present add 'unknown' class together with 'null' report 
     params.level(iLev).maskval          = 0;       % uniform
+
+    %
+    params.level(iLev).sX               = [1,1];   % code on s: with 1 s becomes sample guess when s assumes initial values -1                      % code on s: with 1 s becomes sample guess when s assumes initial values -1
+    params.level(iLev).gamma            = 0;
+    params.level(iLev).Ht               = 1;       % to emulate Friston (Ryan Smith version) default is 1 and (should make) makes its behaviour 
+                                                   % overimposable to Friston's code. 
+                                                   % Ht make do not overwrite past hidden states
+                                                   % probabilities at the end of the run (OPTIONS.HT)
+    params.level(iLev).sX               = [0,0];   % code on s: with 1 s becomes sample guess when s assumes initial values -1
 end
 
 % simulation function
@@ -60,4 +69,4 @@ end
 % params.spm_MDP_VB_H                = str2func('spm_MDP_VB_X_tutorial_debug_v11');     % Last debug version
 params.spm_MDP_VB_H                  = str2func('VB_MDP');                              % Latest version
 
-params.debugmode                     = false;       % 1 verbose printing mode
+params.debugmode                     = false;   % 1 verbose printing mode

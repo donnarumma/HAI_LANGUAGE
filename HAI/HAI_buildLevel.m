@@ -19,26 +19,24 @@ D           = params.D;
 % D{2}(1)   = 1;
 % D{2}      = [1 0 0 0]';       % Words Location:  {'Location1',...,'Location4'}
 
-forceSimmetry = isempty(params.CLASSES);
-CLASSES       = params.CLASSES;
-NFeedbacks    = [];
+forceSimmetry       = isempty(params.CLASSES);
+CLASSES             = params.CLASSES;
+nFeedbacks          = [];
 %% if CLASSES are present
 if ~isempty(params.CLASSES)
-    CLASSES         = params.CLASSES;
+    % CLASSES       = params.CLASSES;
     CLASSNAMES      = cell(1,length(CLASSES)+params.unknown);
-    CLASSNAMES{1,1}   ='Unk';
+    CLASSNAMES{1,1} ='Unk';
     for iC=1:length(CLASSES)
         CLASSNAMES{iC+1,1}=sprintf('C%g',iC);
     end
-    FEEDBACKS   ={'null','correct','wrong'}';
-    CLASSNAMES  =CLASSNAMES((end-((length(CLASSES)-1)+params.unknown)):end,1);
-    FEEDBACKS   =FEEDBACKS(end-(1+params.unknown):end);
-    NFeedbacks  =length(FEEDBACKS);
-    % D{3}    = zeros(length(CLASSES)+1,1);
-    % D{3}(1) = 1;                % start with 'unknown'
+    CLASSNAMES      = CLASSNAMES((end-((length(CLASSES)-1)+params.unknown)):end,1);
     
-    % D{3}    = ones(length(CLASSES)+1,1);
-    % D{3} = [1 0 0 0]';        % report: {'unknown','Eat','Drink','Sleep'}
+    % feedback classes
+    FEEDBACKS       = {'null','correct','wrong'}';
+    % remove unknown feedback if not in params
+    FEEDBACKS       = FEEDBACKS(end-(1+params.unknown):end);
+    nFeedbacks      = length(FEEDBACKS);
 end
 
 NLocations=length(D{2});
@@ -53,7 +51,7 @@ for f = 1:Nf
 end
 %% Level likelihood p(o|s)
 % probabilistic mapping from hidden states to outcomes: A
-No      = [length(OBS),length(LOCATIONS),NFeedbacks];% number of obs per factor
+No      = [length(OBS),length(LOCATIONS),nFeedbacks];% number of obs per factor
 % A     = HAI_getAContext(OBS,STATES,CLASSES,length(LOCATIONS),oval,params.unknown);
 % A     = HAI_getA_Likelihood(OBS,STATES,CLASSES,length(LOCATIONS),oval,maskval,params.unknown);
 % A     = HAI_getA_Likelihood(OBS,STATES,CLASSES,length(LOCATIONS),params);%oval,maskval,params.unknown);
